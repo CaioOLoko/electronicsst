@@ -18,3 +18,18 @@ function visualizar(){
     exibir("produtos/visualizar", $loja);
 }
 
+function adicionar(){
+   if (ehPost()){
+       
+       $nome_do_produto = $_POST["nome_do_produto"];
+       $preco_do_produto = $_POST["preco_do_produto"];
+       $categoria = $_POST["categoria"];
+       $marca = $_POST["marca"];
+       $descricao_do_produto = $_POST["descricao_do_produto"];
+       
+       print_r($_POST);
+   } else{
+       exibir("produtos/formulario");
+   }
+}
+
