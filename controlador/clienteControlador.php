@@ -1,5 +1,7 @@
 <?php
 
+require("servico/validacaoServico.php");
+
 function cadastro(){
    if (ehPost()){
        
@@ -11,7 +13,10 @@ function cadastro(){
        $sexo = $_POST["sexo"];
        $telefone = $_POST["telefone"];
        
-       print_r($_POST);
+       echo validar_elementos_obrigatorios($nome_completo);
+       echo validar_elementos_obrigatorios($senha);
+       echo validar_elementos_especificos($cpf);
+       
    } else{
        exibir("cliente/cadastro");
    }
