@@ -2,15 +2,21 @@
 
 function validar_elementos_obrigatorios($nome) {
     if (strlen(trim($nome))==0) {
-        $errors = "Você deve inserir um e-mail";
+        $errors = "Campo obrigatório.<br>";
         return $errors;
     }
 }
 
-function validar_elementos_especificos($x) {
+function validar_email($email) {
+    $input['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
+    if ($input['email'] == FALSE) {
+        return 'Informe um e-mail válido.<br>';
+    }
+}
 
-    $input['ano'] = filter_var($x, FILTER_VALIDATE_INT);
-    if ($input['ano'] == FALSE) {
-        return 'Informe um ano valido.';
+function validar_elementos_especificos($valor) {
+    $input['valor'] = filter_var($valor, FILTER_SANITIZE_NUMBER_INT);
+    if ($input['valor'] == FALSE) {
+        return 'Informe valor(es) numérico(s).<br>';
     }
 }

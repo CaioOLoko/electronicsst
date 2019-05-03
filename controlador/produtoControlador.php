@@ -1,5 +1,7 @@
 <?php
 
+require("servico/validacaoServico.php");
+
 function visualizar(){
     $loja = array ();
     $loja["produto"] = "Galaxy Note 9";
@@ -27,7 +29,15 @@ function adicionar(){
        $marca = $_POST["marca"];
        $descricao_do_produto = $_POST["descricao_do_produto"];
        
+       echo validar_elementos_obrigatorios($nome_do_produto);
+       echo validar_elementos_especificos($preco_do_produto); 
+       echo validar_elementos_obrigatorios($categoria);
+       echo validar_elementos_obrigatorios($marca);
+       echo validar_elementos_obrigatorios($descricao_do_produto);
+       
+       echo "<pre>";
        print_r($_POST);
+       echo "</pre>";
    } else{
        exibir("produtos/formulario");
    }
