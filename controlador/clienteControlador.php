@@ -1,14 +1,16 @@
 <?php
 
 require("servico/validacaoServico.php");
+require_once "modelo/clienteModelo.php";
 
-function cadastro(){
+function adicionar(){
    if (ehPost()){
        
        $email = $_POST["email"];
        $senha = $_POST["senha"];
        $cpf = $_POST["cpf"];
-       $nome_completo = $_POST["nome_completo"];
+       $nome = $_POST["nome"];
+       $sobrenome = $_POST["sobrenome"];
        $data_de_nascimento = $_POST["data_de_nascimento"];
        $sexo = $_POST["sexo"];
        $telefone = $_POST["telefone"];
@@ -16,16 +18,18 @@ function cadastro(){
        echo validar_email($email);
        echo validar_elementos_obrigatorios($senha);
        echo validar_elementos_especificos($cpf);
-       echo validar_elementos_obrigatorios($nome_completo);       
+       echo validar_elementos_obrigatorios($nome);  
+       echo validar_elementos_obrigatorios($sobrenome);
        echo validar_elementos_especificos($data_de_nascimento);
        echo validar_elementos_especificos($telefone);
        
-       echo "<pre>";
-       print_r($_POST);
-       echo "</pre>";
+       $msg = adcionarCliente($nome, $email, $senha);
+       echo $msg;
+       
    } else{
-       exibir("cliente/cadastro");
+       //não há dados submetidos;
    }
+   exibir("cliente/cadastro");
 }
 
 function contato(){

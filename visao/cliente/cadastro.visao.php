@@ -21,9 +21,10 @@ function formatar(mascara, documento){
     <h1>Cadastre-se</h1>
 
     E-mail: <input type="text" name="email"><br><br>
-    Senha: <input type="password" name="senha"><br><br>
+    Senha: <input type="password" name="senha" maxlength="30"><br><br>
     CPF: <input type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"><br><br>
-    Nome Completo: <input type="text" name="nome_completo"><br><br>
+    Nome: <input type="text" name="nome"><br><br>
+    Sobrenome: <input type="text" name="sobrenome"><br><br>
     Data de Nascimento: <input type="date" name="data_de_nascimento"><br><br>
     Sexo:<br><br>
     Masculino<input type="radio" name="sexo" value="Masculino">
