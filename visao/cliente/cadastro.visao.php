@@ -25,7 +25,7 @@ function formatar(mascara, documento){
     CPF: <input type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"><br><br>
     Nome: <input type="text" name="nome"><br><br>
     Sobrenome: <input type="text" name="sobrenome"><br><br>
-    Data de Nascimento: <input type="date" name="data_de_nascimento"><br><br>
+    Data de Nascimento: <input type="text" name="data_de_nascimento"><br><br>
     Sexo:<br><br>
     Masculino<input type="radio" name="sexo" value="Masculino">
     Feminino<input type="radio" name="sexo" value="Feminino"><br><br>

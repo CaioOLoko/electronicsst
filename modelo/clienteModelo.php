@@ -1,15 +1,13 @@
 <?php
 
-function adicionarCliente($nome,$email,$senha){
-    $comando = "INSERT INTO cliente(nome,email,senha) VALUES('$nome','$email','$senha')";
+function adicionarCliente($email,$senha,$cpf,$nome,$sobrenome,$data_de_nascimento,$sexo,$telefone){
+    $sql = "INSERT INTO cliente(email, senha, CPF, nome, sobrenome, dataNasc, sexo, telefone) VALUES('$email','$senha','$cpf','$nome','$sobrenome','$data_de_nascimento','$sexo','$telefone')";
     
-    $conexao = $conn();
-    $resultado = mysqli_query($conexao,$comando);
+    $resultado = mysqli_query($cnx = conn(),$sql);
     
-    if($resultado==true){
-        echo "A operação funcionou!";
-    }else{
-        echo "Deu errado";
+    if(!$resultado){ 
+        die ('Erro ao cadastrar cliente' . mysqli_error($cnx));
     }
+
 }
 

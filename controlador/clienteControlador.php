@@ -23,7 +23,7 @@ function adicionar(){
        echo validar_elementos_especificos($data_de_nascimento);
        echo validar_elementos_especificos($telefone);
        
-       $msg = adcionarCliente($nome, $email, $senha);
+       $msg = adicionarCliente($email,$senha,$cpf,$nome,$sobrenome,$data_de_nascimento,$sexo,$telefone);
        echo $msg;
        
    } else{
