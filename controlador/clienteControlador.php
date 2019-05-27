@@ -32,6 +32,13 @@ function adicionar(){
    exibir("cliente/cadastro");
 }
 
+function listarClientes(){
+    $dados = array();
+    $dados["clientes"] = pegarTodosClientes();
+    exibir("cliente/listar", $dados);
+}
+
+
 function contato(){
    if (ehPost()){
        

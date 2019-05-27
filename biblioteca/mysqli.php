@@ -1,7 +1,7 @@
 <?php
 
 function conn() {
-    $cnx = mysqli_connect("localhost", "root", "", "loja");
+    $cnx = mysqli_connect("localhost", "root", "", "electronicsst");
     if (!$cnx) die('Deu errado a conexao!');
     return $cnx;
 }

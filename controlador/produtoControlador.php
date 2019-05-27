@@ -1,6 +1,7 @@
 <?php
 
 require("servico/validacaoServico.php");
+require_once "modelo/produtoModelo.php";
 
 function visualizar(){
     $loja = array ();
@@ -22,24 +23,39 @@ function visualizar(){
 
 function adicionar(){
    if (ehPost()){
-       
+       $codProduto = $_POST["codProduto"];
+       $categoria = $_POST["categoria"];
        $nome_do_produto = $_POST["nome_do_produto"];
        $preco_do_produto = $_POST["preco_do_produto"];
-       $categoria = $_POST["categoria"];
+       $infoProduto = $_POST["infoProduto"];
+       $codDeBarras = $_POST["codDeBarras"];
        $marca = $_POST["marca"];
-       $descricao_do_produto = $_POST["descricao_do_produto"];
+       $modelo = $_POST["modelo"];
+       $cor = $_POST["cor"];
+       $memoria = $_POST["memoria"];
+       $processador = $_POST["processador"];
+       $polegadaTela = $_POST["polegadaTela"];
+       $SistOper = $_POST["SistOper"];
        
-       echo validar_elementos_obrigatorios($nome_do_produto);
-       echo validar_elementos_especificos($preco_do_produto); 
+       echo validar_elementos_obrigatorios($codProduto);
        echo validar_elementos_obrigatorios($categoria);
+       echo validar_elementos_obrigatorios($nome_do_produto);
+       echo validar_elementos_especificos($preco_do_produto);
+       echo validar_elementos_obrigatorios($infoProduto);
+       echo validar_elementos_obrigatorios($CodDeBarras);
        echo validar_elementos_obrigatorios($marca);
-       echo validar_elementos_obrigatorios($descricao_do_produto);
+       echo validar_elementos_obrigatorios($modelo);
+       echo validar_elementos_obrigatorios($cor);
+       echo validar_elementos_obrigatorios($memoria);
+       echo validar_elementos_obrigatorios($processador);
+       echo validar_elementos_obrigatorios($polegadaTela);
+       echo validar_elementos_obrigatorios($SistOper);
        
-       echo "<pre>";
-       print_r($_POST);
-       echo "</pre>";
+       $msg = adicionarProduto($codProduto,$categoria,$nome_do_produto,$preco_do_produto,$infoProduto,$codDeBarras,$marca,$modelo,$cor,$memoria,$processador,$polegadaTela,$SistOper);
+       echo $msg;
    } else{
-       exibir("produtos/formulario");
+       //não há dados submetidos
    }
+   exibir("produtos/formulario");
 }
 

@@ -20,16 +20,16 @@ function formatar(mascara, documento){
 
     <h1>Cadastre-se</h1>
 
-    E-mail: <input type="text" name="email"><br><br>
-    Senha: <input type="password" name="senha" maxlength="30"><br><br>
-    CPF: <input type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"><br><br>
-    Nome: <input type="text" name="nome"><br><br>
-    Sobrenome: <input type="text" name="sobrenome"><br><br>
-    Data de Nascimento: <input type="text" name="data_de_nascimento"><br><br>
-    Sexo:<br><br>
-    Masculino<input type="radio" name="sexo" value="Masculino">
+    <label for="email">E-mail:</label> <input type="text" name="email"><br><br>
+    <label for="senha">Senha:</label> <input type="password" name="senha" maxlength="30"><br><br>
+    <label for="cpf">CPF:</label> <input type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"><br><br>
+    <label for="nome">Nome:</label> <input type="text" name="nome"><br><br>
+    <label for="sobrenome">Sobrenome:</label> <input type="text" name="sobrenome"><br><br>
+    <label for="data_de_nascimento">Data de Nascimento:</label> <input type="text" name="data_de_nascimento"><br><br>
+    <label for="sexo">Sexo:</label><br><br>
+    Masculino<input type="radio" name="sexo" value="Masculino" checked="checked">
     Feminino<input type="radio" name="sexo" value="Feminino"><br><br>
-    Telefone: <input type="text" name="telefone">
+    <label for="telefone">Telefone:</label> <input type="text" name="telefone">
     <button type="submit">Cadastrar</button>
 
 </form>
