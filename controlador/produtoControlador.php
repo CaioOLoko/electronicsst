@@ -37,6 +37,7 @@ function adicionar(){
        $polegadaTela = $_POST["polegadaTela"];
        $SistOper = $_POST["SistOper"];
        
+       /*
        echo validar_elementos_obrigatorios($codProduto);
        echo validar_elementos_obrigatorios($categoria);
        echo validar_elementos_obrigatorios($nome_do_produto);
@@ -50,6 +51,7 @@ function adicionar(){
        echo validar_elementos_obrigatorios($processador);
        echo validar_elementos_obrigatorios($polegadaTela);
        echo validar_elementos_obrigatorios($SistOper);
+       */
        
        $msg = adicionarProduto($codProduto,$categoria,$nome_do_produto,$preco_do_produto,$infoProduto,$codDeBarras,$marca,$modelo,$cor,$memoria,$processador,$polegadaTela,$SistOper);
        echo $msg;
