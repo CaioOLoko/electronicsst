@@ -12,5 +12,16 @@ function adicionarProduto($codProduto,$categoria,$nome_do_produto,$preco_do_prod
     return 'Produto cadastrado com sucesso!';
 }
 
+function pegarTodosProdutos(){
+    $sql = "SELECT * FROM produto";
+    $resultado = mysqli_query(conn(), $sql);
+    $produtos = array();
+    while ($linha = mysqli_fetch_assoc($resultado)){
+        $produtos[] = $linha;
+    }
+    return $produtos;
+};
+
+
 ?>
 

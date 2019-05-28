@@ -8,7 +8,7 @@
             <th>CPF</th>
             <th>Nome</th>
             <th>Sobrenome</th>
-            <th>dataNasc</th>
+            <th>Data de Nascimento</th>
             <th>Sexo</th>
             <th>Telefone</th>
         </tr>

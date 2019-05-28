@@ -61,3 +61,8 @@ function adicionar(){
    exibir("produtos/formulario");
 }
 
+function listarProdutos(){
+    $dados = array();
+    $dados["produtos"] = pegarTodosProdutos();
+    exibir("produtos/listar", $dados);
+}
