@@ -1,8 +1,18 @@
-<?php
+<h2>Listar Categorias</h2>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<table class="table">
+    <thead>
+        <tr>
+            <th>Código do Produto</th>
+            <th>Categoria</th>
+        </tr>
+    </thead>
+    <?php foreach ($categorias as $categoria): ?>
+    <tr>
+        <td><?=$categoria['idProduto']?></td>
+        <td><?=$categoria['idCategoria']?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
 
+<a href="./categoria/adicionar" class="btn btn-primary">Nova Categoria</a>

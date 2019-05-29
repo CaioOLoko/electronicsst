@@ -1,35 +1,22 @@
 <?php
 function adicionar(){
    if (ehPost()){
-       $Categoria = $_POST["Categoria"];
+       $categoria = $_POST["categoria"];
        
-       /*
-       echo validar_elementos_obrigatorios($codProduto);
-       echo validar_elementos_obrigatorios($categoria);
-       echo validar_elementos_obrigatorios($nome_do_produto);
-       echo validar_elementos_especificos($preco_do_produto);
-       echo validar_elementos_obrigatorios($infoProduto);
-       echo validar_elementos_obrigatorios($CodDeBarras);
-       echo validar_elementos_obrigatorios($marca);
-       echo validar_elementos_obrigatorios($modelo);
-       echo validar_elementos_obrigatorios($cor);
-       echo validar_elementos_obrigatorios($memoria);
-       echo validar_elementos_obrigatorios($processador);
-       echo validar_elementos_obrigatorios($polegadaTela);
-       echo validar_elementos_obrigatorios($SistOper);
-       */
+
+        //validar_elementos_obrigatorios($categoria);
        
-       $msg = adicionarCategoria($Categoria);
+       $msg = adicionarCategoria($categoria);
        echo $msg;
    } else{
        //não há dados submetidos
    }
-   exibir("categoria/categoria");
+   exibir("categoria/formulario");
 }
 
 function listarCategoria(){
     $dados = array();
-    $dados["Categorias"] = pegarTodasCategorias();
+    $dados["categorias"] = pegarTodasCategorias();
     exibir("produtos/listar", $dados);
 }
 

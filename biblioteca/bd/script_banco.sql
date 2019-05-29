@@ -1,7 +1,7 @@
--- DROP DATABASE electronicsst;
--- CREATE DATABASE electronicsst;
+DROP DATABASE electronicsst;
+CREATE DATABASE electronicsst;
 
--- USE electronicsst;
+USE electronicsst;
 
 -- CREATE TABLE IF NOT EXISTS 'usuario' (
 -- 	id INT(11) NOT NULL AUTO_INCREMENT,
@@ -36,13 +36,13 @@ create table produto(
 	cor varchar(20) NOT NULL,
 	memoria varchar(10) NOT NULL,
 	processador varchar(30) NOT NULL,
-	PolegadaTela double(6) NOT NULL,
+	PolegadaTela double NOT NULL,
 	SistOper varchar(15) NOT NULL,
 	primary key(codProduto)
 );
 
 create table categoria(
-	Categoria varchar(15) NOT NULL,
+	idCategoria varchar(15) NOT NULL,
 	idProduto int(11) NOT NULL,
 	primary key(idCategoria),
 	foreign key(idProduto) REFERENCES produto(codProduto) ON UPDATE CASCADE ON DELETE CASCADE
