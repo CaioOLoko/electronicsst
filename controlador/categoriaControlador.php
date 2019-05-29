@@ -1,12 +1,17 @@
 <?php
+
+require("servico/validacaoServico.php");
+require_once "modelo/categoriaModelo.php";
+
 function adicionar(){
    if (ehPost()){
+       $codCategoria = $_POST["codigo"];
        $categoria = $_POST["categoria"];
        
-
-        //validar_elementos_obrigatorios($categoria);
+        echo validar_elementos_especificos($codCategoria);
+        echo validar_elementos_obrigatorios($categoria);
        
-       $msg = adicionarCategoria($categoria);
+       $msg = adicionarCategoria($codCategoria,$categoria);
        echo $msg;
    } else{
        //não há dados submetidos
@@ -17,7 +22,7 @@ function adicionar(){
 function listarCategoria(){
     $dados = array();
     $dados["categorias"] = pegarTodasCategorias();
-    exibir("produtos/listar", $dados);
+    exibir("categoria/listar", $dados);
 }
 
 ?>

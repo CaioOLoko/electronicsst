@@ -1,7 +1,7 @@
 <?php
 
-function adicionarCategoria($categoria){
-    $sql = "INSERT INTO categoria(idCategoria) VALUES('$categoria')";
+function adicionarCategoria($codCategoria,$categoria){
+    $sql = "INSERT INTO categoria(idCategoria, nomeCategoria) VALUES('$codCategoria','$categoria')";
     
     $resultado = mysqli_query($cnx = conn(),$sql);
     

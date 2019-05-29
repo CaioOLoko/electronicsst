@@ -3,14 +3,14 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Código do Produto</th>
+            <th>Código</th>
             <th>Categoria</th>
         </tr>
     </thead>
     <?php foreach ($categorias as $categoria): ?>
     <tr>
-        <td><?=$categoria['idProduto']?></td>
         <td><?=$categoria['idCategoria']?></td>
+        <td><?=$categoria['nomeCategoria']?></td>
     </tr>
     <?php endforeach; ?>
 </table>

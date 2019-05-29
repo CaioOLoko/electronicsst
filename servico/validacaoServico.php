@@ -1,16 +1,20 @@
 <?php
 
 function validar_elementos_obrigatorios($nome) {
-    if (strlen(trim($nome))==0) {
-        $errors = "Campo obrigatório.<br>";
-        return $errors;
+    if (strlen(trim($nome)) == 0) {
+        return "Campo obrigatório.<br>";
+    }else{
+        return NULL;
     }
 }
 
 function validar_email($email) {
-    $input['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
-    if ($input['email'] == FALSE) {
-        return 'Informe um e-mail válido.<br>';
+    if (strlen(trim($email)) == 0) {
+        $errors[] = "Você deve inserir um e-mail!<br>";
+    } else {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+            $errors[] = "Informe um e-mail válido!<br>";
+        }
     }
 }
 

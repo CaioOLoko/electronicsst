@@ -8,7 +8,8 @@
 
     <h1>Cadastro de Categoria</h1>
 
-    <label for="categoria">Categoria:</label> <input type="text" name="categoria"><br><br>
+    <label for="codigo">Código:</label> <input type="text" name="codigo"><br><br>
+    <label for="categoria">Nome:</label> <input type="text" name="categoria"><br><br>
 
     <button type="submit">Cadastrar</button>
 

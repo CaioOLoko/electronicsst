@@ -43,9 +43,7 @@ create table produto(
 
 create table categoria(
 	idCategoria varchar(15) NOT NULL,
-	idProduto int(11) NOT NULL,
-	primary key(idCategoria),
-	foreign key(idProduto) REFERENCES produto(codProduto) ON UPDATE CASCADE ON DELETE CASCADE
+	primary key(idCategoria)
 );
 
 
