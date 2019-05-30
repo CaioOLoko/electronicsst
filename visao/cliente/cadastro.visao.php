@@ -1,20 +1,28 @@
-<style type="text/css">
-.tabela {
-            font-family: Verdana, Arial, Helvetica, sans-serif;
-            font-size: 10px;
+<?php
+if (ehPost()) {
+    foreach ($errors as $erro) {
+        echo "$erro<br>";
+    }
 }
+?>
+
+<style type="text/css">
+    .tabela {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+    }
 </style>
 <script>
-function formatar(mascara, documento){
-  var i = documento.value.length;
-  var saida = mascara.substring(0,1);
-  var texto = mascara.substring(i)
-  
-  if (texto.substring(0,1) != saida){
-            documento.value += texto.substring(0,1);
-  }
-  
-}
+    function formatar(mascara, documento) {
+        var i = documento.value.length;
+        var saida = mascara.substring(0, 1);
+        var texto = mascara.substring(i)
+
+        if (texto.substring(0, 1) != saida) {
+            documento.value += texto.substring(0, 1);
+        }
+
+    }
 </script>
 <form action="" method="POST">
 

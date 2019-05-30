@@ -14,20 +14,30 @@ function adicionar() {
         $data_de_nascimento = $_POST["data_de_nascimento"];
         $sexo = $_POST["sexo"];
         $telefone = $_POST["telefone"];
-        
+
         $errors = array();
-        
-        if(validar_elementos_obrigatorios($nome) != NULL){
-            $errors[] = 
+
+        if (validar_elementos_obrigatorios($nome, "Nome") != NULL) {
+            $errors[] = validar_elementos_obrigatorios($nome, "Nome");
         }
-        
-        validar_email($email);
-        validar_elementos_obrigatorios($senha);
-        validar_elementos_especificos($cpf);
-        validar_elementos_obrigatorios($nome);
-        validar_elementos_obrigatorios($sobrenome);
-        validar_elementos_especificos($data_de_nascimento);
-        validar_elementos_especificos($telefone);
+        if (validar_email($email) != NULL) {
+            $errors[] = validar_email($email);
+        }
+        if (validar_elementos_especificos($senha, "Senha") != NULL) {
+            $errors[] = validar_elementos_obrigatorios($senha, "Senha");
+        }
+        if (validaCPF($cpf) != NULL) {
+            $errors[] = validaCPF($cpf);
+        }
+        if (validar_elementos_obrigatorios($sobrenome, "Sobrenome") != NULL) {
+            $errors[] = validar_elementos_obrigatorios($sobrenome, "Sobrenome");
+        }
+        if (validar_elementos_especificos($data_de_nascimento, "Data de Nascimento") != NULL) {
+            $errors[] = validar_elementos_especificos($data_de_nascimento, "Data de Nascimento");
+        }
+        if (validar_elementos_especificos($telefone, "Telefone") != NULL) {
+            $errors[] = validar_elementos_especificos($telefone, "Telefone");
+        }
 
         if (count($errors) > 0) {
             $dados = array();
@@ -35,7 +45,7 @@ function adicionar() {
             exibir("cliente/cadastro", $dados);
         } else {
             $msg = adicionarCliente($email, $senha, $cpf, $nome, $sobrenome, $data_de_nascimento, $sexo, $telefone);
-            redirecionar("cliente/listasrClientes");
+            redirecionar("cliente/listarClientes");
         }
     } else {
         exibir("cliente/cadastro");
