@@ -1,8 +1,16 @@
-<style type="text/css">
-.tabela {
-            font-family: Verdana, Arial, Helvetica, sans-serif;
-            font-size: 10px;
+<?php
+if (ehPost()) {
+    foreach ($errors as $erro) {
+        echo "$erro<br>";
+    }
 }
+?>
+
+<style type="text/css">
+    .tabela {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+    }
 </style>
 <form action="" method="POST">
 

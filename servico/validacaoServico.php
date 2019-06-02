@@ -27,15 +27,15 @@ function validar_elementos_especificos($valor, $campo) {
     }
 }
 
-function validaCPF($cpf) {
+function validaCPF($valor) {
 
     // Verifica se um número foi informado
-    if (strlen(trim($cpf)) == 0) {
+    if (strlen(trim($valor)) == 0) {
         return "CPF obrigatório.<br>";
     } else {
         // Elimina possível máscara
-        $cpf = preg_replace("/[^0-9]/", "", $cpf);
-        $cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
+        $valor = str_replace(array('.', '-', '/'), "", $valor);
+        $cpf = str_pad(preg_replace('[^0-9]', '', $valor), 11, '0', STR_PAD_LEFT);
 
         // Verifica se o numero de digitos informados é igual a 11 
         if (strlen($cpf) != 11) {
@@ -72,3 +72,4 @@ function validaCPF($cpf) {
         }
     }
 }
+

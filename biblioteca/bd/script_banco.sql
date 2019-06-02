@@ -42,7 +42,8 @@ create table produto(
 );
 
 create table categoria(
-	idCategoria varchar(15) NOT NULL,
+	idCategoria int(11) NOT NULL,
+        nomeCategoria varchar(20) NOT NULL,
 	primary key(idCategoria)
 );
 

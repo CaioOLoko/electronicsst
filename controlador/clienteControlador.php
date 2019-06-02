@@ -23,7 +23,7 @@ function adicionar() {
         if (validar_email($email) != NULL) {
             $errors[] = validar_email($email);
         }
-        if (validar_elementos_especificos($senha, "Senha") != NULL) {
+        if (validar_elementos_obrigatorios($senha, "Senha") != NULL) {
             $errors[] = validar_elementos_obrigatorios($senha, "Senha");
         }
         if (validaCPF($cpf) != NULL) {

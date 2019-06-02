@@ -10,8 +10,6 @@
             <th>Informações</th>
             <th>Código de Barras</th>
             <th>Marca</th>
-            <th>Modelo</th>
-            <th>Cor</th>
             <th>Memória</th>
             <th>Processador</th>
             <th>Polegadas</th>
@@ -27,8 +25,6 @@
         <td><?=$produto['infoProduto']?></td>
         <td><?=$produto['codDeBarras']?></td>
         <td><?=$produto['marca']?></td>
-        <td><?=$produto['modelo']?></td>
-        <td><?=$produto['cor']?></td>
         <td><?=$produto['memoria']?></td>
         <td><?=$produto['processador']?></td>
         <td><?=$produto['PolegadaTela']?></td>

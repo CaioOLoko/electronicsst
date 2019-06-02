@@ -1,3 +1,18 @@
+<?php
+if (ehPost()) {
+    foreach ($errors as $erro) {
+        echo "$erro<br>";
+    }
+}
+?>
+
+<style type="text/css">
+    .tabela {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+    }
+</style>
+
 <form action="" method="POST">
     
     <label for="codProduto">Código do Produto:</label>
@@ -20,12 +35,6 @@
 
     <label for="marca">Marca:</label>
     <input type="text" name="marca"><br><br>
-
-    <label for="modelo">Modelo:</label>
-    <input type="text" name="modelo"><br><br>
-
-    <label for="cor">Cor:</label>
-    <input type="text" name="cor"><br><br>
 
     <label for="memoria">Memória:</label>
     <input type="text" name="memoria"><br><br>
