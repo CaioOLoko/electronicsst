@@ -11,6 +11,17 @@ function adicionarCliente($email,$senha,$cpf,$nome,$sobrenome,$data_de_nasciment
 return 'Cliente cadastrado com sucesso!';
 }
 
+function deletarCliente($cpf){
+    $sql = "DELETE FROM cliente WHERE cpf = $cpf";
+    
+    $resultado = mysqli_query($cnx = conn(),$sql);
+    
+    if(!$resultado){ 
+        die ('Erro ao deletar cliente' . mysqli_error($cnx));
+    }
+return 'Cliente removido com sucesso!';
+}
+
 function pegarTodosClientes(){
     $sql = "SELECT * FROM cliente";
     $resultado = mysqli_query(conn(), $sql);
