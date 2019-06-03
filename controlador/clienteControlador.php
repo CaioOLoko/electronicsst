@@ -7,7 +7,7 @@ function adicionar() {
 	if (ehPost()) {
 
 		$nome = $_POST["nome"];
-	/*	
+		
 		$email = $_POST["email"];
 		$senha = $_POST["senha"];
 		$cpf = $_POST["cpf"];
@@ -15,20 +15,15 @@ function adicionar() {
 		$data_de_nascimento = $_POST["data_de_nascimento"];
 		$sexo = $_POST["sexo"];
 		$telefone = $_POST["telefone"];
-	*/
-
+	
 		$errors = array();
 
-		//echo validar_elementos_obrigatorios($nome, "Nome");
-
-		if(validar_elementos_obrigatorios($nome, "Nome")){
+		/*if(validar_elementos_obrigatorios($nome, "Nome")){;
 			echo "Deu certo<br>";
 		}else{
 			echo "Deu errado<br>";
-		}
-		var_dump($nome);
-
-		/*if (validar_elementos_obrigatorios($nome, "Nome") != NULL) {
+		}*/
+		if (validar_elementos_obrigatorios($nome, "Nome") != NULL) {
 			$errors[] = validar_elementos_obrigatorios($nome, "Nome");
 		}
 		if (validar_email($email) != NULL) {
@@ -56,8 +51,8 @@ function adicionar() {
 			exibir("cliente/cadastro", $dados);
 		} else {
 			$msg = adicionarCliente($email, $senha, $cpf, $nome, $sobrenome, $data_de_nascimento, $sexo, $telefone);
-			redirecionar("cliente/listarClientes");*/
-		//}
+			redirecionar("cliente/listarClientes");
+		}
 	} else {
 		exibir("cliente/cadastro");
 	}
@@ -68,6 +63,14 @@ function listarClientes() {
 	$dados["clientes"] = pegarTodosClientes();
 	exibir("cliente/listar", $dados);
 }
+
+function ver($id){
+    //passa o $id para a função pegarClientePorId do modelo
+    $dados["cliente"] = pegarClientePorId($id);
+    //chama o arquivo: visao/cliente/visualizar.visao.php
+    exibir("cliente/visualizar", $dados);
+}
+
 
 function contato() {
 	if (ehPost()) {

@@ -3,20 +3,22 @@
 function validar_elementos_obrigatorios($nome, $tipo) {
 	$nome= htmlentities($nome);
 	$nome = str_split($nome);
-	//var_dump($nome);
+
 	
 	for ($i=0; $i < count($nome) ; $i++) { 
 		if ($nome[$i] == '&') {
-			return false;
+			return "Informe um $tipo válido!<br>";
 			break;
 		}else{
-			return true;
+			return NULL;
 		}
 	}
 	
-	/*
-	str_word_count( $string , formatoExibicao , caratceresConsiderados );
 	
+	//str_word_count( $string , formatoExibicao , caratceresConsiderados );
+	                      
+                
+        /*
 	if (strlen(trim($nome)) == 0) {
 		return "$tipo obrigatório.<br>";
 	} else {

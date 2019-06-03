@@ -32,5 +32,16 @@ function pegarTodosClientes(){
     return $clientes;
 }
 
+function pegarClientePorId($id){
+    //Busca um único cliente pelo $id
+    $sql = "SELECT * FROM cliente WHERE CPF = '$id'";
+    //Roda nosso comando
+    $resultado = mysqli_query(conn(), $sql);
+    //Joga o resultado no array $cliente
+    $cliente = mysqli_fetch_assoc($resultado);
+    //retorna o $cliente
+    return $cliente;
+}
+
 ?>
 
