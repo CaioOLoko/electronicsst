@@ -44,14 +44,16 @@ function adicionar() {
 		if (validar_elementos_especificos($telefone, "Telefone") != NULL) {
 			$errors[] = validar_elementos_especificos($telefone, "Telefone");
 		}
-
 		if (count($errors) > 0) {
 			$dados = array();
 			$dados["errors"] = $errors;
 			exibir("cliente/cadastro", $dados);
 		} else {
-			$msg = adicionarCliente($email, $senha, $cpf, $nome, $sobrenome, $data_de_nascimento, $sexo, $telefone);
-			redirecionar("cliente/listarClientes");
+                    $retirarCPF = array(0=>"-",1=>".");
+                    $cpf= str_replace($retirarCPF,"" ,$cpf);
+                    echo $cpf;
+                    $msg = adicionarCliente($email, $senha, $cpf, $nome, $sobrenome, $data_de_nascimento, $sexo, $telefone);
+                    redirecionar("cliente/listarClientes");
 		}
 	} else {
 		exibir("cliente/cadastro");

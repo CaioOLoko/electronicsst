@@ -34,6 +34,7 @@ function adicionar() {
         $processador = $_POST["processador"];
         $polegadaTela = $_POST["polegadaTela"];
         $SistOper = $_POST["SistOper"];
+        $Modelo = $_POST["Modelo"];
 
         $errors = array();
 
@@ -76,7 +77,7 @@ function adicionar() {
             $dados["errors"] = $errors;
             exibir("produtos/formulario", $dados);
         } else {
-            $msg = adicionarProduto($codProduto, $categoria, $nome_do_produto, $preco_do_produto, $infoProduto, $codDeBarras, $marca, $memoria, $processador, $polegadaTela, $SistOper);
+            $msg = adicionarProduto($codProduto, $categoria, $nome_do_produto, $preco_do_produto, $infoProduto, $codDeBarras, $marca, $memoria, $processador, $polegadaTela, $SistOper, $Modelo);
             redirecionar("produto/listarProdutos");
         }
     } else {
@@ -88,4 +89,9 @@ function listarProdutos() {
     $dados = array();
     $dados["produtos"] = pegarTodosProdutos();
     exibir("produtos/listar", $dados);
+}
+
+function ver($id){
+    $dados["produto"] = pegarProdutoPorId($id);
+    exibir("produtos/visualizar", $dados);
 }

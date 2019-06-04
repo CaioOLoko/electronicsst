@@ -29,6 +29,7 @@
         <td><?=$produto['processador']?></td>
         <td><?=$produto['PolegadaTela']?></td>
         <td><?=$produto['SistOper']?></td>
+        <td><a href="./produto/ver/<?=$produto['codProduto']?>">Ver</a></td>
     </tr>
     <?php endforeach; ?>
 </table>

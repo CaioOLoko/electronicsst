@@ -33,7 +33,7 @@ if (ehPost()) {
     <label for="cpf">CPF:</label> <input type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"><br><br>
     <label for="nome">Nome:</label> <input type="text" name="nome"><br><br>
     <label for="sobrenome">Sobrenome:</label> <input type="text" name="sobrenome"><br><br>
-    <label for="data_de_nascimento">Data de Nascimento:</label> <input type="text" name="data_de_nascimento"><br><br>
+    <label for="data_de_nascimento">Data de Nascimento:</label> <input type="date" name="data_de_nascimento"><br><br>
     <label for="sexo">Sexo:</label><br><br>
     Masculino<input type="radio" name="sexo" value="Masculino" checked="checked">
     Feminino<input type="radio" name="sexo" value="Feminino"><br><br>

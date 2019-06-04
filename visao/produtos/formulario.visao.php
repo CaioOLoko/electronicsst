@@ -46,7 +46,10 @@ if (ehPost()) {
     <input type="text" name="polegadaTela"><br><br>
 
     <label for="SistOper">Sistema Operacional:</label>
-    <input type="text" name="SistOper"><br><br>    
+    <input type="text" name="SistOper"><br><br>
+
+    <label for="Modelo">Modelo:</label>
+    <input type="text" name="Modelo"><br><br>
   
     <button type="submit">Enviar</button>
     
