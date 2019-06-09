@@ -5,16 +5,15 @@ USE electronicsst;
 
 --Criação das Tabelas
 CREATE TABLE IF NOT EXISTS usuario(
-	idUsuario INT(11) NOT NULL AUTO_INCREMENT,
-	NomeUsuario VARCHAR(60) NOT NULL,
-	SobrenomeUsuario VARCHAR(20) NOT NULL,
-	Email VARCHAR(60) NOT NULL,
-	Senha VARCHAR(12) NOT NULL,
-	Cpf VARCHAR(11) NOT NULL,
-	Nascimento VARCHAR(10) NOT NULL,
-	Sexo VARCHAR(1) NOT NULL,
-	tipoUsuario VARCHAR(5) NOT NULL,
-	PRIMARY KEY(idUsuario)
+	idusuario INT(11) NOT NULL AUTO_INCREMENT,
+	nomeusuario VARCHAR(60) NOT NULL,
+	email VARCHAR(60) NOT NULL,
+	senha VARCHAR(30) NOT NULL,
+	cpf VARCHAR(14) NOT NULL,
+	datadenascimento VARCHAR(10) NOT NULL,
+	sexo VARCHAR(10) NOT NULL,
+	tipousuario VARCHAR(15) NOT NULL,
+	PRIMARY KEY(idusuario)
 );
 create table categoria(
 	idCategoria varchar(15) NOT NULL AUTO_INCREMENT,

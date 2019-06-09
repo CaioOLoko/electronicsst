@@ -6,15 +6,13 @@ require_once "modelo/clienteModelo.php";
 function adicionar() {
 	if (ehPost()) {
 
-		$nome = $_POST["nome"];
-		
+		$nome = $_POST["nomeusuario"];
 		$email = $_POST["email"];
 		$senha = $_POST["senha"];
 		$cpf = $_POST["cpf"];
-		$sobrenome = $_POST["sobrenome"];
-		$data_de_nascimento = $_POST["data_de_nascimento"];
+		$data_de_nascimento = $_POST["datadenascimento"];
 		$sexo = $_POST["sexo"];
-		$telefone = $_POST["telefone"];
+		$tipo_usuario = $_POST["tipousuario"];
 	
 		$errors = array();
 
@@ -29,20 +27,14 @@ function adicionar() {
 		if (validar_email($email) != NULL) {
 			$errors[] = validar_email($email);
 		}
-		if (validar_elementos_obrigatorios($senha, "Senha") != NULL) {
-			$errors[] = validar_elementos_obrigatorios($senha, "Senha");
+		if (validar_quantidade_de_campos($senha, "Senha") != NULL) {
+			$errors[] = validar_quantidade_de_campos($senha, "Senha");
 		}
 		if (validaCPF($cpf) != NULL) {
 			$errors[] = validaCPF($cpf);
 		}
-		if (validar_elementos_obrigatorios($sobrenome, "Sobrenome") != NULL) {
-			$errors[] = validar_elementos_obrigatorios($sobrenome, "Sobrenome");
-		}
 		if (validar_elementos_especificos($data_de_nascimento, "Data de Nascimento") != NULL) {
 			$errors[] = validar_elementos_especificos($data_de_nascimento, "Data de Nascimento");
-		}
-		if (validar_elementos_especificos($telefone, "Telefone") != NULL) {
-			$errors[] = validar_elementos_especificos($telefone, "Telefone");
 		}
 		if (count($errors) > 0) {
 			$dados = array();
@@ -52,7 +44,7 @@ function adicionar() {
                     $retirarCPF = array(0=>"-",1=>".");
                     $cpf= str_replace($retirarCPF,"" ,$cpf);
                     echo $cpf;
-                    $msg = adicionarCliente($email, $senha, $cpf, $nome, $sobrenome, $data_de_nascimento, $sexo, $telefone);
+                    $msg = adicionarCliente($nome,$email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
                     redirecionar("cliente/listarClientes");
 		}
 	} else {

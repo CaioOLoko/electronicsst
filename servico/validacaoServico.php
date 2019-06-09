@@ -1,30 +1,35 @@
 <?php
 
 function validar_elementos_obrigatorios($nome, $tipo) {
-    $nome = htmlentities($nome);
-    $nome = str_split($nome);
+    if (strlen(trim($nome)) == 0) {
+        return "$tipo obrigatório.<br>";
+    } elseif ((strlen(trim($campo)) > 60)) {
+        return "Campo $tipo excedeu o limite de caracteres!<br>";
+    }else {
+        $nome = htmlentities($nome);
+        $nome = str_split($nome);
 
-
-    for ($i = 0; $i < count($nome); $i++) {
-        if ($nome[$i] == '&') {
-            return "Informe um $tipo válido!<br>";
-            break;
-        } else {
-            return NULL;
+        for ($i = 0; $i < count($nome); $i++) {
+            if ($nome[$i] == '&') {
+                return "Informe um $tipo válido!<br>";
+                break;
+            } else {
+                return NULL;
+            }
         }
     }
 
-
 //str_word_count( $string , formatoExibicao , caratceresConsiderados );
+}
 
-
-    /*
-      if (strlen(trim($nome)) == 0) {
-      return "$tipo obrigatório.<br>";
-      } else {
-      return NULL;
-      }
-     */
+function validar_quantidade_de_campos($campo, $tipo) {
+    if (strlen(trim($campo)) == 0) {
+        return "$tipo obrigatório.<br>";
+    } elseif ((strlen(trim($campo)) > 30)) {
+        return "Campo $tipo excedeu o limite de caracteres!<br>";
+    }else{
+        return NULL;
+    }
 }
 
 function validar_email($email) {
@@ -62,7 +67,7 @@ function validaCPF($valor) {
 
 // Verifica se o numero de digitos informados é igual a 11 
         if (strlen($cpf) != 11) {
-            return "Número de dígitos diferente de 11<br>";
+            return "Número de dígitos diferente de 11.<br>";
         }
 // Verifica se nenhuma das sequências invalidas abaixo 
 // foi digitada.
@@ -76,7 +81,7 @@ function validaCPF($valor) {
                 $cpf == '77777777777' ||
                 $cpf == '88888888888' ||
                 $cpf == '99999999999') {
-            return "Sequência inválida informada<br>";
+            return "CPF inválido.<br>";
 // Calcula os digitos verificadores para verificar se o
 // CPF é válido
         } else {
@@ -88,14 +93,12 @@ function validaCPF($valor) {
                 }
                 $d = ((10 * $d) % 11) % 10;
                 if ($cpf{$c} != $d) {
-                    return "Informe um CPF válido<br>";
+                    return "Informe um CPF válido.<br>";
                 }
             }
             return NULL;
         }
     }
 }
-
-
 
 ?>
