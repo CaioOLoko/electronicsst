@@ -11,7 +11,7 @@
 <p><strong>Processador:</strong></p>        <?= $produto['processador'] ?>
 <p><strong>Modelo: </strong></p>        <?= $produto['modelo'] ?>
 <p><strong>Display: </strong></p>        <?= $produto['PolegadaTela'] ?>
-<p><strong>Sistema Operacional: </strong></p>        <?=$produto['SistOper']?>
+<p><strong>Sistema Operacional: </strong></p>        <?= $produto['SistOper'] ?>
 
 <br><br>
 

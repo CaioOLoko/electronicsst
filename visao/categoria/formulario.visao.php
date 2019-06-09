@@ -14,10 +14,9 @@ if (ehPost()) {
 </style>
 <form action="" method="POST">
 
-    <h1>Cadastro de Categoria</h1>
+    <h1>Cadastro de Categoria</h1><br>
 
-    <label for="codigo">Código:</label> <input type="text" name="codigo"><br><br>
-    <label for="categoria">Nome:</label> <input type="text" name="categoria"><br><br>
+    <label for="descricao">Descrição:</label> <input type="text" maxlength="30" name="descricao"><br><br>
 
     <button type="submit">Cadastrar</button>
 

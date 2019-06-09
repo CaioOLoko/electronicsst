@@ -5,16 +5,12 @@ require_once "modelo/categoriaModelo.php";
 
 function adicionar() {
     if (ehPost()) {
-        $codCategoria = $_POST["codigo"];
-        $categoria = $_POST["categoria"];
+        $categoria = $_POST["descricao"];
 
         $errors = array();
         
-        if (validar_elementos_especificos($codCategoria, "Código") != NULL) {
-            $errors[] = validar_elementos_especificos($codCategoria, "Código");
-        }
-        if (validar_elementos_obrigatorios($categoria, "Categoria") != NULL) {
-            $errors[] = validar_elementos_obrigatorios($categoria, "Categoria");
+        if (validar_quantidade_de_campos($categoria, "Categoria") != NULL) {
+            $errors[] = validar_quantidade_de_campos($categoria, "Categoria");
         }
 
         if (count($errors) > 0) {
@@ -22,7 +18,7 @@ function adicionar() {
             $dados["errors"] = $errors;
             exibir("categoria/formulario", $dados);
         } else {
-            $msg = adicionarCategoria($codCategoria, $categoria);
+            $msg = adicionarCategoria($categoria);
             redirecionar("categoria/listarCategoria");
         }
     } else {
@@ -35,5 +31,13 @@ function listarCategoria() {
     $dados["categorias"] = pegarTodasCategorias();
     exibir("categoria/listar", $dados);
 }
+
+function ver($id){
+    //passa o $id para a função pegarCategoriaPorId do modelo
+    $dados["categoria"] = pegarCategoriaPorId($id);
+    //chama o arquivo: visao/categoria/visualizar.visao.php
+    exibir("categoria/visualizar", $dados);
+}
+
 ?>
 

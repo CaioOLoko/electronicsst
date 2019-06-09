@@ -6,6 +6,6 @@
 <p><strong>Sexo:</strong> <?= $cliente['sexo'] ?></p>
 <p><strong>Tipo de Usuário:</strong> <?= $cliente['tipousuario'] ?></p>
 
-<a href="./cliente/listarClientes" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Retornar</a>
+<a href="./cliente/listarClientes" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Voltar</a>
 
 

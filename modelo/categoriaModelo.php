@@ -1,7 +1,7 @@
 <?php
 
-function adicionarCategoria($codCategoria,$categoria){
-    $sql = "INSERT INTO categoria(idCategoria, nomeCategoria) VALUES('$codCategoria','$categoria')";
+function adicionarCategoria($categoria){
+    $sql = "INSERT INTO categoria(idCategoria, descricao) VALUES('NULL','$categoria')";
     
     $resultado = mysqli_query($cnx = conn(),$sql);
     
@@ -19,6 +19,17 @@ function pegarTodasCategorias(){
         $categorias[] = $linha;
     }
     return $categorias;
+}
+
+function pegarCategoriaPorId($id){
+    //Busca um único categoria pelo $id
+    $sql = "SELECT * FROM categoria WHERE idCategoria = $id";
+    //Roda nosso comando
+    $resultado = mysqli_query(conn(), $sql);
+    //Joga o resultado no array $categoria
+    $categoria = mysqli_fetch_assoc($resultado);
+    //retorna o $categoria
+    return $categoria;
 }
 
 ?>

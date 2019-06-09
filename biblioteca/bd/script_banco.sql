@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS usuario(
 	PRIMARY KEY(idusuario)
 );
 create table categoria(
-	idCategoria varchar(15) NOT NULL AUTO_INCREMENT,
-        descricao varchar(20) NOT NULL,
+	idCategoria INT(15) NOT NULL AUTO_INCREMENT,
+        descricao varchar(30) NOT NULL,
 	primary key(idCategoria)
 );
 CREATE TABLE IF NOT EXISTS produto(
