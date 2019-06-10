@@ -1,18 +1,14 @@
 <h2>Descrição do Produto</h2>
 
-<p><strong>Código do Produto:</strong></p>       <?= $produto['codProduto'] ?>
-<p><strong>Categoria:</strong></p>        <?= $produto['categoria'] ?>
-<p><strong>Nome:</strong></p>        <?= $produto['nome'] ?>
-<p><strong>Preço:</strong></p>        <?= $produto['valUnit'] ?>
-<p><strong>Informações do Produto:</strong></p>        <?= $produto['infoProduto'] ?>
-<p><strong>Código de Barras:</strong></p>        <?= $produto['codDeBarras'] ?>
-<p><strong>Marca:</strong></p>        <?= $produto['marca'] ?>
-<p><strong>Memória:</strong></p>        <?= $produto['memoria'] ?>
-<p><strong>Processador:</strong></p>        <?= $produto['processador'] ?>
-<p><strong>Modelo: </strong></p>        <?= $produto['modelo'] ?>
-<p><strong>Display: </strong></p>        <?= $produto['PolegadaTela'] ?>
-<p><strong>Sistema Operacional: </strong></p>        <?= $produto['SistOper'] ?>
+<p><strong>Código:</strong></p>       <?= $produto['idproduto'] ?>
+<p><strong>Nome:</strong></p>        <?= $produto['nomeproduto'] ?>
+<p><strong>Preço:</strong></p>        <?= $produto['preco'] ?>
+<p><strong>Categoria:</strong></p>        <?=$produto['idcategoria'] ?>
+<p><strong>Informações:</strong></p>        <?= $produto['descricao'] ?>
+<p><strong>Imagem:</strong></p>        <?= $produto['imagem'] ?>
+<p><strong>Estoque Mínimo:</strong></p>        <?= $produto['estoque_minimo'] ?>
+<p><strong>Estoque Máximo:</strong></p>        <?= $produto['estoque_maximo'] ?>
 
 <br><br>
 
-<a href="./produto/listarProdutos">Voltar</a>
+<a href="./produto/listarProdutos" style="color: #000000;">Voltar</a>

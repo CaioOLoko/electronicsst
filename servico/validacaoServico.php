@@ -3,7 +3,7 @@
 function validar_elementos_obrigatorios($nome, $tipo) {
     if (strlen(trim($nome)) == 0) {
         return "$tipo obrigatório.<br>";
-    } elseif ((strlen(trim($campo)) > 60)) {
+    } elseif ((strlen(trim($nome)) > 60)) {
         return "Campo $tipo excedeu o limite de caracteres!<br>";
     }else {
         $nome = htmlentities($nome);

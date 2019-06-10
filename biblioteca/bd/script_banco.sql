@@ -22,15 +22,15 @@ create table categoria(
 );
 CREATE TABLE IF NOT EXISTS produto(
 	idproduto INT(11) NOT NULL AUTO_INCREMENT,
-        /*idcategoria varchar(15) NOT NULL,*/
+        idcategoria varchar(15) NOT NULL,
 	preco DOUBLE NOT NULL,
 	nomeproduto VARCHAR(30) NOT NULL,
 	descricao VARCHAR(60) NOT NULL,
 	imagem VARCHAR(60) NOT NULL,
 	estoque_minimo INT(11) NOT NULL,
 	estoque_maximo INT(11) NOT NULL,
-	PRIMARY KEY(idProduto)
-        /*FOREIGN KEY(idCategoria) REFERENCES categoria(idCategoria) ON UPDATE CASCADE ON DELETE CASCADE*/
+	PRIMARY KEY(idproduto),
+        FOREIGN KEY(idcategoria) REFERENCES categoria(idcategoria) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS endereco(
 	idEndereco INT(11) NOT NULL AUTO_INCREMENT,

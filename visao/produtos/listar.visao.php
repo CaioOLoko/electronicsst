@@ -7,24 +7,21 @@
             <th>Nome</th>
             <th>Preço</th>
             <th>Informações</th>
+            <th>Imagem:</th>
             <th>Estoque Mínimo</th>
             <th>Estoque Máximo</th>
         </tr>
     </thead>
     <?php foreach ($produtos as $produto): ?>
     <tr>
-        <td><?=$produto['codProduto']?></td>
-        <td><?=$produto['categoria']?></td>
-        <td><?=$produto['nome']?></td>
-        <td><?=$produto['valUnit']?></td>
-        <td><?=$produto['infoProduto']?></td>
-        <td><?=$produto['codDeBarras']?></td>
-        <td><?=$produto['marca']?></td>
-        <td><?=$produto['memoria']?></td>
-        <td><?=$produto['processador']?></td>
-        <td><?=$produto['PolegadaTela']?></td>
-        <td><?=$produto['SistOper']?></td>
-        <td><a href="./produto/ver/<?=$produto['codProduto']?>">Ver</a></td>
+        <td><?=$produto['idproduto']?></td>
+        <td><?=$produto['nomeproduto']?></td>
+        <td><?=$produto['preco']?></td>
+        <td><?=$produto['descricao']?></td>
+        <td><?=$produto['imagem']?></td>
+        <td><?=$produto['estoque_minimo']?></td>
+        <td><?=$produto['estoque_maximo']?></td>
+        <td><a href="./produto/ver/<?=$produto['idproduto']?>" style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ver</a></td>
     </tr>
     <?php endforeach; ?>
 </table>

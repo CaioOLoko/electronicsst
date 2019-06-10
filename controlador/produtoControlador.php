@@ -2,6 +2,7 @@
 
 require("servico/validacaoServico.php");
 require_once "modelo/produtoModelo.php";
+require_once "modelo/categoriaModelo.php";
 
 function visualizar() {
     $loja = array();
@@ -25,6 +26,7 @@ function adicionar() {
     if (ehPost()) {
         $preco_do_produto = $_POST["preco"];
         $nome_do_produto = $_POST["nomeproduto"];
+        $categoria = $_POST["categoria"];
         $infoProduto = $_POST["descricao"];
         $imagem = $_POST["imagem"];
         $estoque_minimo = $_POST["estoque_minimo"];
@@ -42,23 +44,24 @@ function adicionar() {
             $errors[] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
         }
 
-        if(validar_elementos_especificos($estoque_minimo, "Estoque Mínimo") != NULL){
+        if (validar_elementos_especificos($estoque_minimo, "Estoque Mínimo") != NULL) {
             $errors[] = validar_elementos_especificos($estoque_minimo, "Estoque Mínimo");
         }
-        if(validar_elementos_especificos($estoque_maximo, "Estoque Máximo") != NULL){
-            $errors[] = validar_elementos_especificos($estoque_maximo, "Estoque Mínimo");
+        if (validar_elementos_especificos($estoque_maximo, "Estoque Máximo") != NULL) {
+            $errors[] = validar_elementos_especificos($estoque_maximo, "Estoque Máximo");
         }
-        
+
         if (count($errors) > 0) {
             $dados = array();
             $dados["errors"] = $errors;
             exibir("produtos/formulario", $dados);
         } else {
-            $msg = adicionarProduto($codProduto, $categoria, $nome_do_produto, $preco_do_produto, $infoProduto, $codDeBarras, $marca, $memoria, $processador, $polegadaTela, $SistOper, $Modelo);
+            $msg = adicionarProduto($categoria, $preco_do_produto, $nome_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo);
             redirecionar("produto/listarProdutos");
         }
     } else {
-        exibir("produtos/formulario");
+        $dados["categorias"] = pegarTodasCategorias();
+        exibir("produtos/formulario", $dados);
     }
 }
 
@@ -68,7 +71,7 @@ function listarProdutos() {
     exibir("produtos/listar", $dados);
 }
 
-function ver($id){
+function ver($id) {
     $dados["produto"] = pegarProdutoPorId($id);
     exibir("produtos/visualizar", $dados);
 }
