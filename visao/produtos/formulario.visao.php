@@ -15,42 +15,24 @@ if (ehPost()) {
 
 <form action="" method="POST">
     
-    <label for="codProduto">Código do Produto:</label>
-    <input type="text" name="codProduto"><br><br>
+    <label for="nomedoproduto">Nome do Produto:</label>
+    <input type="text" name="nomedoproduto"><br><br>
 
-    <label for="categoria">Categoria:</label>
-    <input type="text" name="categoria"><br><br>
+    <label for="preco">Preço do Produto:</label>
+    <input type="text" name="preco"><br><br>
 
-    <label for="nome_do_produto">Nome do produto:</label>
-    <input type="text" name="nome_do_produto"><br><br>
+    <label for="descricao">Informações do Produto:</label><br>
+    <textarea name="descricao" rows="5" cols="33"></textarea><br><br>
 
-    <label for="preco_do_produto">Preço do produto:</label>
-    <input type="text" name="preco_do_produto"><br><br>
-
-    <label for="infoProduto">Informações do Produto:</label><br>
-    <textarea name="infoProduto" rows="5" cols="33"></textarea><br><br>
-
-    <label for="codDeBarras">Cóidigo de Barras:</label>
-    <input type="text" name="codDeBarras"><br><br>
-
-    <label for="marca">Marca:</label>
-    <input type="text" name="marca"><br><br>
-
-    <label for="memoria">Memória:</label>
-    <input type="text" name="memoria"><br><br>
-
-    <label for="processador">Processador:</label>
-    <input type="text" name="processador"><br><br>
-
-    <label for="polegadaTela">Polegadas:</label>
-    <input type="text" name="polegadaTela"><br><br>
-
-    <label for="SistOper">Sistema Operacional:</label>
-    <input type="text" name="SistOper"><br><br>
-
-    <label for="Modelo">Modelo:</label>
-    <input type="text" name="Modelo"><br><br>
+    <label for="imagem">Imagem do Produto:</label>
+    <input type="url" name="imagem"><br><br>
   
+    <label for="estoque_minimo">Estoque Mínimo:</label>
+    <input type="number" name="estoque_minimo"><br><br>
+
+    <label for="estoque_maximo">Estoque Máximo:</label>
+    <input type="number" name="estoque_maximo"><br><br>
+    
     <button type="submit">Enviar</button>
     
 </form>

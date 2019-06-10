@@ -23,27 +23,15 @@ function visualizar() {
 
 function adicionar() {
     if (ehPost()) {
-        $codProduto = $_POST["codProduto"];
-        $categoria = $_POST["categoria"];
-        $nome_do_produto = $_POST["nome_do_produto"];
-        $preco_do_produto = $_POST["preco_do_produto"];
-        $infoProduto = $_POST["infoProduto"];
-        $codDeBarras = $_POST["codDeBarras"];
-        $marca = $_POST["marca"];
-        $memoria = $_POST["memoria"];
-        $processador = $_POST["processador"];
-        $polegadaTela = $_POST["polegadaTela"];
-        $SistOper = $_POST["SistOper"];
-        $Modelo = $_POST["Modelo"];
+        $preco_do_produto = $_POST["preco"];
+        $nome_do_produto = $_POST["nomeproduto"];
+        $infoProduto = $_POST["descricao"];
+        $imagem = $_POST["imagem"];
+        $estoque_minimo = $_POST["estoque_minimo"];
+        $estoque_maximo = $_POST["estoque_maximo"];
 
         $errors = array();
 
-        if (validar_elementos_especificos($codProduto, "Código do Produto") != NULL) {
-            $errors[] = validar_elementos_especificos($codProduto, "Código do Produto");
-        }
-        if (validar_elementos_obrigatorios($categoria, "Categoria") != NULL) {
-            $errors[] = validar_elementos_obrigatorios($categoria, "Categoria");
-        }
         if (validar_elementos_obrigatorios($nome_do_produto, "Nome") != NULL) {
             $errors[] = validar_elementos_obrigatorios($nome_do_produto, "Nome");
         }
@@ -53,23 +41,12 @@ function adicionar() {
         if (validar_elementos_obrigatorios($infoProduto, "Informações do Produto") != NULL) {
             $errors[] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
         }
-        if (validar_elementos_especificos($codDeBarras, "Código de Barras") != NULL) {
-            $errors[] = validar_elementos_especificos($codDeBarras, "Código de Barras");
+
+        if(validar_elementos_especificos($estoque_minimo, "Estoque Mínimo") != NULL){
+            $errors[] = validar_elementos_especificos($estoque_minimo, "Estoque Mínimo");
         }
-        if (validar_elementos_obrigatorios($marca, "Marca") != NULL) {
-            $errors[] = validar_elementos_obrigatorios($marca, "Marca");
-        }
-        if (validar_elementos_obrigatorios($memoria, "Memória") != NULL){
-            $errors[] = validar_elementos_obrigatorios($memoria, "Memória");
-        }
-        if (validar_elementos_obrigatorios($processador, "Processador") != NULL){
-            $errors[] = validar_elementos_obrigatorios($processador, "Processador");
-        }
-        if (validar_elementos_obrigatorios($polegadaTela, "Polegadas") != NULL){
-            $errors[] = validar_elementos_obrigatorios($polegadaTela, "Polegadas");
-        }
-        if (validar_elementos_obrigatorios($SistOper, "Sistema Operacional") != NULL){
-            $errors[] = validar_elementos_obrigatorios($SistOper, "Sistema Operacional");
+        if(validar_elementos_especificos($estoque_maximo, "Estoque Máximo") != NULL){
+            $errors[] = validar_elementos_especificos($estoque_maximo, "Estoque Mínimo");
         }
         
         if (count($errors) > 0) {

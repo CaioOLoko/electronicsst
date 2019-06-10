@@ -21,19 +21,16 @@ create table categoria(
 	primary key(idCategoria)
 );
 CREATE TABLE IF NOT EXISTS produto(
-	idProduto INT(11) NOT NULL AUTO_INCREMENT,
-        idCategoria varchar(15) NOT NULL,
-	Preco DOUBLE NOT NULL,
-	NomeProduto VARCHAR(30) NOT NULL,
-	Descricao VARCHAR(60) NOT NULL,
-	Tamanho VARCHAR(60) NOT NULL,
-	Imagem VARCHAR(60) NOT NULL,
-	Sexo VARCHAR(1) NOT NULL,
-	Categoria VARCHAR(20) NOT NULL,
-	Estoque_Min INT(5) NOT NULL,
-	Estoque_Max INT(5) NOT NULL,
-	PRIMARY KEY(idProduto),
-        FOREIGN KEY(idCategoria) REFERENCES categoria(idCategoria) ON UPDATE CASCADE ON DELETE CASCADE
+	idproduto INT(11) NOT NULL AUTO_INCREMENT,
+        /*idcategoria varchar(15) NOT NULL,*/
+	preco DOUBLE NOT NULL,
+	nomeproduto VARCHAR(30) NOT NULL,
+	descricao VARCHAR(60) NOT NULL,
+	imagem VARCHAR(60) NOT NULL,
+	estoque_minimo INT(11) NOT NULL,
+	estoque_maximo INT(11) NOT NULL,
+	PRIMARY KEY(idProduto)
+        /*FOREIGN KEY(idCategoria) REFERENCES categoria(idCategoria) ON UPDATE CASCADE ON DELETE CASCADE*/
 );
 CREATE TABLE IF NOT EXISTS endereco(
 	idEndereco INT(11) NOT NULL AUTO_INCREMENT,

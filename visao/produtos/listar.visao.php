@@ -4,16 +4,11 @@
     <thead>
         <tr>
             <th>Código</th>
-            <th>Categoria</th>
             <th>Nome</th>
             <th>Preço</th>
             <th>Informações</th>
-            <th>Código de Barras</th>
-            <th>Marca</th>
-            <th>Memória</th>
-            <th>Processador</th>
-            <th>Polegadas</th>
-            <th>S.O.</th>
+            <th>Estoque Mínimo</th>
+            <th>Estoque Máximo</th>
         </tr>
     </thead>
     <?php foreach ($produtos as $produto): ?>
