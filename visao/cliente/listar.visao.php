@@ -9,7 +9,8 @@
             <th>Data de Nascimento</th>
             <th>Sexo</th>
             <th>Tipo de Usuário</th>
-            <th>Descrição</th>
+            <th>Ver Detalhes</th>
+            <th>Deletar o Usuário</th>
         </tr>
     </thead>
     <?php foreach ($clientes as $cliente): ?>
@@ -21,6 +22,7 @@
             <td><?= $cliente['sexo'] ?></td>
             <td><?= $cliente['tipousuario'] ?></td>
             <td><a href="./cliente/ver/<?= $cliente['idusuario'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
+            <td><a href="./cliente/deletar/<?=$cliente['idusuario']?>" style="color:black; text-decoration: underline;">Deletar</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

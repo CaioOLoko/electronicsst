@@ -5,7 +5,8 @@
         <tr>
             <th>Código</th>
             <th>Categoria</th>
-            <th>Descrição</th>
+            <th>Ver Detalhes</th>
+            <th>Deletar Categoria</th>
         </tr>
     </thead>
     <?php foreach ($categorias as $categoria): ?>
@@ -13,6 +14,7 @@
         <td><?=$categoria['idCategoria']?></td>
         <td><?=$categoria['descricao']?></td>
         <td><a href="./categoria/ver/<?= $categoria['idCategoria'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
+        <td><a href="./categoria/deletar/<?= $categoria['idCategoria'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
     </tr>
     <?php endforeach; ?>
 </table>

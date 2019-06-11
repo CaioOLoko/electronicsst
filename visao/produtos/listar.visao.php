@@ -1,4 +1,4 @@
-<h2>Listar Produtos</h2>
+<h2>Listar Produtos</h2><br>
 
 <table class="table">
     <thead>
@@ -10,6 +10,8 @@
             <th>Imagem:</th>
             <th>Estoque Mínimo</th>
             <th>Estoque Máximo</th>
+            <th>Ver Detalhes</th>
+            <th>Deletar Produto</th>
         </tr>
     </thead>
     <?php foreach ($produtos as $produto): ?>
@@ -21,7 +23,8 @@
         <td><?=$produto['imagem']?></td>
         <td><?=$produto['estoque_minimo']?></td>
         <td><?=$produto['estoque_maximo']?></td>
-        <td><a href="./produto/ver/<?=$produto['idproduto']?>" style="color: #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ver</a></td>
+        <td><a href="./produto/ver/<?=$produto['idproduto']?>" style="color: black; text-decoration: underline;">Ver</a></td>
+        <td><a href="./produto/deletar/<?=$produto['idproduto']?>" style="color: black; text-decoration: underline;">Deletar</a></td>
     </tr>
     <?php endforeach; ?>
 </table>

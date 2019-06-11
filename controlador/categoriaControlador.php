@@ -39,5 +39,10 @@ function ver($id){
     exibir("categoria/visualizar", $dados);
 }
 
+function deletar($id){
+    $msg = deletarCategoria($id);
+    redirecionar("categoria/listarCategoria");
+}
+
 ?>
 

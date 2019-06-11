@@ -1,14 +1,14 @@
-<h2>Descrição do Produto</h2>
-
-<p><strong>Código:</strong></p>       <?= $produto['idproduto'] ?>
-<p><strong>Nome:</strong></p>        <?= $produto['nomeproduto'] ?>
-<p><strong>Preço:</strong></p>        <?= $produto['preco'] ?>
-<p><strong>Categoria:</strong></p>        <?=$produto['idcategoria'] ?>
-<p><strong>Informações:</strong></p>        <?= $produto['descricao'] ?>
-<p><strong>Imagem:</strong></p>        <?= $produto['imagem'] ?>
-<p><strong>Estoque Mínimo:</strong></p>        <?= $produto['estoque_minimo'] ?>
-<p><strong>Estoque Máximo:</strong></p>        <?= $produto['estoque_maximo'] ?>
-
+<h2>Descrição do Produto</h2><br>
+<div>
+    <strong>Código:&nbsp;&nbsp;</strong> <?= $produto['idproduto'] ?><br>
+    <strong>Nome:&nbsp;&nbsp;</strong> <?= $produto['nomeproduto'] ?><br>
+    <strong>Preço:&nbsp;&nbsp;</strong> <?= $produto['preco'] ?><br>
+    <strong>Categoria:&nbsp;&nbsp;</strong> <?= $produto['idcategoria'] ?><br>
+    <strong>Informações:&nbsp;&nbsp;</strong> <?= $produto['descricao'] ?><br>
+    <strong>Imagem:&nbsp;&nbsp;</strong> <a href="<?= $produto['imagem'] ?>" style="color: #000;"><?= $produto['imagem'] ?></a><br>
+    <strong>Estoque Mínimo:&nbsp;&nbsp;</strong> <?= $produto['estoque_minimo'] ?><br>
+    <strong>Estoque Máximo:&nbsp;&nbsp;</strong> <?= $produto['estoque_maximo'] ?><br>
+</div>
 <br><br>
 
-<a href="./produto/listarProdutos" style="color: #000000;">Voltar</a>
+<a href="./produto/listarProdutos" style="color: #000000;text-decoration: underline">Voltar</a>

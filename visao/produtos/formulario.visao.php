@@ -33,7 +33,7 @@ if (ehPost()) {
         <input type="text" name="descricao" style="width:250px"><br><br>
 
     <label for="imagem">Imagem do Produto:</label><br>
-    <input type="text" name="imagem" style="width:250px"><br><br>
+    <input type="URL" name="imagem" style="width:250px"><br><br>
 
     <label for="estoque_minimo">Estoque Mínimo:</label><br>
     <input type="number" name="estoque_minimo"><br><br>

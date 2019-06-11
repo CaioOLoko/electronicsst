@@ -65,6 +65,10 @@ function ver($id){
     exibir("cliente/visualizar", $dados);
 }
 
+function deletar($id){
+    $msg = deletarCliente($id);
+    redirecionar("cliente/listarClientes");
+}
 
 function contato() {
 	if (ehPost()) {

@@ -75,3 +75,10 @@ function ver($id) {
     $dados["produto"] = pegarProdutoPorId($id);
     exibir("produtos/visualizar", $dados);
 }
+
+function deletar($id){
+    $msg = deletarProduto($id);
+    redirecionar("produto/listarProdutos");
+}
+
+?>

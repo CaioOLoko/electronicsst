@@ -1,7 +1,7 @@
 <h2>Descrição do Produto</h2>
 
-<p><strong>Código:</strong></p>       <?= $categoria['idCategoria'] ?>
-<p><strong>Descrição:</strong></p>        <?= $categoria['descricao'] ?>
+<strong>Código:</strong>      <?= $categoria['idCategoria'] ?>
+<strong>Descrição:</strong>        <?= $categoria['descricao'] ?>
 
 <br><br>
 
