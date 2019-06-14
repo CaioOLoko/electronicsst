@@ -26,7 +26,7 @@ if (ehPost()) {
     <select name="categoria">
         <option value="default">Selecione uma categoria</option>
         <?php foreach ($categorias as $categoria): ?>
-            <option value="<?= $categoria['idCategoria'] ?>"><?= $categoria['descricao'] ?></option>
+            <option value="<?= $categoria['idcategoria'] ?>"><?= $categoria['descricao'] ?></option>
         <?php endforeach; ?>
     </select>
     <br><br><label for="descricao">Informações do Produto:</label><br>

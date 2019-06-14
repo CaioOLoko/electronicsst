@@ -20,6 +20,6 @@
         </div>
     </div>
     <div class="copyright">
-        <p>&copy2018 by Electronic's ST. Proudly created by <a href="">Samuel Facchetti de Matos</a> | <a href="">Thiago de Almeida Maciel</a></p>
+        <p>&copy2018 by Electronic's ST. Proudly created by Samuel Facchetti de Matos | Thiago de Almeida Maciel</p>
     </div>
 </div>

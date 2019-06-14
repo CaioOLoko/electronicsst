@@ -37,8 +37,11 @@ function adicionar() {
         if (validar_elementos_obrigatorios($nome_do_produto, "Nome") != NULL) {
             $errors[] = validar_elementos_obrigatorios($nome_do_produto, "Nome");
         }
-        if (validar_elementos_obrigatorios($preco_do_produto, "Preço") != NULL) {
+       /* if (validar_elementos_obrigatorios($preco_do_produto, "Preço") != NULL) {
             $errors[] = validar_elementos_obrigatorios($preco_do_produto, "Preço");
+        }*/
+        if (validar_elementos_obrigatorios($imagem, "Imagem") != NULL) {
+            $errors[] = validar_elementos_obrigatorios($imagem, "Imagem");
         }
         if (validar_elementos_obrigatorios($infoProduto, "Informações do Produto") != NULL) {
             $errors[] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
@@ -76,7 +79,7 @@ function ver($id) {
     exibir("produtos/visualizar", $dados);
 }
 
-function deletar($id){
+function deletar($id) {
     $msg = deletarProduto($id);
     redirecionar("produto/listarProdutos");
 }

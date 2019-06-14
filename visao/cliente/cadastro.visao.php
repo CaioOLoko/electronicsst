@@ -32,7 +32,7 @@ if (ehPost()) {
     <label for="email">E-mail:</label><br> <input type="text" name="email" maxlength="60" style="width:250px"><br><br>
     <label for="senha">Senha:</label><br> <input type="password" name="senha" maxlength="30" style="width:250px"><br><br>
     <label for="cpf">CPF:</label><br> <input type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"><br><br>
-    <label for="data_de_nascimento">Data de Nascimento:</label><br> <input type="date" name="datadenascimento"><br><br>
+    <label for="data_de_nascimento">Data de Nascimento:</label><br> <input type="date" name="datadenascimento" maxlength="10"><br><br>
     <label for="sexo">Sexo:</label><br><br>
     <input type="radio" name="sexo" value="Masculino" checked="checked"><label>&nbsp;Masculino&nbsp;&nbsp;&nbsp;</label> 
     <input type="radio" name="sexo" value="Feminino"><label>&nbsp;Feminino</label><br><br>

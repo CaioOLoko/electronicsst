@@ -7,7 +7,7 @@
             <th>Nome</th>
             <th>Preço</th>
             <th>Informações</th>
-            <th>Imagem:</th>
+            <th>Imagem</th>
             <th>Estoque Mínimo</th>
             <th>Estoque Máximo</th>
             <th>Ver Detalhes</th>
@@ -28,4 +28,4 @@
     </tr>
     <?php endforeach; ?>
 </table>
-<a href="./produto/adicionar" class="btn btn-primary">Novo Produto</a>
+<br><br><a href="./produto/adicionar" class="btn btn-primary" style="color:black;text-decoration: underline;">Novo Produto</a>

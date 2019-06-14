@@ -33,8 +33,8 @@ function adicionar() {
 		if (validaCPF($cpf) != NULL) {
 			$errors[] = validaCPF($cpf);
 		}
-		if (validar_elementos_especificos($data_de_nascimento, "Data de Nascimento") != NULL) {
-			$errors[] = validar_elementos_especificos($data_de_nascimento, "Data de Nascimento");
+		if (validaData($data_de_nascimento) != NULL) {
+			$errors[] = validaData($data_de_nascimento);
 		}
 		if (count($errors) > 0) {
 			$dados = array();

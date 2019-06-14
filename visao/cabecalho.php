@@ -36,3 +36,14 @@
 		</a>
 	</div>
 </div>
+<div style="
+     height: 30px;
+     display:flex;
+     align-items: center;
+     flex-direction: row;
+     justify-content: space-around;
+     background-color:#202020;">
+    <a href="./cliente/listarClientes">Listar Clientes</a>
+    <a href="./produto/listarProdutos">Listar Produtos</a>
+    <a href="./categoria/listarCategoria">Listar Categorias</a>
+</div>

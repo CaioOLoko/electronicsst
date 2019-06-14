@@ -5,12 +5,17 @@ function validar_elementos_obrigatorios($nome, $tipo) {
         return "$tipo obrigatório.<br>";
     } elseif ((strlen(trim($nome)) > 60)) {
         return "Campo $tipo excedeu o limite de caracteres!<br>";
-    }else {
+    } else {
         $nome = htmlentities($nome);
         $nome = str_split($nome);
 
         for ($i = 0; $i < count($nome); $i++) {
-            if ($nome[$i] == '&') {
+            if ($nome[$i] == '&' || $nome[$i] == '1' ||
+                    $nome[$i] == '2' || $nome[$i] == '3' ||
+                    $nome[$i] == '4' || $nome[$i] == '5' ||
+                    $nome[$i] == '6' || $nome[$i] == '7' ||
+                    $nome[$i] == '8' || $nome[$i] == '9' ||
+                    $nome[$i] == '0') {
                 return "Informe um $tipo válido!<br>";
                 break;
             } else {
@@ -27,7 +32,7 @@ function validar_quantidade_de_campos($campo, $tipo) {
         return "$tipo obrigatório.<br>";
     } elseif ((strlen(trim($campo)) > 30)) {
         return "Campo $tipo excedeu o limite de caracteres!<br>";
-    }else{
+    } else {
         return NULL;
     }
 }
@@ -98,6 +103,19 @@ function validaCPF($valor) {
             }
             return NULL;
         }
+    }
+}
+
+function ValidaData($dat) {
+    $data = explode("-", "$dat"); // fatia a string $dat em pedados, usando / como referência
+    $y = $data[0];
+    $m = $data[1];
+    $d = $data[2];
+
+    if (!checkdate($m, $d, $y) || ($y < 1900) || ($y > date("Y")-18) || (mktime(0, 0, 0, $m, $d, $y) > time())) {
+        return $dat;
+    } else {
+        return NULL;
     }
 }
 

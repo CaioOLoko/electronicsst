@@ -16,13 +16,13 @@ CREATE TABLE IF NOT EXISTS usuario(
 	PRIMARY KEY(idusuario)
 );
 create table categoria(
-	idCategoria INT(15) NOT NULL AUTO_INCREMENT,
-        descricao varchar(30) NOT NULL,
-	primary key(idCategoria)
+	idcategoria INT NOT NULL AUTO_INCREMENT,
+        descricao varchar(50) NOT NULL,
+	primary key(idcategoria)
 );
 CREATE TABLE IF NOT EXISTS produto(
 	idproduto INT(11) NOT NULL AUTO_INCREMENT,
-        idcategoria varchar(15) NOT NULL,
+        idcategoria INT NOT NULL,
 	preco DOUBLE NOT NULL,
 	nomeproduto VARCHAR(30) NOT NULL,
 	descricao VARCHAR(60) NOT NULL,
