@@ -12,7 +12,7 @@
           http://tiagomatos.com/blog/dica-sobre-a-variavel-global-server-do-php
           https://www.php.net/manual/pt_BR/reserved.variables.server.php
          */
-        if (($_SERVER['PHP_SELF'] != '/electronicsst/index.php/cliente/adicionar') && ($_SERVER['PHP_SELF'] != '/electronicsst/index.php/login/')) {
+        if (($_SERVER['PHP_SELF'] != '/electronicsstofficial/index.php/cliente/adicionar') && ($_SERVER['PHP_SELF'] != '/electronicsstofficial/index.php/login/')) {
             require('cabecalho.php');
         } else {
             require('cabecalho_aux.php');
@@ -24,7 +24,7 @@
             ?>
         </main>
         <?php
-        if (($_SERVER['PHP_SELF'] != '/electronicsst/index.php/cliente/adicionar') && ($_SERVER['PHP_SELF'] != '/electronicsst/index.php/login/')) {
+        if (($_SERVER['PHP_SELF'] != '/electronicsstofficial/index.php/cliente/adicionar') && ($_SERVER['PHP_SELF'] != '/electronicsstofficial/index.php/login/')) {
             require('rodape.php');
         }
         ?>

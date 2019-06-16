@@ -5,7 +5,6 @@ require_once "modelo/clienteModelo.php";
 
 function adicionar() {
 	if (ehPost()) {
-
 		$nome = $_POST["nomeusuario"];
 		$email = $_POST["email"];
 		$senha = $_POST["senha"];
@@ -16,36 +15,31 @@ function adicionar() {
 	
 		$errors = array();
 
-		/*if(validar_elementos_obrigatorios($nome, "Nome")){;
-			echo "Deu certo<br>";
-		}else{
-			echo "Deu errado<br>";
-		}*/
-		if (validar_elementos_obrigatorios($nome, "Nome") != NULL) {
-			$errors[] = validar_elementos_obrigatorios($nome, "Nome");
+		if (validaNome($nome,"Nome") != NULL) {
+			$errors['nome'] = validaNome($nome, "Nome");
 		}
 		if (validar_email($email) != NULL) {
-			$errors[] = validar_email($email);
+			$errors['email'] = validar_email($email);
 		}
 		if (validar_quantidade_de_campos($senha, "Senha") != NULL) {
-			$errors[] = validar_quantidade_de_campos($senha, "Senha");
+			$errors['senha'] = validar_quantidade_de_campos($senha, "Senha");
 		}
 		if (validaCPF($cpf) != NULL) {
-			$errors[] = validaCPF($cpf);
+			$errors['cpf'] = validaCPF($cpf);
 		}
 		if (validaData($data_de_nascimento) != NULL) {
-			$errors[] = validaData($data_de_nascimento);
+			$errors['datadenascimento'] = validaData($data_de_nascimento);
 		}
 		if (count($errors) > 0) {
 			$dados = array();
 			$dados["errors"] = $errors;
 			exibir("cliente/cadastro", $dados);
 		} else {
-                    $retirarCPF = array(0=>"-",1=>".");
-                    $cpf= str_replace($retirarCPF,"" ,$cpf);
-                    echo $cpf;
-                    $msg = adicionarCliente($nome,$email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
-                    redirecionar("cliente/listarClientes");
+			$retirarCPF = array(0=>"-",1=>".");
+			$cpf= str_replace($retirarCPF,"" ,$cpf);
+			echo $cpf;
+			$msg = adicionarCliente($nome,$email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
+			redirecionar("cliente/listarClientes");
 		}
 	} else {
 		exibir("cliente/cadastro");
@@ -59,27 +53,25 @@ function listarClientes() {
 }
 
 function ver($id){
-    //passa o $id para a função pegarClientePorId do modelo
-    $dados["cliente"] = pegarClientePorId($id);
-    //chama o arquivo: visao/cliente/visualizar.visao.php
-    exibir("cliente/visualizar", $dados);
+	//passa o $id para a função pegarClientePorId do modelo
+	$dados["cliente"] = pegarClientePorId($id);
+	//chama o arquivo: visao/cliente/visualizar.visao.php
+	exibir("cliente/visualizar", $dados);
 }
 
 function deletar($id){
-    $msg = deletarCliente($id);
-    redirecionar("cliente/listarClientes");
+	$msg = deletarCliente($id);
+	redirecionar("cliente/listarClientes");
 }
 
 function contato() {
 	if (ehPost()) {
-
 		$nome = $_POST["nome"];
 		$email = $_POST["email"];
 		$assunto = $_POST["assunto"];
 		$telefone = $_POST["telefone"];
 		$endereco = $_POST["endereco"];
 		$mensagem = $_POST["mensagem"];
-
 		echo validar_elementos_obrigatorios($nome);
 		echo validar_email($email);
 		echo validar_elementos_obrigatorios($assunto);
@@ -95,4 +87,3 @@ function contato() {
 	}
 }
 ?>
-

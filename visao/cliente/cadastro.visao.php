@@ -5,7 +5,6 @@ if (ehPost()) {
     }
 }
 ?>
-
 <style type="text/css">
     .tabela {
         font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -27,7 +26,6 @@ if (ehPost()) {
 <form action="" method="POST">
 
     <h1>Cadastre-se</h1><br>
-
     <label for="nome">Nome:</label><br> <input type="text" name="nomeusuario" maxlength="60" style="width:250px"><br><br>
     <label for="email">E-mail:</label><br> <input type="text" name="email" maxlength="60" style="width:250px"><br><br>
     <label for="senha">Senha:</label><br> <input type="password" name="senha" maxlength="30" style="width:250px"><br><br>

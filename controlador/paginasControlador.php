@@ -1,15 +1,10 @@
 <?php
 
-/* CONTROLADOR
- * funçao: controlar as páginas estáticas (páginas sem acesso ao modelo)  */
+require "modelo/produtoModelo.php";
 
 function index() {
-    exibir("paginas/inicial");
-}
+	$dados = [];
+	$dados['produto'] = pegarTodosProdutos();
 
-function sobre(){
-    exibir("paginas/sobre");
-}
-function mapa() {
-    exibir("paginas/mapa");
+	exibir("paginas/inicial",$dados);
 }

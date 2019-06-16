@@ -15,14 +15,14 @@ CREATE TABLE IF NOT EXISTS usuario(
 	tipousuario VARCHAR(15) NOT NULL,
 	PRIMARY KEY(idusuario)
 );
-create table categoria(
+CREATE TABLE IF NOT EXISTS categoria(
 	idcategoria INT NOT NULL AUTO_INCREMENT,
-        descricao varchar(50) NOT NULL,
-	primary key(idcategoria)
+	descricao VARCHAR(50) NOT NULL,
+	PRIMARY KEY(idcategoria)
 );
 CREATE TABLE IF NOT EXISTS produto(
 	idproduto INT(11) NOT NULL AUTO_INCREMENT,
-        idcategoria INT NOT NULL,
+	idcategoria INT NOT NULL,
 	preco DOUBLE NOT NULL,
 	nomeproduto VARCHAR(30) NOT NULL,
 	descricao VARCHAR(60) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS produto(
 	estoque_minimo INT(11) NOT NULL,
 	estoque_maximo INT(11) NOT NULL,
 	PRIMARY KEY(idproduto),
-        FOREIGN KEY(idcategoria) REFERENCES categoria(idcategoria) ON UPDATE CASCADE ON DELETE CASCADE
+	FOREIGN KEY(idcategoria) REFERENCES categoria(idcategoria) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS endereco(
 	idEndereco INT(11) NOT NULL AUTO_INCREMENT,
