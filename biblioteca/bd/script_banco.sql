@@ -1,12 +1,11 @@
---Criação e Definição da Base de Dados
 DROP DATABASE IF EXISTS electronicsst;
 CREATE DATABASE electronicsst;
 USE electronicsst;
 
---Criação das Tabelas
 CREATE TABLE IF NOT EXISTS usuario(
 	idusuario INT(11) NOT NULL AUTO_INCREMENT,
-	nomeusuario VARCHAR(60) NOT NULL,
+	nomeusuario VARCHAR(30) NOT NULL,
+	sobrenomeusuario VARCHAR(30) NOT NULL,
 	email VARCHAR(60) NOT NULL,
 	senha VARCHAR(30) NOT NULL,
 	cpf VARCHAR(14) NOT NULL,
@@ -83,30 +82,6 @@ CREATE TABLE IF NOT EXISTS estoque(
 	FOREIGN KEY(idProduto) REFERENCES produto(idProduto) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
-/*create table produto(
-	codProduto int(11) NOT NULL,
-	categoria varchar(20) NOT NULL,
-	nome varchar(30) NOT NULL,
-	valUnit double NOT NULL,
-	infoProduto varchar(200) NOT NULL,
-	codDeBarras varchar(15) NOT NULL,
-	marca varchar(20) NOT NULL,
-	modelo varchar(50) NOT NULL,
-	cor varchar(20) NOT NULL,
-	memoria varchar(10) NOT NULL,
-	processador varchar(30) NOT NULL,
-	PolegadaTela varchar(6) NOT NULL,
-	SistOper varchar(15) NOT NULL,
-	primary key(codProduto),
-	foreign key(categoria) REFERENCES categoria(idCategoria) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-
 ENGINE = InnoDB
 AUTO_INCREMENT = 24
 DEFAULT CHARACTER SET = utf8
-
-INSERT INTO  mvcd . usuario  ( nome ,  senha ,  email ,  papel ) VALUES ( admin ,  123 ,  admin@admin ,  admin );
-INSERT INTO  mvcd . usuario  ( nome ,  senha ,  email ,  papel ) VALUES ( usuario ,  123 ,  usuario@usuario ,  usuario );
-*/

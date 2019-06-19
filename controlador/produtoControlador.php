@@ -1,7 +1,7 @@
 <?php
 
-require("servico/validacaoServico.php");
-require("servico/uploadServico.php");
+require_once "servico/validacaoServico.php";
+require_once "servico/uploadServico.php";
 require_once "modelo/produtoModelo.php";
 require_once "modelo/categoriaModelo.php";
 
@@ -20,29 +20,26 @@ function adicionar() {
 		if (validar_elementos_obrigatorios($nome_do_produto, "Nome") != NULL) {
 			$errors['nome'] = validaNome($nome_do_produto, "Nome");
 		}
-		/* if (validar_elementos_obrigatorios($preco_do_produto, "Preço") != NULL) {
-			$errors[] = validar_elementos_obrigatorios($preco_do_produto, "Preço");
-		}*/
 		if (validar_elementos_obrigatorios($imagem, "Imagem") != NULL) {
-			$errors[] = validar_elementos_obrigatorios($imagem, "Imagem");
+			$errors['imagem'] = validar_elementos_obrigatorios($imagem, "Imagem");
 		}
 		if (validar_elementos_obrigatorios($infoProduto, "Informações do Produto") != NULL) {
-			$errors[] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
+			$errors['informacoes'] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
 		}
-		
 		if (validar_elementos_especificos($estoque_minimo, "Estoque Mínimo") != NULL) {
-			$errors[] = validar_elementos_especificos($estoque_minimo, "Estoque Mínimo");
+			$errors['estoque_minimo'] = validar_elementos_especificos($estoque_minimo, "Estoque Mínimo");
 		}
 		if (validar_elementos_especificos($estoque_maximo, "Estoque Máximo") != NULL) {
-			$errors[] = validar_elementos_especificos($estoque_maximo, "Estoque Máximo");
+			$errors['estoque_maximo'] = validar_elementos_especificos($estoque_maximo, "Estoque Máximo");
 		}
 		if ($categoria=="default") {
-			$errors[] = "Informe um a categoria";
+			$errors['categoria'] = "Informe uma categoria";
 		}
-		
+
 		if (count($errors) > 0) {
 			$dados = array();
 			$dados["errors"] = $errors;
+			$dados["categorias"] = pegarTodasCategorias();
 			exibir("produtos/formulario", $dados);
 		} else {
 			$imagem = uploadImagem($imagem);
@@ -50,6 +47,7 @@ function adicionar() {
 			redirecionar("produto/listarProdutos");
 		}
 	} else {
+		$dados = array();
 		$dados["categorias"] = pegarTodasCategorias();
 		exibir("produtos/formulario", $dados);
 	}

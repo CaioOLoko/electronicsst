@@ -27,6 +27,7 @@ if (ehPost()) {
 
     <h1>Cadastre-se</h1><br>
     <label for="nome">Nome:</label><br> <input type="text" name="nomeusuario" maxlength="60" style="width:250px"><br><br>
+    <label for="sobrenome">Sobrenome:</label><br> <input type="text" name="sobrenomeusuario" maxlength="60" style="width:250px"><br><br>
     <label for="email">E-mail:</label><br> <input type="text" name="email" maxlength="60" style="width:250px"><br><br>
     <label for="senha">Senha:</label><br> <input type="password" name="senha" maxlength="30" style="width:250px"><br><br>
     <label for="cpf">CPF:</label><br> <input type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"><br><br>

@@ -13,21 +13,21 @@
 </nav> -->
 <div class="header">
 	<div class="est-logo">
-		<a href=".">
+		<a href="./">
 			<h1 class="title-store">Electronic's ST</h1>
 		</a>
 	</div>
 	<div class="search-div">
 		<form method="POST" action="" class="search-form">
 			<input id="busca" type="search" name="buscar" placeholder="Buscar produto" class="header-search-input">
-			<button type="submit" class="header-search-button"><img src="./publico/img/header/lupa.png" class="img-search"></button>
+			<button type="submit" class="header-search-button"><img src="publico/img/header/lupa.png" class="img-search"></button>
 		</form>
 	</div>
 	<div class="dropdown">
 		<button class="dropbtn">Login ou<br>Cadastro</button>
 		<div class="dropdown-content">
-			<a href="./login/"><h3>Login</h3></a>
-			<a href="./cliente/adicionar"><h3>Cadastro</h3></a>
+			<a href="login/"><h3>Login</h3></a>
+			<a href="cliente/adicionar"><h3>Cadastro</h3></a>
 		</div>
 	</div>
 	<div class="shop-car">
@@ -43,7 +43,7 @@
      flex-direction: row;
      justify-content: space-around;
      background-color:#202020;">
-    <a href="./cliente/listarClientes">Listar Clientes</a>
-    <a href="./produto/listarProdutos">Listar Produtos</a>
-    <a href="./categoria/listarCategoria">Listar Categorias</a>
+    <a href="cliente/listarClientes">Listar Clientes</a>
+    <a href="produto/listarProdutos">Listar Produtos</a>
+    <a href="categoria/listarCategoria">Listar Categorias</a>
 </div>

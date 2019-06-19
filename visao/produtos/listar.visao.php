@@ -19,7 +19,7 @@
         <td><?=$produto['idproduto']?></td>
         <td><?=$produto['nomeproduto']?></td>
         <td><?=$produto['preco']?></td>
-        <td><?=$produto['descricao']?></td>
+        <td><?=substr($produto['descricao'], 0, 30)."..."?></td>
         <td><?=$produto['imagem']?></td>
         <td><?=$produto['estoque_minimo']?></td>
         <td><?=$produto['estoque_maximo']?></td>

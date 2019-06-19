@@ -6,6 +6,7 @@ require_once "modelo/clienteModelo.php";
 function adicionar() {
 	if (ehPost()) {
 		$nome = $_POST["nomeusuario"];
+		$sobrenome = $_POST["sobrenomeusuario"];
 		$email = $_POST["email"];
 		$senha = $_POST["senha"];
 		$cpf = $_POST["cpf"];
@@ -17,6 +18,9 @@ function adicionar() {
 
 		if (validaNome($nome,"Nome") != NULL) {
 			$errors['nome'] = validaNome($nome, "Nome");
+		}
+		if (validaNome($sobrenome,"Sobrenome") != NULL) {
+			$errors['sobrenome'] = validaNome($sobrenome, "Sobrenome");
 		}
 		if (validar_email($email) != NULL) {
 			$errors['email'] = validar_email($email);
@@ -38,7 +42,7 @@ function adicionar() {
 			$retirarCPF = array(0=>"-",1=>".");
 			$cpf= str_replace($retirarCPF,"" ,$cpf);
 			echo $cpf;
-			$msg = adicionarCliente($nome,$email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
+			$msg = adicionarCliente($nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
 			redirecionar("cliente/listarClientes");
 		}
 	} else {
@@ -53,9 +57,7 @@ function listarClientes() {
 }
 
 function ver($id){
-	//passa o $id para a função pegarClientePorId do modelo
 	$dados["cliente"] = pegarClientePorId($id);
-	//chama o arquivo: visao/cliente/visualizar.visao.php
 	exibir("cliente/visualizar", $dados);
 }
 
@@ -69,14 +71,10 @@ function contato() {
 		$nome = $_POST["nome"];
 		$email = $_POST["email"];
 		$assunto = $_POST["assunto"];
-		$telefone = $_POST["telefone"];
-		$endereco = $_POST["endereco"];
 		$mensagem = $_POST["mensagem"];
 		echo validar_elementos_obrigatorios($nome);
 		echo validar_email($email);
 		echo validar_elementos_obrigatorios($assunto);
-		echo validar_elementos_especificos($telefone);
-		echo validar_elementos_obrigatorios($endereco);
 		echo validar_elementos_obrigatorios($mensagem);
 
 		echo "<pre>";

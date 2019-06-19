@@ -1,7 +1,7 @@
 <?php
 
-function adicionarCliente($nome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario) {
-    $sql = "INSERT INTO usuario(idusuario,nomeusuario,email,senha,cpf,datadenascimento,sexo,tipousuario) VALUES(NULL,'$nome','$email','$senha','$cpf','$data_de_nascimento','$sexo','$tipo_usuario')";
+function adicionarCliente($nome ,$sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario) {
+    $sql = "INSERT INTO usuario(idusuario,nomeusuario,sobrenomeusuario,email,senha,cpf,datadenascimento,sexo,tipousuario) VALUES(NULL,'$nome','$sobrenome','$email','$senha','$cpf','$data_de_nascimento','$sexo','$tipo_usuario')";
 
     $resultado = mysqli_query($cnx = conn(), $sql);
 

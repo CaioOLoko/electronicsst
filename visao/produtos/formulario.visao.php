@@ -15,7 +15,7 @@ if (ehPost()) {
 </style>
 
 <form action="" method="POST">
-
+	<h1>Cadastro de Produto</h1><br>
 	<label for="nomeproduto">Nome do Produto:</label><br>
 	<input type="text" name="nomeproduto" style="width:250px"><br><br>
 

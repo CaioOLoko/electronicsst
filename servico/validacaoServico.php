@@ -114,13 +114,13 @@ function validaCPF($valor) {
 }
 
 function ValidaData($dat) {
-	$data = explode("-", "$dat"); // fatia a string $dat em pedados, usando / como referência
+	$data = explode("-", "$dat");
 	$y = $data[0];
 	$m = $data[1];
 	$d = $data[2];
 
-	if (!checkdate($m, $d, $y) || ($y < 1900) || ($y > date("Y")-18) || (mktime(0, 0, 0, $m, $d, $y) > time())) {
-		return $dat;
+	if (!checkdate($m, $d, $y) || ($y < 1900) || (mktime(0, 0, 0, $m, $d, $y) > time())) {
+		return "Informe uma data de nascimento válida.<br>";
 	} else {
 		return NULL;
 	}
