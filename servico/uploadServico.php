@@ -20,3 +20,5 @@ function uploadImagem($arquivo, $caminhoImagem = "publico/upload/imagens/") {
 	return $diretorio_da_imagem;
 	//return $imagem;
 }
+
+?>

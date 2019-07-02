@@ -1,6 +1,6 @@
 <?php
 
-require("servico/validacaoServico.php");
+require_once "servico/validacaoServico.php";
 require_once "modelo/clienteModelo.php";
 
 function adicionar() {
