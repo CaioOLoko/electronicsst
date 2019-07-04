@@ -35,5 +35,4 @@ function deletarCategoria($id){
     return 'Categoria deletado com sucesso!';
 }
 
-
 ?>
