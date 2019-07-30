@@ -42,7 +42,7 @@ function adicionar() {
 			$dados["categorias"] = pegarTodasCategorias();
 			exibir("produtos/formulario", $dados);
 		} else {
-			$imagem = uploadImagem($imagem);
+			//$imagem = uploadImagem($imagem);
 			$msg = adicionarProduto($categoria, $preco_do_produto, $nome_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo);
 			redirecionar("produto/listarProdutos");
 		}

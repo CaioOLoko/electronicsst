@@ -9,7 +9,7 @@
 
 //     return $diretorio_da_imagem;
 // }
-
+/**
 function uploadImagem($arquivo, $caminhoImagem = "publico/upload/imagens/") {
 	$imagem_tmp = $arquivo["tmp_name"];
 	$imagem = basename($arquivo["name"]);
@@ -20,5 +20,8 @@ function uploadImagem($arquivo, $caminhoImagem = "publico/upload/imagens/") {
 	return $diretorio_da_imagem;
 	//return $imagem;
 }
+*/
+
+
 
 ?>

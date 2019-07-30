@@ -1,6 +1,6 @@
 <?php
 
-function adicionarCliente($nome ,$sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario) {
+function adicionarCliente($nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario) {
     $sql = "INSERT INTO usuario(idusuario,nomeusuario,sobrenomeusuario,email,senha,cpf,datadenascimento,sexo,tipousuario) VALUES(NULL,'$nome','$sobrenome','$email','$senha','$cpf','$data_de_nascimento','$sexo','$tipo_usuario')";
 
     $resultado = mysqli_query($cnx = conn(), $sql);
@@ -41,6 +41,15 @@ function pegarClientePorId($id) {
     $cliente = mysqli_fetch_assoc($resultado);
     //retorna o $cliente
     return $cliente;
+}
+
+function editarCliente($id, $nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario) {
+    $sql = "UPDATE usuario SET nomeusuario = '$nome',sobrenomeusuario = '$sobrenome',email = '$email',senha = '$senha',cpf = '$cpf',datadenascimento = '$data_de_nascimento',sexo = '$sexo',tipousuario = '$tipo_usuario' WHERE idusuario = $id";
+    $resultado = mysqli_query($cnx = conn(), $sql);
+    if (!$resultado) {
+        die('Erro ao alterar cliente' . mysqli_error($cnx));
+    }
+    return 'Cliente alterado com sucesso!';
 }
 ?>
 

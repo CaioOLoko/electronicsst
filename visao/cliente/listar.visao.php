@@ -10,6 +10,7 @@
             <th>Sexo</th>
             <th>Tipo de Usuário</th>
             <th>Ver Detalhes</th>
+            <th>Alterar</th>
             <th>Deletar o Usuário</th>
         </tr>
     </thead>
@@ -22,7 +23,8 @@
             <td><?= $cliente['sexo'] ?></td>
             <td><?= $cliente['tipousuario'] ?></td>
             <td><a href="./cliente/ver/<?= $cliente['idusuario'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
-            <td><a href="./cliente/deletar/<?=$cliente['idusuario']?>" style="color:black; text-decoration: underline;">Deletar</a></td>
+            <td><a href="./cliente/editar/<?= $cliente['idusuario'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
+            <td><a href="./cliente/deletar/<?= $cliente['idusuario'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
         </tr>
     <?php endforeach; ?>
 </table>
