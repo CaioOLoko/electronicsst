@@ -44,7 +44,7 @@ function pegarClientePorId($id) {
 }
 
 function editarCliente($id, $nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario) {
-    $sql = "UPDATE usuario SET nomeusuario = '$nome',sobrenomeusuario = '$sobrenome',email = '$email',senha = '$senha',cpf = '$cpf',datadenascimento = '$data_de_nascimento',sexo = '$sexo',tipousuario = '$tipo_usuario' WHERE idusuario = $id";
+    $sql = "UPDATE usuario SET nomeusuario = '$nome', sobrenomeusuario = '$sobrenome', email = '$email', senha = '$senha', cpf = '$cpf', datadenascimento = '$data_de_nascimento', sexo = '$sexo', tipousuario = '$tipo_usuario' WHERE idusuario = $id";
     $resultado = mysqli_query($cnx = conn(), $sql);
     if (!$resultado) {
         die('Erro ao alterar cliente' . mysqli_error($cnx));

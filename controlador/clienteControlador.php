@@ -105,7 +105,7 @@ function editar($id) {
             $retirarCPF = array(0 => "-", 1 => ".");
             $cpf = str_replace($retirarCPF, "", $cpf);
             echo $cpf;
-            editarCliente($nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
+            editarCliente($id,$nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
             redirecionar("cliente/listarClientes");
         }
     }else{
@@ -114,7 +114,7 @@ function editar($id) {
     }
 }
 
-function contato() {
+/*function contato() {
     if (ehPost()) {
         $nome = $_POST["nome"];
         $email = $_POST["email"];
@@ -131,6 +131,5 @@ function contato() {
     } else {
         exibir("cliente/contato");
     }
-}
-
+}*/
 ?>

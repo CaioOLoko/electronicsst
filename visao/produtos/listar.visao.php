@@ -11,21 +11,23 @@
             <th>Estoque Mínimo</th>
             <th>Estoque Máximo</th>
             <th>Ver Detalhes</th>
+            <th>Alterar</th>
             <th>Deletar Produto</th>
         </tr>
     </thead>
     <?php foreach ($produtos as $produto): ?>
-    <tr>
-        <td><?=$produto['idproduto']?></td>
-        <td><?=$produto['nomeproduto']?></td>
-        <td><?=$produto['preco']?></td>
-        <td><?=substr($produto['descricao'], 0, 30)."..."?></td>
-        <td><?=$produto['imagem']?></td>
-        <td><?=$produto['estoque_minimo']?></td>
-        <td><?=$produto['estoque_maximo']?></td>
-        <td><a href="./produto/ver/<?=$produto['idproduto']?>" style="color: black; text-decoration: underline;">Ver</a></td>
-        <td><a href="./produto/deletar/<?=$produto['idproduto']?>" style="color: black; text-decoration: underline;">Deletar</a></td>
-    </tr>
+        <tr>
+            <td><?= $produto['idproduto'] ?></td>
+            <td><?= $produto['nomeproduto'] ?></td>
+            <td><?= $produto['preco'] ?></td>
+            <td><?= substr($produto['descricao'], 0, 30) . "..." ?></td>
+            <td><?= $produto['imagem'] ?></td>
+            <td><?= $produto['estoque_minimo'] ?></td>
+            <td><?= $produto['estoque_maximo'] ?></td>
+            <td><a href="./produto/ver/<?= $produto['idproduto'] ?>" style="color: black; text-decoration: underline;">Ver</a></td>
+            <td><a href="./produto/editar/<?= $produto['idproduto'] ?>" style="color: black; text-decoration: underline;">Alterar</a></td>
+            <td><a href="./produto/deletar/<?= $produto['idproduto'] ?>" style="color: black; text-decoration: underline;">Deletar</a></td>
+        </tr>
     <?php endforeach; ?>
 </table>
 <br><br><a href="./produto/adicionar" class="btn btn-primary" style="color:black;text-decoration: underline;">Novo Produto</a>

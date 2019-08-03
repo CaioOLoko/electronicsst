@@ -6,6 +6,7 @@
             <th>Código</th>
             <th>Categoria</th>
             <th>Ver Detalhes</th>
+            <th>Alterar</th>
             <th>Deletar Categoria</th>
         </tr>
     </thead>
@@ -14,6 +15,7 @@
         <td><?=$categoria['idcategoria']?></td>
         <td><?=$categoria['descricao']?></td>
         <td><a href="./categoria/ver/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
+        <td><a href="./categoria/editar/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
         <td><a href="./categoria/deletar/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
     </tr>
     <?php endforeach; ?>

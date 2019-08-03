@@ -51,7 +51,7 @@ function editar($id) {
             $dados["errors"] = $errors;
             exibir("categoria/formulario", $dados);
         } else {
-            editarCategoria($categoria);
+            editarCategoria($id, $categoria);
             redirecionar("categoria/listarCategoria");
         }
     } else {
