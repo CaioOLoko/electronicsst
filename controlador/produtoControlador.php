@@ -111,6 +111,7 @@ function editar($id) {
             redirecionar("produto/listarProdutos");
         }
     } else {
+        $dados["categorias"] = pegarTodasCategorias();
         $dados["produto"] = pegarProdutoPorId($id);
         exibir("produtos/formulario", $dados);
     }
