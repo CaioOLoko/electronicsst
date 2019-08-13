@@ -30,8 +30,6 @@ function validar_elementos_obrigatorios($nome,$tipo){
 	}
 }
 
-//str_word_count( $string , formatoExibicao , caratceresConsiderados );
-
 function validar_quantidade_de_campos($campo, $tipo) {
 	if (strlen(trim($campo)) == 0) {
 		return "$tipo obrigatório.<br>";
@@ -124,6 +122,19 @@ function ValidaData($dat) {
 	} else {
 		return NULL;
 	}
+}
+
+function validar_Extensao_Imagem($image_name){
+	$extensao = strtolower(substr($image_file,-4));
+	if(
+		$extensao == ".jpg" ||
+		$extensao == ".png" ||
+		$extensao == ".gif"
+	):
+		return true;
+	else:
+		return false;
+	endif;
 }
 
 ?>

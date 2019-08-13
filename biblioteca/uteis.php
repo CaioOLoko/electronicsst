@@ -11,3 +11,5 @@ function mm($valor) {
     echo "</pre>";
     die();
 }
+
+?>
