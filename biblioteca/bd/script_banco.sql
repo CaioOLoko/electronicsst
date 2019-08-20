@@ -3,14 +3,16 @@ CREATE DATABASE electronicsst;
 USE electronicsst;
 
 CREATE TABLE IF NOT EXISTS usuario(
-	cpf BIGINT(11) NOT NULL,
-	nome VARCHAR(60) NOT NULL,
+        idusuario INT(11) NOT NULL AUTO_INCREMENT, 
+	nomeusuario VARCHAR(60) NOT NULL,
+        sobrenomeusuario VARCHAR(60) NOT NULL,
 	email VARCHAR(40) NOT NULL,
-	senha VARCHAR(16) NOT NULL,
-	nascimento VARCHAR(10) NOT NULL,
-	sexo VARCHAR(1) NOT NULL,
-	tipoUsuario VARCHAR(5) NOT NULL,
-	PRIMARY KEY(cpf)
+	senha VARCHAR(16) NOT NULL,   
+	cpf BIGINT(15) NOT NULL,
+	datadenascimento VARCHAR(10) NOT NULL,
+	sexo VARCHAR(10) NOT NULL,
+	tipousuario VARCHAR(15) NOT NULL,
+	PRIMARY KEY(idusuario)
 );
 
 CREATE TABLE IF NOT EXISTS categoria(
@@ -60,14 +62,20 @@ CREATE TABLE IF NOT EXISTS endereco(
 	PRIMARY KEY(idEndereco)
 );
 
+CREATE TABLE IF NOT EXISTS FormaPagamento(
+        idFormaPagamento INT NOT NULL AUTO_INCREMENT,
+        descricao VARCHAR(45) NOT NULL,
+        PRIMARY KEY(idFormaPagamento)
+);
+
 CREATE TABLE IF NOT EXISTS  pedido (
 	idPedido BIGINT(11) NOT NULL AUTO_INCREMENT,
-	idUsuario BIGINT(11) NOT NULL,
-	idEndereco BIGINT(11) NOT NULL,
+	idusuario BIGINT(11) NOT NULL,
+        idFormaPagamento INT NOT NULL,
 	dataCompra DATE NOT NULL,
 	PRIMARY KEY(idPedido),
-	FOREIGN KEY(idUsuario) REFERENCES usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(idEndereco) REFERENCES endereco(idEndereco) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(idusuario) REFERENCES usuario(idusuario) ON DELETE CASCADE ON UPDATE CASCADE
+        FOREIGN KEY(idFormaPagamento) REFERENCES FormaPagamento(idFormaPagamento) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS pedido_produto(
