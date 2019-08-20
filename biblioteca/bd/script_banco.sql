@@ -50,16 +50,14 @@ CREATE TABLE IF NOT EXISTS produto(
 );
 
 CREATE TABLE IF NOT EXISTS endereco(
-	idEndereco INT(11) NOT NULL AUTO_INCREMENT,
-	idUsuario INT (11) NOT NULL,
+	idendereco INT(11) NOT NULL AUTO_INCREMENT,
 	logradouro VARCHAR(50) NOT NULL,
         numero VARCHAR(7) NOT NULL,
 	complemento VARCHAR(20),
 	bairro VARCHAR(30) NOT NULL,
 	cidade VARCHAR(30) NOT NULL,
 	cep VARCHAR(8) NOT NULL,
-	PRIMARY KEY(idEndereco),
-	FOREIGN KEY(idUsuario) REFERENCES usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
+	PRIMARY KEY(idEndereco)
 );
 
 CREATE TABLE IF NOT EXISTS  pedido (

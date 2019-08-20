@@ -16,7 +16,8 @@ if (ehPost()) {
 
     <h1>Cadastro de Categoria</h1><br>
 
-    <label for="descricao">Descrição:</label> <input type="text" maxlength="30" name="descricao" value="<?=@$categoria['descricao']?>"><br><br>
+    <label for="descricao">Descrição:</label><br> 
+    <input type="text" maxlength="30" name="descricao" style="width:250px" value="<?=@$categoria['descricao']?>"><br><br>
 
     <button type="submit">Cadastrar</button>
 
