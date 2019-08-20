@@ -3,8 +3,9 @@
 require_once "servico/validacaoServico.php";
 require_once "modelo/enderecoModelo.php";
 
-function adicionar() {
+function adicionar($idusuario) {
     if (ehPost()) {
+        
         $logradouro = $_POST["logradouro"];
         $numero = $_POST["numero"];
         $complemento = $_POST["complemento"];
@@ -38,7 +39,7 @@ function adicionar() {
             $retirarCPF = array(0 => "-", 1 => ".");
             $cpf = str_replace($retirarCPF, "", $cpf);
             echo $cpf;
-            $msg = adicionarEndereco($logradouro, $numero, $complemento, $bairro, $cidade, $cep);
+            $msg = adicionarEndereco($idusuario,$logradouro, $numero, $complemento, $bairro, $cidade, $cep);
             redirecionar("endereco/listarEnderecos");
         }
     } else {

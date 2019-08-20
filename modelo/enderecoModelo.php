@@ -1,7 +1,7 @@
 <?php
 
-function adicionarEndereco($logradouro, $numero, $complemento, $bairro, $cidade, $cep) {
-    $sql = "INSERT INTO endereco(idendereco, logradouro, numero, complemento, bairro, cidade, cep) VALUES(NULL,'$logradouro', '$numero', '$complemento', '$bairro', '$cidade', '$cep')";
+function adicionarEndereco($idusuario,$logradouro, $numero, $complemento, $bairro, $cidade, $cep) {
+    $sql = "INSERT INTO endereco(idendereco, idusuario, logradouro, numero, complemento, bairro, cidade, cep) VALUES(NULL,'$idusuario','$logradouro', '$numero', '$complemento', '$bairro', '$cidade', '$cep')";
 
     $resultado = mysqli_query($cnx = conn(), $sql);
 
@@ -40,7 +40,7 @@ function deletarEndereco($id) {
 }
 
 function editarEndereco($id, $logradouro, $numero, $complemento, $bairro, $cidade, $cep) {
-    $sql = "UPDATE endereco SET logradouro = '$logradouro', numero = '$numero', complemento = '$complemento', bairro = '$bairro', cidade = '$cidade', cep = '$cep' WHERE idendereco = $id";
+    $sql = "UPDATE endereco SET  logradouro = '$logradouro', numero = '$numero', complemento = '$complemento', bairro = '$bairro', cidade = '$cidade', cep = '$cep' WHERE idendereco = $id";
     $resultado = mysqli_query($cnx = conn(), $sql);
     if (!resultado) {
         die('Erro ao alterar endereço' . mysqli_error($cnx));

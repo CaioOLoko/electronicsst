@@ -2,6 +2,7 @@
 
 require_once "servico/validacaoServico.php";
 require_once "modelo/clienteModelo.php";
+require_once "modelo/enderecoModelo.php";
 
 function adicionar() {
     if (ehPost()) {
@@ -58,6 +59,7 @@ function listarClientes() {
 
 function ver($id) {
     $dados["cliente"] = pegarClientePorId($id);
+    $dados["enderecos"] = pegarTodosEnderecos($id);
     exibir("cliente/visualizar", $dados);
 }
 
@@ -100,7 +102,7 @@ function editar($id) {
         if (count($errors) > 0) {
             $dados = array();
             $dados["errors"] = $errors;
-            exibir("cliente/cadastro", $dados);
+            exibir("cliente/editar", $dados);
         } else {
             $retirarCPF = array(0 => "-", 1 => ".");
             $cpf = str_replace($retirarCPF, "", $cpf);
@@ -110,26 +112,7 @@ function editar($id) {
         }
     }else{
         $dados["cliente"] = pegarClientePorId($id);
-        exibir("cliente/cadastro", $dados);
+        exibir("cliente/editar", $dados);
     }
 }
-
-/*function contato() {
-    if (ehPost()) {
-        $nome = $_POST["nome"];
-        $email = $_POST["email"];
-        $assunto = $_POST["assunto"];
-        $mensagem = $_POST["mensagem"];
-        echo validar_elementos_obrigatorios($nome);
-        echo validar_email($email);
-        echo validar_elementos_obrigatorios($assunto);
-        echo validar_elementos_obrigatorios($mensagem);
-
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
-    } else {
-        exibir("cliente/contato");
-    }
-}*/
 ?>

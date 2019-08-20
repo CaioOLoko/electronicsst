@@ -29,4 +29,4 @@
     <?php endforeach; ?>
 </table>
 
-<a href="./endereco/adicionar" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Novo Endereço</a>
+<a href="./endereco/adicionar/<?= $endereco['idusuario'] ?>" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Novo Endereço</a>

@@ -53,13 +53,15 @@ CREATE TABLE IF NOT EXISTS produto(
 
 CREATE TABLE IF NOT EXISTS endereco(
 	idendereco INT(11) NOT NULL AUTO_INCREMENT,
+        idusuario INT(11) NOT NULL,
 	logradouro VARCHAR(50) NOT NULL,
         numero VARCHAR(7) NOT NULL,
 	complemento VARCHAR(20),
 	bairro VARCHAR(30) NOT NULL,
 	cidade VARCHAR(30) NOT NULL,
-	cep VARCHAR(8) NOT NULL,
-	PRIMARY KEY(idEndereco)
+	cep VARCHAR(9) NOT NULL,
+	PRIMARY KEY(idEndereco),
+        FOREIGN KEY(idusuario) REFERENCES usuario(idusuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS FormaPagamento(

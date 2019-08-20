@@ -6,6 +6,8 @@
 <p><strong>Sexo:</strong> <?= $cliente['sexo'] ?></p>
 <p><strong>Tipo de Usuário:</strong> <?= $cliente['tipousuario'] ?></p>
 
+<a href="./endereco/adicionar/<?= $cliente['idusuario']?>" class="btn btn-primary" style="color:black; text-decoration: underline;">Adicionar Endereço</a><br>
+
 <a href="./cliente/listarClientes" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Voltar</a>
 
 
