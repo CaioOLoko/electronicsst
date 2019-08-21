@@ -12,5 +12,5 @@
     <strong>Estoque Máximo:&nbsp;&nbsp;</strong> <?= $produto['estoque_maximo'] ?><br>
 </div>
 <br><br>
-
+<a href="./carrinho/adicionar/<?= $produto['idproduto'] ?>" style="color: #000000;text-decoration: underline">Comprar</a>
 <a href="." style="color: #000000;text-decoration: underline">Voltar</a>
