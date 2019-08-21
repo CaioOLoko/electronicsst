@@ -38,6 +38,15 @@ function pegarEnderecoPorId($id) {
     return $endereco;
 }
 
+function deletarEnderecosPorUsuario($idusuario) {
+    $sql = "DELETE FROM endereco WHERE idusuario = '$idusuario'";
+    $resultado = mysqli_query($cnx = conn(), $sql);
+    if (!$resultado) {
+        die('Erro ao deletar endereço' . mysqli_error($cnx));
+    }
+    return 'Endereço deletado com sucesso!';
+}
+
 function deletarEndereco($id) {
     $sql = "DELETE FROM endereco WHERE idendereco = $id";
     $resultado = mysqli_query($cnx = conn(), $sql);

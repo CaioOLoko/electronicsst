@@ -36,9 +36,6 @@ function adicionar($idusuario) {
             $dados["errors"] = $errors;
             exibir("endereco/formulario", $dados);
         } else {
-            $retirarCPF = array(0 => "-", 1 => ".");
-            $cpf = str_replace($retirarCPF, "", $cpf);
-            echo $cpf;
             $msg = adicionarEndereco($idusuario,$logradouro, $numero, $complemento, $bairro, $cidade, $cep);
             redirecionar("cliente/ver/$idusuario");
         }
@@ -59,7 +56,7 @@ function ver($id) {
 }
 
 function deletar($id) {
-    $msg = deletarEndereco($id);
+    $msg = deletarEnderecosPorUsuario($id);
     redirecionar("endereco/listarEnderecos");
 }
 

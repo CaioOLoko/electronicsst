@@ -64,7 +64,8 @@ function ver($id) {
 }
 
 function deletar($id) {
-    $msg = deletarCliente($id);
+    deletarCliente($id);
+    deletarEndereco($id);
     redirecionar("cliente/listarClientes");
 }
 
