@@ -21,10 +21,18 @@ function pegarTodosEnderecos() {
     return $enderecos;
 }
 
-;
+function pegarTodosEnderecosPorIDCliente($idUsuario) {
+    $sql = "SELECT * FROM endereco WHERE idusuario = '$idUsuario'";
+    $resultado = mysqli_query(conn(), $sql);
+    $enderecos_usuario = array();
+    while ($linha = mysqli_fetch_assoc($resultado)) {
+        $enderecos_usuario[] = $linha;
+    }
+    return $enderecos_usuario;
+}
 
 function pegarEnderecoPorId($id) {
-    $sql = "SELECT * FROM endereco WHERE idendereco = $id";
+    $sql = "SELECT * FROM endereco WHERE idendereco = '$id'";
     $resultado = mysqli_query(conn(), $sql);
     $endereco = mysqli_fetch_assoc($resultado);
     return $endereco;
@@ -48,4 +56,3 @@ function editarEndereco($id, $logradouro, $numero, $complemento, $bairro, $cidad
     return 'Endereço alterado com sucesso!';
 }
 ?>
-

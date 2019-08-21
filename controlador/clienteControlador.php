@@ -59,7 +59,7 @@ function listarClientes() {
 
 function ver($id) {
     $dados["cliente"] = pegarClientePorId($id);
-    $dados["enderecos"] = pegarTodosEnderecos($id);
+    $dados["enderecos"] = pegarTodosEnderecosPorIDCliente($id);
     exibir("cliente/visualizar", $dados);
 }
 

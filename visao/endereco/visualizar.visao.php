@@ -6,5 +6,5 @@
 <p><strong>Cidade:</strong> <?= $endereco['cidade'] ?></p>
 <p><strong>CEP:</strong> <?= $endereco['cep'] ?></p>
 
-<a href="./endereco/listarEnderecos" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Voltar</a>
+<a href="cliente/ver/<?=$endereco['idusuario']?>" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Voltar</a>
 

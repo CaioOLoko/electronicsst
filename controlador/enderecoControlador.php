@@ -40,7 +40,7 @@ function adicionar($idusuario) {
             $cpf = str_replace($retirarCPF, "", $cpf);
             echo $cpf;
             $msg = adicionarEndereco($idusuario,$logradouro, $numero, $complemento, $bairro, $cidade, $cep);
-            redirecionar("endereco/listarEnderecos");
+            redirecionar("cliente/ver/$idusuario");
         }
     } else {
         exibir("endereco/formulario");
@@ -63,7 +63,7 @@ function deletar($id) {
     redirecionar("endereco/listarEnderecos");
 }
 
-function editar($id) {
+function editar($idusuario, $idendereco) {
     if (ehPost()) {
         $logradouro = $_POST["logradouro"];
         $numero = $_POST["numero"];
@@ -95,14 +95,11 @@ function editar($id) {
             $dados["errors"] = $errors;
             exibir("endereco/formulario", $dados);
         } else {
-            $retirarCPF = array(0 => "-", 1 => ".");
-            $cpf = str_replace($retirarCPF, "", $cpf);
-            echo $cpf;
-            editarEndereco($id, $logradouro, $numero, $complemento, $bairro, $cidade, $cep);
-            redirecionar("endereco/listarEnderecos");
+            editarEndereco($idendereco, $logradouro, $numero, $complemento, $bairro, $cidade, $cep);
+            redirecionar("cliente/ver/$idusuario");
         }
     } else {
-        $dados["endereco"] = pegarEnderecoPorId($id);
+        $dados["endereco"] = pegarEnderecoPorId($idendereco);
         exibir("endereco/formulario", $dados);
     }
 }
