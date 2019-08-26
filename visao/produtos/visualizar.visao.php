@@ -1,4 +1,4 @@
-<img src="<?=$produto['imagem']?>" alt="" style="width: 100px; height: 60px;">
+<img src="<?= $produto['imagem'] ?>" alt="" style="width: 100px; height: 60px;">
 
 <!-- ./publico/img/user/user.png -->
 <h2>Descrição do Produto</h2><br>
@@ -12,5 +12,5 @@
     <strong>Estoque Máximo:&nbsp;&nbsp;</strong> <?= $produto['estoque_maximo'] ?><br>
 </div>
 <br><br>
-<a href="./carrinho/adicionar/<?= $produto['idproduto'] ?>" style="color: #000000;text-decoration: underline">Comprar</a>
+<a href="compras/adicionar/<?= $produto['idproduto'] ?>" style="color: #000000;text-decoration: underline">Comprar</a>
 <a href="." style="color: #000000;text-decoration: underline">Voltar</a>
