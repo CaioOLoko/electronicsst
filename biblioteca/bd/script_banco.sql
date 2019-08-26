@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS produto(
     nomeproduto VARCHAR(30) NOT NULL,
     preco DOUBLE NOT NULL,
     descricao VARCHAR(800) NOT NULL,
-    imagem VARCHAR(100) NOT NULL,
+    imagem VARCHAR(200) NOT NULL,
     estoque_minimo BIGINT(11) NOT NULL,
     estoque_maximo BIGINT(11) NOT NULL,
     PRIMARY KEY(idproduto),

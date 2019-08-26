@@ -18,7 +18,7 @@
 		</a>
 	</div>
 	<div class="search-div">
-		<form method="POST" action="" class="search-form">
+		<form method="POST" action="produto/buscar/" class="search-form">
 			<input id="busca" type="search" name="buscar" placeholder="Buscar produto" class="header-search-input">
 			<button type="submit" class="header-search-button"><img src="publico/img/header/lupa.png" class="img-search"></button>
 		</form>
