@@ -1,37 +1,32 @@
-<div>
-    <div>
+<div class="cestas-de-produtos">
+    <div class="lista-de-produtos">
         <?php
         if (isset($_SESSION["carrinho"])):
-            $produtos = $_SESSION["carrinho"];
-            foreach ($produtos as $produto):
-                ?>
-                <div style="display: flex; flex-direction: row; width: 400px; justify-content: space-between">
-                    <img style="heigth: 100px; width: 100px;" src="<?= $produto['imagem'] ?>">
+            foreach ($produtos as $produto):?>
+                <div class="caixa-produto">
+                    <img class="produto-caixa-imagem" src="<?= $produto['imagem'] ?>">
                     <p><?= $produto['nomeproduto'] ?></p>
-                    <p><?= $produto['preco'] ?></p>
-                    <a href="compras/removerProduto/<?= $produto['idproduto'] ?>" style="color:black">Remover Produto</a>
+                    <strong><p>Preço:<?= $produto['preco'] ?></p></strong>
+                    <p>Quantidade: <?= $produto["quantidade"] ?></p>
+                    <a href="compras/removerProduto/<?= $produto['idproduto'] ?>">Remover Produto</a>
                 </div>
                 <?php
             endforeach;
         endif;
         ?>
     </div>
-    <div>
+    <div class="resumo-dos-pedidos">
         <h1>Resumo do Pedido</h1>
         <div>
-            <p>Quantidade de Produtos: <?=$produtos["quantidade"] ?></p>
-            <p><?= $produtos["subtotal"] ?></p>
+            <p>Quantidade de Produtos: <?= $quantidadeProdutos ?></p>
+            <p>Subtotal: <?= $subtotal ?></p>
         </div>
         <div>
-            <p>Frete:</p>
-            <?php
-            if (isset($frete))
-                echo $frete;
-            ?>
+            <p>Frete: <?=$frete?></p>
         </div>
         <div>
-            <p>Total:</p>
-            <p><?= ($frete + $produtos["subtotal"]) ?></p>
+            <p>Total: <?=($subtotal+$frete)?></p>
+            <p>Ola</p>
         </div>
         <a></a>
     </div>
