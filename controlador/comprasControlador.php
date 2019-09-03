@@ -26,7 +26,7 @@ function listar() {
         $produtos = $_SESSION["carrinho"];
         // session carrinho vai receber o array produtos
         $_SESSION["carrinho"] = $produtos;
-    // se não existir a session carrinho
+        // se não existir a session carrinho
     } else {
         // produtos recebe um array vazio
         $produtos = [];
@@ -42,11 +42,18 @@ function limparCarrinho() {
     redirecionar("compras/listar");
 }
 
-function removerProduto($id){
+function removerProduto($id) {
     $produtos = $_SESSION['carrinho'];
-    unset($produtos[$id]);
-    $_SESSION["carrinho"] = $produtos;
-    redirecionar("compras/listar");
+    foreach ($produtos as $key => $produto) {
+
+        if ($produto['idproduto'] == $id) {
+            unset($produtos[$key]);
+        }
+    }
+
+    $_SESSION['carrinho'] = $produtos;
+
+    redirecionar("./compras/listar");
 }
 
 ?>
