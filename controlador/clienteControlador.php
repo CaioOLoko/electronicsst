@@ -11,9 +11,10 @@ function adicionar() {
         $email = $_POST["email"];
         $senha = $_POST["senha"];
         $cpf = $_POST["cpf"];
-        $data_de_nascimento = $_POST["datadenascimento"];
+        $data_de_nascimento = $_POST["ano"]."-";
+        $data_de_nascimento .= $_POST["mes"]."-";
+        $data_de_nascimento .= $_POST["dia"];
         $sexo = $_POST["sexo"];
-        $tipo_usuario = $_POST["tipousuario"];
 
         $errors = array();
 
@@ -40,10 +41,10 @@ function adicionar() {
             $dados["errors"] = $errors;
             exibir("cliente/cadastro", $dados);
         } else {
+            // arrumar a data de nascimento do cliente e o formato para sql
             $retirarCPF = array(0 => "-", 1 => ".");
             $cpf = str_replace($retirarCPF, "", $cpf);
-            echo $cpf;
-            $msg = adicionarCliente($nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
+            adicionarCliente($nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, "user");
             redirecionar("cliente/listarClientes");
         }
     } else {

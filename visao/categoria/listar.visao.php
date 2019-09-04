@@ -13,12 +13,12 @@
     <?php foreach ($categorias as $categoria): ?>
     <tr>
         <td><?=$categoria['idcategoria']?></td>
-        <td><?=$categoria['descricao']?></td>
-        <td><a href="./categoria/ver/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
-        <td><a href="./categoria/editar/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
-        <td><a href="./categoria/deletar/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
+        <td><?=$categoria['nomecategoria']?></td>
+        <td><a href="categoria/ver/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
+        <td><a href="categoria/editar/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
+        <td><a href="categoria/deletar/<?= $categoria['idcategoria'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
     </tr>
     <?php endforeach; ?>
 </table>
 
-<br><br><a href="./categoria/adicionar" class="btn btn-primary" style="color:black; text-decoration: underline;">Nova Categoria</a>
+<br><br><a href="categoria/adicionar" class="btn btn-primary" style="color:black; text-decoration: underline;">Nova Categoria</a>

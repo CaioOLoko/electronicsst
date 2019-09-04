@@ -25,9 +25,9 @@ function adicionar() {
         if (validar_elementos_obrigatorios($nome_do_produto, "Nome") != NULL) {
             $errors['nome'] = validaNome($nome_do_produto, "Nome");
         }
-        if (validar_elementos_obrigatorios($infoProduto, "Informações do Produto") != NULL) {
-            $errors['informacoes'] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
-        }
+        //if (validar_elementos_obrigatorios($infoProduto, "Informações do Produto") != NULL) {
+        //    $errors['informacoes'] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
+        //}
         if (validar_elementos_especificos($estoque_minimo, "Estoque Mínimo") != NULL) {
             $errors['estoque_minimo'] = validar_elementos_especificos($estoque_minimo, "Estoque Mínimo");
         }

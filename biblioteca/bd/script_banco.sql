@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 
 CREATE TABLE IF NOT EXISTS categoria(
     idcategoria BIGINT(11) NOT NULL AUTO_INCREMENT,
-    descricao VARCHAR(30) NOT NULL,
+    nomecategoria VARCHAR(30) NOT NULL,
     PRIMARY KEY(idCategoria)
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS log_produto(
 
 CREATE TABLE IF NOT EXISTS produto(
     idproduto BIGINT(11) NOT NULL AUTO_INCREMENT,
-    idcategoria BIGINT(11) NOT NULL,
+    categoria BIGINT(11) NOT NULL,
     nomeproduto VARCHAR(30) NOT NULL,
     preco DOUBLE NOT NULL,
     descricao VARCHAR(800) NOT NULL,
@@ -96,3 +96,9 @@ CREATE TABLE IF NOT EXISTS estoque(
     PRIMARY KEY(idEstoque),
     FOREIGN KEY(idProduto) REFERENCES produto(idProduto) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+INSERT INTO categoria VALUES(NULL,'Smartphone');
+INSERT INTO categoria VALUES(NULL,'Notebook');
+INSERT INTO categoria VALUES(NULL,'Desktop');
+INSERT INTO categoria VALUES(NULL,'Tablet');

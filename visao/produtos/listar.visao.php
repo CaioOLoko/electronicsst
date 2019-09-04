@@ -1,5 +1,3 @@
-<h2>Listar Produtos</h2><br>
-
 <?php if (isset($categorias)): ?>
     <table class="table" border="1">
         <thead>
@@ -7,7 +5,7 @@
         </thead>
         <?php foreach ($categorias as $categoria): ?>
             <tr>
-                <td><a href="produto/buscarPorCategoria/<?= $categoria['idcategoria'] ?>" style="color:#000000;"><?= $categoria['descricao'] ?></a></td>
+                <td><a href="produto/buscarPorCategoria/<?= $categoria['idcategoria'] ?>"><?= $categoria['nomecategoria'] ?></a></td>
             </tr>
         <?php endforeach; ?>
     </table>
@@ -38,7 +36,3 @@
         </tr>
     <?php endforeach; ?>
 </table>
-
-<br><br>
-
-<a href="produto/adicionar" class="btn btn-primary" style="color:black;text-decoration: underline;">Novo Produto</a>

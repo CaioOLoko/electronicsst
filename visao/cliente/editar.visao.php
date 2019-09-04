@@ -23,32 +23,75 @@ if (ehPost()) {
 
     }
 </script>
-<form action="" method="POST">
 
-    <h1>Cadastre-se</h1><br>
-    <label for="nome">Nome:</label><br> <input type="text" name="nomeusuario" maxlength="60" style="width:250px" value="<?= @$cliente['nomeusuario'] ?>"><br><br>
-    <label for="sobrenome">Sobrenome:</label><br> <input type="text" name="sobrenomeusuario" maxlength="60" style="width:250px" value="<?= @$cliente['sobrenomeusuario'] ?>"><br><br>
-    <label for="email">E-mail:</label><br> <input type="text" name="email" maxlength="60" style="width:250px" value="<?= @$cliente['email'] ?>"><br><br>
-    <label for="senha">Senha:</label><br> <input type="password" name="senha" maxlength="30" style="width:250px" value="<?= @$cliente['senha'] ?>"><br><br>
-    <label for="cpf">CPF:</label><br> <input type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" value="<?= @$cliente['cpf'] ?>"><br><br>
-    <label for="data_de_nascimento">Data de Nascimento:</label><br> <input type="date" name="datadenascimento" maxlength="10" value="<?= @$cliente['datadenascimento'] ?>"><br><br>
-    <label for="sexo">Sexo:</label><br><br>
-    <?php if (isset($cliente) && $cliente['sexo'] == "Masculino"): ?>  
-        <input type="radio" name="sexo" value="Masculino" checked="checked"><label>&nbsp;Masculino&nbsp;&nbsp;&nbsp;</label> 
-        <input type="radio" name="sexo" value="Feminino"><label>&nbsp;Feminino</label><br><br>
-    <?php else: ?>
-        <input type="radio" name="sexo" value="Masculino"><label>&nbsp;Masculino&nbsp;&nbsp;&nbsp;</label> 
-        <input type="radio" name="sexo" value="Feminino" checked="checked"><label>&nbsp;Feminino</label><br><br>
-    <?php endif; ?>
-    <label for="tipousuario">Tipo de Usuário:</label><br><br>
-    <?php if (isset($cliente) && $cliente['tipousuario'] == "Cliente"): ?> 
-        <input type="radio" name="tipousuario" value="Cliente" checked="checked"><label>&nbsp;Cliente&nbsp;&nbsp;&nbsp;</label> 
-        <input type="radio" name="tipousuario" value="Administrador"><label>&nbsp;Administrador</label> <br><br>
-    <?php else: ?>
-        <input type="radio" name="tipousuario" value="Cliente" checked="checked"><label>&nbsp;Cliente&nbsp;&nbsp;&nbsp;</label> 
-        <input type="radio" name="tipousuario" value="Administrador"><label>&nbsp;Administrador</label> <br><br>
-    <?php endif; ?>
-    <button type="submit">Cadastrar</button>
+<div class="welcome-user">
+    <img src="publico/img/user/user.png" style="width: auto; height: 100%;">
+    <h1>Modifique seus dados</h1>
+</div>
+<form method="POST" action="" class="form-user">
+    <label class="label-user">Nome<span>*</span></label><br>
+    <input class="input-user" type="text" name="nomeusuario" maxlength="60" required="" value="<?= $cliente['nomeusuario'] ?>"><br>
 
+    <label class="label-user">Sobrenome<span>*</span></label><br>
+    <input class="input-user" type="text" name="sobrenomeusuario" maxlength="60" required="" value="<?= $cliente['sobrenomeusuario'] ?>"><br>
+
+    <label class="label-user">E-mail<span>*</span></label><br>
+    <input class="input-user" type="email" maxlength="60" name="email" required="" value="<?= $cliente['email'] ?>"><br>
+
+    <label class="label-user">Senha<span>*</span></label><br>
+    <input class="input-user" type="password" maxlength="30" name="senha" required="" value="<?= $cliente['senha'] ?>"><br>
+
+    <label class="label-user">CPF<span>*</span></label><br>
+    <input class="input-user" type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" required="" value="<?= $cliente['cpf'] ?>"><br>
+
+    <label class="label-user">Data de Nascimento<span>*</span></label><br>
+    <?php
+        $data = explode('-', $cliente['datadenascimento']);
+    ?>
+    <div class="birthday-user">
+        <select class="parameters" name="dia">
+            <option value="<?= $data[2] ?>"><?= $data[2] ?></option>
+            <?php for ($day = 1; $day <= 31; $day++): ?>
+                <option value="<?= $day ?>"><?= $day ?></option>
+            <?php endfor; ?>
+        </select>
+        <select class="parameters" name="mes">
+            <option value="<?= $data[1] ?>"><?= $data[1] ?></option>
+            <?php for ($month = 1; $month <= 12; $month ++): ?>
+                <option value="<?= $month ?>"><?= $month ?></option>
+            <?php endfor; ?>
+        </select>
+        <select class="parameters" name="ano">
+            <option value="<?= $data[0] ?>"><?= $data[0] ?></option>
+            <?php for ($year = date("Y"); $year >= 1960; $year--): ?>
+                <option value="<?= $year ?>"><?= $year ?></option>
+            <?php endfor; ?>
+        </select>
+    </div>
+    <label class="label-user">Sexo<span>*</span></label>
+    <?php if ($cliente['sexo'] == "Masculino"): ?>
+        <div class="sex-user">
+            <div class="gender-user">
+                <input type="radio" name="sexo" value="Masculino" checked="" id="man">
+                <label class="label-gender-user" for="man">Masculino</label>
+            </div>
+            <div class="gender-user">
+                <input type="radio" name="sexo" value="Feminino" id="woman">
+                <label class="label-gender-user" for="woman">Feminino</label><br>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="sex-user">
+            <div class="gender-user">
+                <input type="radio" name="sexo" value="Masculino" id="man">
+                <label class="label-gender-user" for="man">Masculino</label>
+            </div>
+            <div class="gender-user">
+                <input type="radio" name="sexo" value="Feminino" checked="" id="woman">
+                <label class="label-gender-user" for="woman">Feminino</label><br>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <button type="submit" class="submit-button-user-register">Alterar</button>
 </form>
-

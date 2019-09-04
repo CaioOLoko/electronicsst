@@ -94,7 +94,7 @@ function removerProduto($id) {
         }
     }
     $_SESSION['carrinho'] = $produtos;
-    redirecionar("./compras/listar");
+    redirecionar("compras/listar");
 }
 
 ?>

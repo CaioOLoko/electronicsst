@@ -1,11 +1,12 @@
 /* :--:--:--:--: TEMPLATE & GERAL   :--:--:--:--: */
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 *{
     font-family: 'Raleway', sans-serif;
     padding: 0;
     margin: 0;
 }
 body {
+    font-family: 'Raleway', sans-serif;
     color: #000000;
     display: flex;
     flex-direction: column;
@@ -67,13 +68,13 @@ span{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 0px;
 }
 .header-search-input{
     width: 90%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 5px;
     border: 0;
     padding: 0px 0px 0px 20px;
     font-size: 16px;
@@ -399,7 +400,7 @@ span{
     margin: 25px 6% 25px 6%;
 }
 
-/* :--:--:--:--: REGISTER/CADASTRO :--:--:--:--: */
+/* :--:--:--:--: CADASTRO USUARIO  :--:--:--:--: */
 .welcome-user{
     width: 100%;
     height: 60px;
@@ -422,6 +423,22 @@ span{
 }
 .input-user{
     width: 100%;
+    height: 40px;
+    border: 1px solid #AFAFAF;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #000000;
+    font-size: 16px;
+}
+.birthday-user{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.parameters{
+    width: 30%;
     height: 40px;
     border: 1px solid #AFAFAF;
     border-radius: 5px;
@@ -486,22 +503,93 @@ span{
     color: #000000;
     width: 400px;
     height: 40px;
-    font-size: 18px;
-    padding: 0px 10px;
+    font-size: 16px;
+    padding: 5px 10px;
     border-radius: 5px;
-    border-width: 0.5px;
-    border-color: #DFDFDF;
+    border: 1px solid #AFAFAF;
 }
 .login-button{
     margin: 40px 0px 0px 0px;
     height: 40px;
-    width: 400px;
+    width: 300px;
     font-size: 18px;
     font-weight: bold;
     background-color: #000000;
     color: #FFFFFF;
     border-radius: 5px;
     border: none;
+}
+
+/* :--:--:--:--: PRODUTOS :--:--:--:--: */
+/* :--: VISUALIZAR :--: */
+.simple-description{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.prod-image{
+    background-color: #E0E0E0;
+    width: 45%;
+    max-height: 500px;
+    border: 1px solid rgba(144,144,144,0.25);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.prod-img{
+    width: auto;
+    height: 100%;
+}
+.prod-description{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.infoprincipal{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: justify;
+    margin: 0 0 1rem 0;
+}
+.codigoproduto{
+    margin: 20px 0px 30px 0px;
+    font-size: larger;
+}
+.categoriaproduto{
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: justify;
+}
+.send-product{
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333333;
+    height: 50px;
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 30px;
+}
+.send-product:hover{
+    background-color: #777777;
+}
+.accordion{
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: large;
+    transition: 0.4s;
 }
 
 /* :--:--:--:--: CARRINHO :--:--:--:--: */
