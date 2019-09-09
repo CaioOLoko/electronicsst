@@ -38,6 +38,30 @@ CREATE TABLE IF NOT EXISTS log_produto(
     PRIMARY KEY(ID_Log)
 );
 
+-- CREATE TABLE IF NOT EXISTS marca(
+--     idmarca BIGINT(11) NOT NULL AUTO_INCREMENT,
+--     nomemarca VARCHAR(20) NOT NULL,
+--     modelo VARCHAR(40) NOT NULL,
+--     PRIMARY KEY(idmarca)
+-- );
+
+-- CREATE TABLE IF NOT EXISTS produto(
+--     idproduto BIGINT(11) NOT NULL AUTO_INCREMENT,
+--     categoria BIGINT(11) NOT NULL,
+--     marca BIGINT(11) NOT NULL,
+--     modelo VARCHAR(30) NOT NULL, 
+--     nomeproduto VARCHAR(30) NOT NULL,
+--     preco DOUBLE NOT NULL,
+--     descricao VARCHAR(800) NOT NULL,
+--     imagem VARCHAR(200) NOT NULL,
+--     estoque_minimo BIGINT(11) NOT NULL,
+--     estoque_maximo BIGINT(11) NOT NULL,
+--     PRIMARY KEY(idproduto),
+--     FOREIGN KEY(categoria) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE,
+--     FOREIGN KEY(marca) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE,
+--     FOREIGN KEY(modelo) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE
+-- );
+
 CREATE TABLE IF NOT EXISTS produto(
     idproduto BIGINT(11) NOT NULL AUTO_INCREMENT,
     categoria BIGINT(11) NOT NULL,
@@ -47,8 +71,21 @@ CREATE TABLE IF NOT EXISTS produto(
     imagem VARCHAR(200) NOT NULL,
     estoque_minimo BIGINT(11) NOT NULL,
     estoque_maximo BIGINT(11) NOT NULL,
+
+    cod_barras BIGINT(50) NOT NULL,
+    marca VARCHAR(20) NOT NULL,
+    modelo VARCHAR(30) NOT NULL,
+    cor VARCHAR(15) NOT NULL,
+    tipo_chip VARCHAR(10) NOT NULL,
+    quant_chip INT(5) NOT NULL,
+    mem_interna VARCHAR(15) NOT NULL,
+    processador VARCHAR(30) NOT NULL,
+    display VARCHAR(10) NOT NULL,
+    so VARCHAR(20) NOT NULL,
+
+
     PRIMARY KEY(idproduto),
-    FOREIGN KEY(idcategoria) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY(categoria) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS endereco(

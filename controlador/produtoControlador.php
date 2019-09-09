@@ -13,7 +13,6 @@ function adicionar() {
         $infoProduto = $_POST["descricao"];
 
         $imagem_temp_name = $_FILES["imagem"]["tmp_name"];
-        ;
         $name_imagem = $_FILES["imagem"]["name"];
         $imagem = uploadImagem($imagem_temp_name, $name_imagem);
 
@@ -93,7 +92,6 @@ function editar($id) {
         $infoProduto = $_POST["descricao"];
 
         $imagem_temp_name = $_FILES["imagem"]["tmp_name"];
-        
         $name_imagem = $_FILES["imagem"]["name"];
         $imagem = uploadImagem($imagem_temp_name, $name_imagem);
 

@@ -591,6 +591,32 @@ span{
     font-size: large;
     transition: 0.4s;
 }
+.ficha-tecnica{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 10% 50px 10%;
+    padding: 50px 0px 0px 0px;
+}
+.ficha-caracteristica{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.caracteristica{
+    margin-top: 30px;
+    width: 50%;
+}
+.caracteristica-especifica{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    padding: 10px 0px 10px 10px;
+    border: solid;
+    border-width: 0px 0 1px 0;
+    border-color: rgb(169,169,169);
+}
 
 /* :--:--:--:--: CARRINHO :--:--:--:--: */
 .cestas-de-produtos{
@@ -605,12 +631,10 @@ span{
 .lista-de-produtos{
     width: 60%;
     height: 100%;
-    background-color: red;
 }
 .resumo-dos-pedidos{
     width: 40%;
     height: 100%;
-    background-color: blue;
 }
 .caixa-produto{
     height: 100px;
