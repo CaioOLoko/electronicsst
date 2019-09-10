@@ -14,13 +14,16 @@
 <table class="table" border="1">
     <thead>
         <tr>
-            <th></th>
+            <th>Imagem</th>
             <th>Código</th>
             <th>Nome</th>
             <th>Preço</th>
             <th>Informações</th>
             <th>Estoque Mínimo</th>
             <th>Estoque Máximo</th>
+            <th>Ver</th>
+            <th>Alterar</th>
+            <th>Deletar</th>
         </tr>
     </thead>
     <?php foreach ($produtos as $produto): ?>
@@ -33,6 +36,8 @@
             <td><?= $produto['estoque_minimo'] ?></td>
             <td><?= $produto['estoque_maximo'] ?></td>
             <td><a href="produto/ver/<?= $produto['idproduto'] ?>" style="color: #000000;">Ver detalhes</a></td>
+            <td><a href="./produto/editar/<?= $produto['idproduto'] ?>" style="color:black;">Alterar</a></td>
+            <td><a href="./produto/deletar/<?= $produto['idproduto'] ?>" style="color:black;">Deletar</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

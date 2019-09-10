@@ -26,7 +26,6 @@
         </div>
         <div>
             <p>Total: <?=($subtotal+$frete)?></p>
-            <p>Ola</p>
         </div>
         <a></a>
     </div>

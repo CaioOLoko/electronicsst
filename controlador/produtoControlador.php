@@ -11,6 +11,17 @@ function adicionar() {
         $nome_do_produto = $_POST["nomeproduto"];
         $categoria = $_POST["categoria"];
         $infoProduto = $_POST["descricao"];
+        
+        $cod_barras = $_POST["cod_barras"];
+        $marca = $_POST["marca"];
+        $modelo = $_POST["modelo"];
+        $cor = $_POST["cor"];
+        $tipo_chip = $_POST["tipo_chip"];
+        $quant_chip = $_POST["quant_chip"];
+        $mem_interna = $_POST["mem_interna"];
+        $processador = $_POST["processador"];
+        $display = $_POST["display"];
+        $so = $_POST["so"];
 
         $imagem_temp_name = $_FILES["imagem"]["tmp_name"];
         $name_imagem = $_FILES["imagem"]["name"];
