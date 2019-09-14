@@ -58,7 +58,7 @@ function adicionar() {
             $dados["categorias"] = pegarTodasCategorias();
             exibir("produtos/formulario", $dados);
         } else {
-            $msg = adicionarProduto($categoria, $nome_do_produto,$preco_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
+            $msg = adicionarProduto($categoria, $nome_do_produto, $preco_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
             redirecionar("produto/listarProdutos");
         }
     } else {
@@ -152,7 +152,7 @@ function editar($id) {
             $dados["categorias"] = pegarTodasCategorias();
             exibir("produtos/formulario", $dados);
         } else {
-            $msg = editarProduto($id, $categoria, $preco_do_produto, $nome_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
+            editarProduto($id, $categoria, $nome_do_produto, $preco_do_produto,  $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
             redirecionar("produto/listarProdutos");
         }
     } else {
@@ -161,5 +161,3 @@ function editar($id) {
         exibir("produtos/formulario", $dados);
     }
 }
-
-?>

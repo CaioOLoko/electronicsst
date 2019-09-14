@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS usuario(
     cpf BIGINT(15) NOT NULL,
     datadenascimento VARCHAR(10) NOT NULL,
     sexo VARCHAR(10) NOT NULL,
-    tipousuario VARCHAR(15) NOT NULL,
+    tipousuario VARCHAR(5) NOT NULL,
     PRIMARY KEY(idusuario)
 );
 
@@ -45,23 +45,6 @@ CREATE TABLE IF NOT EXISTS log_produto(
 --     PRIMARY KEY(idmarca)
 -- );
 
--- CREATE TABLE IF NOT EXISTS produto(
---     idproduto BIGINT(11) NOT NULL AUTO_INCREMENT,
---     categoria BIGINT(11) NOT NULL,
---     marca BIGINT(11) NOT NULL,
---     modelo VARCHAR(30) NOT NULL, 
---     nomeproduto VARCHAR(30) NOT NULL,
---     preco DOUBLE NOT NULL,
---     descricao VARCHAR(800) NOT NULL,
---     imagem VARCHAR(200) NOT NULL,
---     estoque_minimo BIGINT(11) NOT NULL,
---     estoque_maximo BIGINT(11) NOT NULL,
---     PRIMARY KEY(idproduto),
---     FOREIGN KEY(categoria) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE,
---     FOREIGN KEY(marca) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE,
---     FOREIGN KEY(modelo) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE
--- );
-
 CREATE TABLE IF NOT EXISTS produto(
     idproduto BIGINT(11) NOT NULL AUTO_INCREMENT,
     categoria BIGINT(11) NOT NULL,
@@ -82,6 +65,7 @@ CREATE TABLE IF NOT EXISTS produto(
     processador VARCHAR(30) NOT NULL,
     display VARCHAR(10) NOT NULL,
     so VARCHAR(20) NOT NULL,
+
     PRIMARY KEY(idproduto),
     FOREIGN KEY(categoria) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -133,7 +117,7 @@ CREATE TABLE IF NOT EXISTS estoque(
 );
 
 
-INSERT INTO categoria VALUES(NULL,'Smartphone');
-INSERT INTO categoria VALUES(NULL,'Notebook');
-INSERT INTO categoria VALUES(NULL,'Desktop');
-INSERT INTO categoria VALUES(NULL,'Tablet');
+INSERT INTO categoria VALUES(NULL, "Smartphone");
+INSERT INTO categoria VALUES(NULL, "Notebook");
+INSERT INTO categoria VALUES(NULL, "Desktop");
+INSERT INTO categoria VALUES(NULL, "Tablet");

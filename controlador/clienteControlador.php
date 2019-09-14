@@ -11,8 +11,8 @@ function adicionar() {
         $email = $_POST["email"];
         $senha = $_POST["senha"];
         $cpf = $_POST["cpf"];
-        $data_de_nascimento = $_POST["ano"]."-";
-        $data_de_nascimento .= $_POST["mes"]."-";
+        $data_de_nascimento = $_POST["ano"] . "-";
+        $data_de_nascimento .= $_POST["mes"] . "-";
         $data_de_nascimento .= $_POST["dia"];
         $sexo = $_POST["sexo"];
 
@@ -77,9 +77,10 @@ function editar($id) {
         $email = $_POST["email"];
         $senha = $_POST["senha"];
         $cpf = $_POST["cpf"];
-        $data_de_nascimento = $_POST["datadenascimento"];
+        $data_de_nascimento = $_POST["ano"] . "-";
+        $data_de_nascimento .= $_POST["mes"] . "-";
+        $data_de_nascimento .= $_POST["dia"];
         $sexo = $_POST["sexo"];
-        $tipo_usuario = $_POST["tipousuario"];
 
         $errors = array();
 
@@ -104,17 +105,16 @@ function editar($id) {
         if (count($errors) > 0) {
             $dados = array();
             $dados["errors"] = $errors;
-            exibir("cliente/editar", $dados);
+            exibir("cliente/cadastro", $dados);
         } else {
             $retirarCPF = array(0 => "-", 1 => ".");
             $cpf = str_replace($retirarCPF, "", $cpf);
             echo $cpf;
-            editarCliente($id,$nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
+            editarCliente($id, $nome, $sobrenome, $email, $senha, $cpf, $data_de_nascimento, $sexo, $tipo_usuario);
             redirecionar("cliente/listarClientes");
         }
-    }else{
+    } else {
         $dados["cliente"] = pegarClientePorId($id);
         exibir("cliente/editar", $dados);
     }
 }
-?>
