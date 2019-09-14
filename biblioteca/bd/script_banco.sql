@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 CREATE TABLE IF NOT EXISTS categoria(
     idcategoria BIGINT(11) NOT NULL AUTO_INCREMENT,
     nomecategoria VARCHAR(30) NOT NULL,
-    PRIMARY KEY(idCategoria)
+    PRIMARY KEY(idcategoria)
 );
 
 CREATE TABLE IF NOT EXISTS cupom(
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS produto(
     imagem VARCHAR(200) NOT NULL,
     estoque_minimo BIGINT(11) NOT NULL,
     estoque_maximo BIGINT(11) NOT NULL,
-
+    quant_estoque INT NOT NULL,
     cod_barras BIGINT(50) NOT NULL,
     marca VARCHAR(20) NOT NULL,
     modelo VARCHAR(30) NOT NULL,
@@ -82,8 +82,6 @@ CREATE TABLE IF NOT EXISTS produto(
     processador VARCHAR(30) NOT NULL,
     display VARCHAR(10) NOT NULL,
     so VARCHAR(20) NOT NULL,
-
-
     PRIMARY KEY(idproduto),
     FOREIGN KEY(categoria) REFERENCES categoria(idcategoria) ON DELETE CASCADE ON UPDATE CASCADE
 );

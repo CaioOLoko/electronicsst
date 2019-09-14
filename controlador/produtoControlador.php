@@ -7,11 +7,11 @@ require_once "modelo/categoriaModelo.php";
 
 function adicionar() {
     if (ehPost()) {
-        $preco_do_produto = $_POST["preco"];
         $nome_do_produto = $_POST["nomeproduto"];
+        $preco_do_produto = $_POST["preco"];
         $categoria = $_POST["categoria"];
         $infoProduto = $_POST["descricao"];
-        
+
         $cod_barras = $_POST["cod_barras"];
         $marca = $_POST["marca"];
         $modelo = $_POST["modelo"];
@@ -29,6 +29,7 @@ function adicionar() {
 
         $estoque_minimo = $_POST["estoque_minimo"];
         $estoque_maximo = $_POST["estoque_maximo"];
+        $quant_estoque = $_POST["quant_estoque"];
 
         $errors = array();
 
@@ -44,6 +45,9 @@ function adicionar() {
         if (validar_elementos_especificos($estoque_maximo, "Estoque Máximo") != NULL) {
             $errors['estoque_maximo'] = validar_elementos_especificos($estoque_maximo, "Estoque Máximo");
         }
+        if (validar_elementos_especificos($quant_estoque, "Quantidade de Estoque") != NULL) {
+            $errors['quant_estoque'] = validar_elementos_especificos($quant_estoque, "Quantidade de Estoque");
+        }
         if ($categoria == "default") {
             $errors['categoria'] = "Informe uma categoria";
         }
@@ -54,7 +58,7 @@ function adicionar() {
             $dados["categorias"] = pegarTodasCategorias();
             exibir("produtos/formulario", $dados);
         } else {
-            $msg = adicionarProduto($categoria, $preco_do_produto, $nome_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo);
+            $msg = adicionarProduto($categoria, $nome_do_produto,$preco_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
             redirecionar("produto/listarProdutos");
         }
     } else {
@@ -102,12 +106,24 @@ function editar($id) {
         $categoria = $_POST["categoria"];
         $infoProduto = $_POST["descricao"];
 
+        $cod_barras = $_POST["cod_barras"];
+        $marca = $_POST["marca"];
+        $modelo = $_POST["modelo"];
+        $cor = $_POST["cor"];
+        $tipo_chip = $_POST["tipo_chip"];
+        $quant_chip = $_POST["quant_chip"];
+        $mem_interna = $_POST["mem_interna"];
+        $processador = $_POST["processador"];
+        $display = $_POST["display"];
+        $so = $_POST["so"];
+
         $imagem_temp_name = $_FILES["imagem"]["tmp_name"];
         $name_imagem = $_FILES["imagem"]["name"];
         $imagem = uploadImagem($imagem_temp_name, $name_imagem);
 
         $estoque_minimo = $_POST["estoque_minimo"];
         $estoque_maximo = $_POST["estoque_maximo"];
+        $quant_estoque = $_POST["quant_estoque"];
 
         $errors = array();
 
@@ -123,6 +139,9 @@ function editar($id) {
         if (validar_elementos_especificos($estoque_maximo, "Estoque Máximo") != NULL) {
             $errors['estoque_maximo'] = validar_elementos_especificos($estoque_maximo, "Estoque Máximo");
         }
+        if (validar_elementos_especificos($quant_estoque, "Quantidade de Estoque") != NULL) {
+            $errors['quant_estoque'] = validar_elementos_especificos($quant_estoque, "Quantidade de Estoque");
+        }
         if ($categoria == "default") {
             $errors['categoria'] = "Informe uma categoria";
         }
@@ -133,7 +152,7 @@ function editar($id) {
             $dados["categorias"] = pegarTodasCategorias();
             exibir("produtos/formulario", $dados);
         } else {
-            $msg = editarProduto($id, $categoria, $preco_do_produto, $nome_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo);
+            $msg = editarProduto($id, $categoria, $preco_do_produto, $nome_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
             redirecionar("produto/listarProdutos");
         }
     } else {

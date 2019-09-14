@@ -21,6 +21,7 @@
             <th>Informações</th>
             <th>Estoque Mínimo</th>
             <th>Estoque Máximo</th>
+            <th>Quantidade de Estoque</th>
             <th>Ver</th>
             <th>Alterar</th>
             <th>Deletar</th>
@@ -35,6 +36,7 @@
             <td><?= substr($produto['descricao'], 0, 30) . "..." ?></td>
             <td><?= $produto['estoque_minimo'] ?></td>
             <td><?= $produto['estoque_maximo'] ?></td>
+            <td><?= $produto['quant_estoque'] ?></td>
             <td><a href="produto/ver/<?= $produto['idproduto'] ?>" style="color: #000000;">Ver detalhes</a></td>
             <td><a href="./produto/editar/<?= $produto['idproduto'] ?>" style="color:black;">Alterar</a></td>
             <td><a href="./produto/deletar/<?= $produto['idproduto'] ?>" style="color:black;">Deletar</a></td>
