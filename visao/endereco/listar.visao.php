@@ -22,11 +22,9 @@
             <td><?= $endereco['bairro'] ?></td>
             <td><?= $endereco['cidade'] ?></td>
             <td><?= $endereco['cep'] ?></td>
-            <td><a href="./endereco/ver/<?= $endereco['idendereco'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
-            <td><a href="./endereco/editar/<?= $endereco['idendereco'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
-            <td><a href="./endereco/deletar/<?= $endereco['idendereco'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
+            <td><a href="endereco/ver/<?= $endereco['idendereco'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
+            <td><a href="endereco/editar/<?= $endereco['idendereco'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
+            <td><a href="endereco/deletar/<?= $endereco['idendereco'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
         </tr>
     <?php endforeach; ?>
 </table>
-
-<a href="./endereco/adicionar/<?= $endereco['idusuario'] ?>" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Novo Endereço</a>

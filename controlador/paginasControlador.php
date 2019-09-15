@@ -8,3 +8,18 @@ function index() {
 
     exibir("paginas/inicial", $dados);
 }
+
+function contato() {
+    if (ehPost()) {
+        $to = $_POST['nome'];
+        $email = $_POST['email'];
+        $subject = $_POST['assunto'];
+        $message = $_POST['mensagem'];
+
+        echo "$to<br>";
+        echo "$email<br>";
+        echo "$subject<br>";
+        echo "$message<br>";
+//        mail($to,$email,$subject);
+    }
+}

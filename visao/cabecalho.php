@@ -1,21 +1,65 @@
-<!--Para incluir o cabeçalho no seu site você precisa realizar a requisição deste arquivo `template.php`-->
-<!-- <nav>
-        <ul>
-                <li><a href="./">Principal</a></li>
-                <li><a href="./usuario">Usuario</a></li>
-<?php /* if(acessoUsuarioEstaLogado()): ?>
+<?php
+/* if(acessoUsuarioEstaLogado()): ?>
   <li>Bem vindo <?=acessoPegarUsuarioLogado()?></li>
   <li><a href="./login/logout">Sair</a></li>
   <?php else: ?>
   <li><a href="./login">Entrar</a></li>
-  <?php endif; */ ?>
-        </ul>
-</nav> -->
+  <?php endif; */
+?>
 <div class="header">
+    <div class="div-button">
+        <button class="button-div-menu"><img style="height: 80%; width: 80%; " src="publico/img/header/more.png"></button>
+        <div class="menu-auxiliar">
+            <div class="menu-auxiliar-topico">
+                <button class="menu-auxiliar-topico-button">Categorias</button>
+                <div class="menu-auxiliar-topico-div">
+                    <a href="categoria/adicionar">Adicionar</a>
+                    <a href="categoria/listarCategoria">Listar</a>
+                </div>
+            </div>
+
+            <div class="menu-auxiliar-topico">
+                <button class="menu-auxiliar-topico-button">Clientes</button>
+                <div class="menu-auxiliar-topico-div">
+                    <a href="cliente/adicionar">Adicionar</a>
+                    <a href="cliente/listarClientes">Listar</a>
+                </div>
+            </div>
+
+            <div class="menu-auxiliar-topico">
+                <button class="menu-auxiliar-topico-button">Cupons</button>
+                <div class="menu-auxiliar-topico-div">
+                    <a href="cupom/adicionar">Adicionar</a>
+                    <a href="cupom/listarCupom">Listar</a>
+                </div>
+            </div>
+
+            <div class="menu-auxiliar-topico">
+                <button class="menu-auxiliar-topico-button">Endereços</button>
+                <div class="menu-auxiliar-topico-div">
+                    <a href="endereco/listarEnderecos">Listar</a>
+                </div>
+            </div>
+
+            <div class="menu-auxiliar-topico">
+                <button class="menu-auxiliar-topico-button">Pagamentos</button>
+                <div class="menu-auxiliar-topico-div">
+                    <a href="FormaPagamento/adicionar">Adicionar</a>
+                    <a href="FormaPagamento/listarFormaPagamento">Listar</a>
+                </div>
+            </div>
+
+            <div class="menu-auxiliar-topico">
+                <button class="menu-auxiliar-topico-button">Produtos</button>
+                <div class="menu-auxiliar-topico-div">
+                    <a href="produto/adicionar">Adicionar</a>
+                    <a href="produto/listarProdutos">Listar</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="est-logo">
-        <a href=".">
-            <h1 class="title-store">Electronic's ST</h1>
-        </a>
+        <a href="." class="title-store"><h1>Electronic's ST</h1></a>
     </div>
     <div class="search-div">
         <form method="POST" action="produto/buscar/" class="search-form">

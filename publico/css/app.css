@@ -44,7 +44,7 @@ span{
     width: 20%;
     height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -94,6 +94,12 @@ span{
     width: 35px;
     height: 35px;
 }
+.dropdown {
+    width: 12.5%;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+}
 .dropbtn{
     width: 100%;
     height: 100%;
@@ -102,12 +108,6 @@ span{
     border: none;
     font-size: 18px;
     font-weight: bold;
-}
-.dropdown {
-    width: 12.5%;
-    height: 100%;
-    position: relative;
-    display: inline-block;
 }
 .dropdown-content {
     display: none;
@@ -142,6 +142,70 @@ span{
 .shopping-cart-image{
     width: auto;
     height: 70%;
+}
+
+
+.button-div-menu{
+    height: 50px;
+    width: 50px;
+    margin: auto;
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+}
+.div-button:hover .menu-auxiliar{
+    margin: 10px 0px 0px 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    background-color: #DFDFDF;
+    border-radius: 3px;
+}
+.menu-auxiliar{
+    display: none;
+}
+.menu-auxiliar-topico{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.menu-auxiliar-topico-button{
+    width: 50%;
+    height: 100%;
+    padding: 10px 0px 10px 10px;
+    background-color: #AFAFAF;
+    border: none;
+    font-size: 16px;
+    color: #FFFFFF;
+    display: flex;
+}
+.menu-auxiliar-topico-button:hover{
+    background-color: #A0A0A0;
+}
+.menu-auxiliar-topico:hover .menu-auxiliar-topico-button{
+    background-color: #CCCCCC;
+}
+.menu-auxiliar-topico-button:hover .menu-auxiliar-topico-div{
+    background-color: #AFAFAF;
+    padding-left: 20px;
+}
+.menu-auxiliar-topico-div{
+    background-color: #DBDBDB;
+    color: #000000;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 10px;
+    border-top: 1px solid #ABABAB;
+}
+.menu-auxiliar-topico-div a:hover{
+    text-decoration: underline;
 }
 
 /* :--:--:--:--:  FOOTER/RODAPÉ  :--:--:--:--: */
@@ -198,9 +262,23 @@ span{
 
 /* :--:--:--:--:   INDEX/INICIAL   :--:--:--:--: */
 /* :--:  WELCOME   :--: */
+.welcome{
+    overflow: hidden;
+}
+.welcome figure{
+    position: relative;
+    width: 500%;
+    margin: 0;
+    left: 0;
+}
+.welcome figure img{
+    width: 20%;
+    float: left;
+}
 
 /* :--:  CATÁLOGO  :--: */
 .product-list{
+    border-top: 1px solid #DCDCDC;
     width: 100%;
     display: flex;
     flex-direction: row;

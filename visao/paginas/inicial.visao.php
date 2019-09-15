@@ -1,4 +1,11 @@
-<div class="welcome"></div>
+<div class="welcome">
+    <figure>
+        <img src="publico/img/slider/1.jpg">
+        <img src="publico/img/slider/2.jpg">
+        <img src="publico/img/slider/1.jpg">
+    </figure>
+</div>
+
 <div class="product-list">
     <?php foreach ($produto as $dados): ?>
         <a href="produto/ver/<?= $dados['idproduto'] ?>" class="product-link">
@@ -40,11 +47,11 @@
             <p class="p_cont">Tel: (15) 3376-9930</p>
         </div>
         <div class="contact-formulario">
-            <form action="" method="POST" class="form_a">
+            <form action="cliente/contato" method="POST" class="form_a">
                 <input class="formul" type="text" name="nome" placeholder="Nome">
                 <input class="formul" type="email" name="email" placeholder="E-mail">
                 <input class="formul" type="text" name="assunto" placeholder="Assunto">
-                <textarea class="message" rows="5"  placeholder="Mensagem"></textarea>
+                <textarea class="message" rows="5" name="mensagem"  placeholder="Mensagem"></textarea>
                 <button type="submit" class="submit-contact">Enviar</button>
             </form>
         </div>
