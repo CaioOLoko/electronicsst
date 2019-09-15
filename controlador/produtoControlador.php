@@ -150,14 +150,14 @@ function editar($id) {
             $dados = array();
             $dados["errors"] = $errors;
             $dados["categorias"] = pegarTodasCategorias();
-            exibir("produtos/formulario", $dados);
+            exibir("produtos/editar", $dados);
         } else {
-            editarProduto($id, $categoria, $nome_do_produto, $preco_do_produto,  $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
+            editarProduto($id, $categoria, $nome_do_produto, $preco_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
             redirecionar("produto/listarProdutos");
         }
     } else {
         $dados["categorias"] = pegarTodasCategorias();
         $dados["produto"] = pegarProdutoPorId($id);
-        exibir("produtos/formulario", $dados);
+        exibir("produtos/editar", $dados);
     }
 }

@@ -37,9 +37,9 @@
             <td><?= $produto['estoque_minimo'] ?></td>
             <td><?= $produto['estoque_maximo'] ?></td>
             <td><?= $produto['quant_estoque'] ?></td>
-            <td><a href="produto/ver/<?= $produto['idproduto'] ?>" style="color: #000000;">Ver detalhes</a></td>
-            <td><a href="./produto/editar/<?= $produto['idproduto'] ?>" style="color:black;">Alterar</a></td>
-            <td><a href="./produto/deletar/<?= $produto['idproduto'] ?>" style="color:black;">Deletar</a></td>
+            <td><a href="produto/ver/<?= $produto['idproduto'] ?>" style="color: #000000;">Detalhes</a></td>
+            <td><a href="produto/editar/<?= $produto['idproduto'] ?>">Alterar</a></td>
+            <td><a href="produto/deletar/<?= $produto['idproduto'] ?>">Deletar</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

@@ -108,17 +108,17 @@ function validaCPF($valor) {
         }
     }
 }
-/*
+
 function validarCep($cep) {
     $cep = trim($cep);
     $avaliaCep = ereg("^[0-9]{5}-[0-9]{3}$", $cep);
     if (!$avaliaCep) {
-        return "CEP inválido!<br>";
+        return false;
     } else {
         return NULL;
     }
 }
-*/
+
 function ValidaData($dat) {
     $data = explode("-", "$dat");
     $y = $data[0];
@@ -133,7 +133,7 @@ function ValidaData($dat) {
 }
 
 function validar_Extensao_Imagem($image_name) {
-    $extensao = strtolower(substr($image_file, -4));
+    $extensao = strtolower(substr($image_name, -4));
     if (
             $extensao == ".jpg" ||
             $extensao == ".png" ||
@@ -144,5 +144,3 @@ function validar_Extensao_Imagem($image_name) {
         return false;
     endif;
 }
-
-?>
