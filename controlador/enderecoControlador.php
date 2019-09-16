@@ -56,7 +56,7 @@ function ver($id) {
 }
 
 function deletar($id) {
-    $msg = deletarEnderecosPorUsuario($id);
+    $msg = deletarEndereco($id);
     redirecionar("endereco/listarEnderecos");
 }
 

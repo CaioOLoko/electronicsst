@@ -1,7 +1,7 @@
 <?php
 
 function adicionarCategoria($categoria) {
-    $sql = "INSERT INTO categoria(idcategoria, descricao) VALUES(NULL,'$categoria')";
+    $sql = "INSERT INTO categoria(idcategoria, nomecategoria) VALUES(NULL,'$categoria')";
     $resultado = mysqli_query($cnx = conn(), $sql);
     if (!$resultado) {
         die('Erro ao cadastrar categoria' . mysqli_error($cnx));
@@ -36,7 +36,7 @@ function deletarCategoria($id) {
 }
 
 function editarCategoria($id, $categoria) {
-    $sql = "UPDATE categoria SET descricao = '$categoria' WHERE idcategoria = $id";
+    $sql = "UPDATE categoria SET nomecategoria = '$categoria' WHERE idcategoria = $id";
     $resultado = mysqli_query($cnx = conn(), $sql);
     if (!$resultado) {
         die('Erro ao alterar categoria' . mysqli_error($cnx));
@@ -44,4 +44,3 @@ function editarCategoria($id, $categoria) {
     return 'Categoria alterado com sucesso!';
 }
 
-?>

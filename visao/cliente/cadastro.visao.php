@@ -1,10 +1,3 @@
-<?php
-if (ehPost()) {
-    foreach ($errors as $erro) {
-        echo "$erro<br>";
-    }
-}
-?>
 <script>
     function formatar(mascara, documento) {
         var i = documento.value.length;

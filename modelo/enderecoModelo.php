@@ -48,7 +48,7 @@ function deletarEnderecosPorUsuario($idusuario) {
 }
 
 function deletarEndereco($id) {
-    $sql = "DELETE FROM endereco WHERE idendereco = $id";
+    $sql = "DELETE FROM endereco WHERE idendereco = '$id'";
     $resultado = mysqli_query($cnx = conn(), $sql);
     if (!$resultado) {
         die('Erro ao deletar endereço' . mysqli_error($cnx));

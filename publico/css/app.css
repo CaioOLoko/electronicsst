@@ -156,7 +156,7 @@ span{
     border-radius: 5px;
 }
 .div-button:hover .menu-auxiliar{
-    margin: 10px 0px 0px 10px;
+    margin: 5px 0px 0px 10px;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -262,19 +262,7 @@ span{
 
 /* :--:--:--:--:   INDEX/INICIAL   :--:--:--:--: */
 /* :--:  WELCOME   :--: */
-.welcome{
-    overflow: hidden;
-}
-.welcome figure{
-    position: relative;
-    width: 500%;
-    margin: 0;
-    left: 0;
-}
-.welcome figure img{
-    width: 20%;
-    float: left;
-}
+
 
 /* :--:  CATÁLOGO  :--: */
 .product-list{

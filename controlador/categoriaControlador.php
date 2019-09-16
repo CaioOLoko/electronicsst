@@ -5,7 +5,7 @@ require_once "modelo/categoriaModelo.php";
 
 function adicionar() {
     if (ehPost()) {
-        $categoria = $_POST["descricao"];
+        $categoria = $_POST["nomecategoria"];
         $errors = array();
         if (validar_quantidade_de_campos($categoria, "Categoria") != NULL) {
             $errors[] = validar_quantidade_de_campos($categoria, "Categoria");
@@ -41,7 +41,7 @@ function deletar($id) {
 
 function editar($id) {
     if (ehPost()) {
-        $categoria = $_POST["descricao"];
+        $categoria = $_POST["nomecategoria"];
         $errors = array();
         if (validar_quantidade_de_campos($categoria, "Categoria") != NULL) {
             $errors[] = validar_quantidade_de_campos($categoria, "Categoria");
