@@ -2,6 +2,7 @@
 
 require "modelo/produtoModelo.php";
 
+/** anon */
 function index() {
     $dados = [];
     $dados['produto'] = pegarTodosProdutos();
@@ -9,6 +10,7 @@ function index() {
     exibir("paginas/inicial", $dados);
 }
 
+/** anon */
 function contato() {
     if (ehPost()) {
         $to = $_POST['nome'];

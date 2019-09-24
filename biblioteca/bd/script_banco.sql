@@ -115,9 +115,3 @@ CREATE TABLE IF NOT EXISTS estoque(
     PRIMARY KEY(idEstoque),
     FOREIGN KEY(idProduto) REFERENCES produto(idProduto) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-
-INSERT INTO categoria VALUES(NULL, "Smartphone");
-INSERT INTO categoria VALUES(NULL, "Notebook");
-INSERT INTO categoria VALUES(NULL, "Desktop");
-INSERT INTO categoria VALUES(NULL, "Tablet");

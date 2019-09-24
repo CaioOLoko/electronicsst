@@ -5,6 +5,7 @@ require_once "servico/uploadServico.php";
 require_once "modelo/produtoModelo.php";
 require_once "modelo/categoriaModelo.php";
 
+/** admin */
 function adicionar() {
     if (ehPost()) {
         $nome_do_produto = $_POST["nomeproduto"];
@@ -68,22 +69,26 @@ function adicionar() {
     }
 }
 
+/** anon */
 function listarProdutos() {
     $dados = array();
     $dados["produtos"] = pegarTodosProdutos();
     exibir("produtos/listar", $dados);
 }
 
+/** anon */
 function ver($id) {
     $dados["produto"] = pegarProdutoPorId($id);
     exibir("produtos/visualizar", $dados);
 }
 
+/** admin */
 function deletar($id) {
     deletarProduto($id);
     redirecionar("produto/listarProdutos");
 }
 
+/** anon */
 function buscar($nome) {
     if (ehPost()) {
         $nome = $_POST['buscar'];
@@ -93,12 +98,14 @@ function buscar($nome) {
     }
 }
 
+/** anon */
 function buscarPorCategoria($idCategoria) {
     $dados['categorias'] = pegarTodasCategorias();
     $dados['produtos'] = buscarProdutoPorIDcategoria($idCategoria);
     exibir("produtos/listar", $dados);
 }
 
+/** admin */
 function editar($id) {
     if (ehPost()) {
         $preco_do_produto = $_POST["preco"];

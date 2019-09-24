@@ -3,6 +3,7 @@
 require_once "modelo/produtoModelo.php";
 require_once "servico/correiosServico.php";
 
+/** anon */
 function adicionar($idProduto) {
     // se existir a session carrinho
     if (isset($_SESSION["carrinho"])) {
@@ -34,6 +35,7 @@ function adicionar($idProduto) {
     redirecionar("compras/listar");
 }
 
+/** anon */
 function existeProdutoNoCarrinho($produtos, $idProduto) {
     foreach ($produtos as $chave => $produto) {
         if ($produto["idproduto"] == $idProduto) { //ja existe
@@ -43,6 +45,7 @@ function existeProdutoNoCarrinho($produtos, $idProduto) {
     return false;
 }
 
+/** anon */
 function listar() {
     
 //    echo calcular_frete('18208450', '87020350', '10', '100');
@@ -81,11 +84,13 @@ function listar() {
     exibir("carrinho/inicial", $dados);
 }
 
+/** anon */
 function limparCarrinho() {
     unset($_SESSION['carrinho']);
     redirecionar("compras/listar");
 }
 
+/** anon */
 function removerProduto($id) {
     $produtos = $_SESSION['carrinho'];
     foreach ($produtos as $key => $produto) {

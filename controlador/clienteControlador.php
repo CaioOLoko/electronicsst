@@ -4,6 +4,7 @@ require_once "servico/validacaoServico.php";
 require_once "modelo/clienteModelo.php";
 require_once "modelo/enderecoModelo.php";
 
+/** admin */
 function adicionar() {
     if (ehPost()) {
         $nome = $_POST["nomeusuario"];
@@ -52,24 +53,28 @@ function adicionar() {
     }
 }
 
+/** admin */
 function listarClientes() {
     $dados = array();
     $dados["clientes"] = pegarTodosClientes();
     exibir("cliente/listar", $dados);
 }
 
+/** anon */
 function ver($id) {
     $dados["cliente"] = pegarClientePorId($id);
     $dados["enderecos"] = pegarTodosEnderecosPorIDCliente($id);
     exibir("cliente/visualizar", $dados);
 }
 
+/** admin */
 function deletar($id) {
     deletarCliente($id);
     deletarEndereco($id);
     redirecionar("cliente/listarClientes");
 }
 
+/** anon */
 function editar($id) {
     if (ehPost()) {
         $nome = $_POST["nomeusuario"];
