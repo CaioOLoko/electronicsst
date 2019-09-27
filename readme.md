@@ -24,7 +24,7 @@ A estrutura do projeto é ilustrada abaixo:
     │   ├── css/
     |   |   └── app.css
     │   └── js/
-    |      └── app.js
+    |       └── app.js
     └── servico/
     └── visao/
     │   ├── login/

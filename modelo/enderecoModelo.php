@@ -1,67 +1,105 @@
 <?php
 
-function adicionarEndereco($idusuario,$logradouro, $numero, $complemento, $bairro, $cidade, $cep) {
-    $sql = "INSERT INTO endereco(idendereco, idusuario, logradouro, numero, complemento, bairro, cidade, cep) VALUES(NULL,'$idusuario','$logradouro', '$numero', '$complemento', '$bairro', '$cidade', '$cep')";
-
-    $resultado = mysqli_query($cnx = conn(), $sql);
-
-    if (!$resultado) {
-        die('Erro ao cadastrar endereço<br>' . mysqli_error($cnx));
-    }
-    return 'Endereço cadastrado com sucesso!';
+function allEndereco()
+{
+	$sql = "SELECT * 
+			FROM endereco
+			ORDER BY idUsuario ASC";
+	$resultado = mysqli_query(conn(), $sql);
+	$enderecos = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$enderecos[] = $linha;
+	}
+	return $enderecos;
 }
 
-function pegarTodosEnderecos() {
-    $sql = "SELECT * FROM endereco";
-    $resultado = mysqli_query(conn(), $sql);
-    $enderecos = array();
-    while ($linha = mysqli_fetch_assoc($resultado)) {
-        $enderecos[] = $linha;
-    }
-    return $enderecos;
+function getEnderecoByUsuario($idUsuario)
+{
+	$sql = "SELECT * 
+			FROM endereco 
+			WHERE idUsuario = '$idUsuario'
+			ORDER BY idEndereco ASC";
+	$resultado = mysqli_query(conn(), $sql);
+	$enderecos_usuario = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$enderecos_usuario[] = $linha;
+	}
+	return $enderecos_usuario;
 }
 
-function pegarTodosEnderecosPorIDCliente($idUsuario) {
-    $sql = "SELECT * FROM endereco WHERE idusuario = '$idUsuario'";
-    $resultado = mysqli_query(conn(), $sql);
-    $enderecos_usuario = array();
-    while ($linha = mysqli_fetch_assoc($resultado)) {
-        $enderecos_usuario[] = $linha;
-    }
-    return $enderecos_usuario;
+function viewEndereco($id)
+{
+	$sql = "SELECT * 
+			FROM endereco 
+			WHERE idEndereco = '$id'";
+	$resultado = mysqli_query(conn(), $sql);
+	$endereco = mysqli_fetch_assoc($resultado);
+	return $endereco;
 }
 
-function pegarEnderecoPorId($id) {
-    $sql = "SELECT * FROM endereco WHERE idendereco = '$id'";
-    $resultado = mysqli_query(conn(), $sql);
-    $endereco = mysqli_fetch_assoc($resultado);
-    return $endereco;
+function delEndereco($id)
+{
+	$sql = "DELETE FROM endereco 
+			WHERE idEndereco = '$id'";
+	$resultado = mysqli_query(conn(), $sql);
+	if (!$resultado) {die('Erro ao deletar endereço' . mysqli_error(conn()));}
+	return 'Endereço deletado com sucesso!';
 }
 
-function deletarEnderecosPorUsuario($idusuario) {
-    $sql = "DELETE FROM endereco WHERE idusuario = '$idusuario'";
-    $resultado = mysqli_query($cnx = conn(), $sql);
-    if (!$resultado) {
-        die('Erro ao deletar endereço' . mysqli_error($cnx));
-    }
-    return 'Endereço deletado com sucesso!';
+function delEnderecoByUsuario($idUsuario)
+{
+	$sql = "DELETE FROM endereco 
+			WHERE idUsuario = '$idUsuario'";
+	$resultado = mysqli_query(conn(), $sql);
+	if (!$resultado) {die('Erro ao deletar endereço' . mysqli_error(conn()));}
+	return 'Endereço deletado com sucesso!';
 }
 
-function deletarEndereco($id) {
-    $sql = "DELETE FROM endereco WHERE idendereco = '$id'";
-    $resultado = mysqli_query($cnx = conn(), $sql);
-    if (!$resultado) {
-        die('Erro ao deletar endereço' . mysqli_error($cnx));
-    }
-    return 'Endereço deletado com sucesso!';
+function addEndereco(
+	$idUsuario,
+	$logradouro,
+	$numero,
+	$complemento,
+	$bairro,
+	$cidade,
+	$cep
+)
+{
+	$sql = "INSERT INTO endereco 
+			VALUES(
+				NULL,
+				'$idUsuario',
+				'$logradouro', 
+				'$numero',
+				'$complemento', 
+				'$bairro', 
+				'$cidade', 
+				'$cep'
+			)";
+	$resultado = mysqli_query(conn(), $sql);
+	if (!$resultado) {die('Erro ao cadastrar endereço<br>' . mysqli_error(conn()));}
+	return 'Endereço cadastrado com sucesso!';
 }
 
-function editarEndereco($id, $logradouro, $numero, $complemento, $bairro, $cidade, $cep) {
-    $sql = "UPDATE endereco SET  logradouro = '$logradouro', numero = '$numero', complemento = '$complemento', bairro = '$bairro', cidade = '$cidade', cep = '$cep' WHERE idendereco = $id";
-    $resultado = mysqli_query($cnx = conn(), $sql);
-    if (!resultado) {
-        die('Erro ao alterar endereço' . mysqli_error($cnx));
-    }
-    return 'Endereço alterado com sucesso!';
+function editEndereco(
+	$id,
+	$logradouro,
+	$numero,
+	$complemento,
+	$bairro,
+	$cidade,
+	$cep
+)
+{
+	$sql = "UPDATE endereco 
+			SET logradouro = 	'$logradouro', 
+				numero = 		'$numero',
+				complemento = 	'$complemento', 
+				bairro = 		'$bairro', 
+				cidade = 		'$cidade', 
+				cep = 			'$cep' 
+			WHERE idEndereco = '$id'";
+	$resultado = mysqli_query(conn(), $sql);
+	if (!$resultado) {die('Erro ao alterar endereço' . mysqli_error(conn()));}
+	return 'Endereço alterado com sucesso!';
 }
-?>

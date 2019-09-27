@@ -4,7 +4,7 @@ require_once "servico/validacaoServico.php";
 require_once "modelo/clienteModelo.php";
 require_once "modelo/enderecoModelo.php";
 
-/** admin */
+/** anon */
 function adicionar() {
     if (ehPost()) {
         $nome = $_POST["nomeusuario"];

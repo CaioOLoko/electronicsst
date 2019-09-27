@@ -1,76 +1,163 @@
 <?php
 
-function adicionarProduto($categoria, $nome_do_produto,$preco_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so) {
-    $sql = "INSERT INTO produto VALUES(NULL,'$categoria','$nome_do_produto','$preco_do_produto','$infoProduto','$imagem','$estoque_minimo','$estoque_maximo','$quant_estoque','$cod_barras','$marca','$modelo','$cor','$tipo_chip','$quant_chip','$mem_interna','$processador','$display','$so')";
-    $resultado = mysqli_query($cnx = conn(), $sql);
-    if (!$resultado) {
-        die('Erro ao cadastrar produto<br>' . mysqli_error($cnx));
-    }
-    return 'Produto cadastrado com sucesso!';
+function allProduto()
+{
+	$sql = "SELECT * 
+			FROM produto";
+	$resultado = mysqli_query(conn(), $sql);
+	$produtos = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$produtos[] = $linha;
+	}
+	return $produtos;
 }
 
-function buscarProdutosPorNome($nome) {
-    $sql = "SELECT * FROM produto WHERE nomeproduto LIKE '%$nome%'";
-    $resultado = mysqli_query(conn(), $sql);
-    $busca = array();
-    while ($linha = mysqli_fetch_assoc($resultado)) {
-        $busca[] = $linha;
-    }
-    return $busca;
+function getProdutoByNome($nome)
+{
+	$sql = "SELECT * 
+			FROM produto 
+			WHERE nome LIKE '%$nome%'";
+	$resultado = mysqli_query(conn(), $sql);
+	$busca = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$busca[] = $linha;
+	}
+	return $busca;
 }
 
-function buscarProdutoPorIDcategoria($idcategoria) {
-    $sql = "SELECT * FROM produto WHERE categoria = '$idcategoria'";
-    $resultado = mysqli_query(conn(), $sql);
-    $produtos = array();
-    while ($linha = mysqli_fetch_assoc($resultado)) {
-        $produtos[] = $linha;
-    }
-    return $produtos;
+function getProdutoByCategoria($categoria)
+{
+	$sql = "SELECT * 
+			FROM produto 
+			WHERE categoria = '$categoria'";
+	$resultado = mysqli_query(conn(), $sql);
+	$produtos = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$produtos[] = $linha;
+	}
+	return $produtos;
 }
 
-function pegarTodosProdutos() {
-    $sql = "SELECT * FROM produto";
-    $resultado = mysqli_query(conn(), $sql);
-    $produtos = array();
-    while ($linha = mysqli_fetch_assoc($resultado)) {
-        $produtos[] = $linha;
-    }
-    return $produtos;
+function viewProduto($id)
+{
+	$sql = "SELECT p.*, c.nome AS categoria, m.nome AS marca, s.nome AS serie 
+			FROM produto p 
+			INNER JOIN categoria c
+			ON p.categoria = c.idCategoria 
+			INNER JOIN marca m 
+			ON p.marca = m.idMarca 
+			INNER JOIN serie s
+			ON p.serie = s.idSerie 
+			WHERE idProduto = '$id'";
+	$resultado = mysqli_query(conn(), $sql);
+	$produto = mysqli_fetch_assoc($resultado);
+	return $produto;
 }
 
-function PegarNomePrecoPorIdProduto($id) {
-    $sql = "SELECT nomeproduto, preco FROM produto WHERE idproduto = '$id'";
-    $resultado = mysqli_query(conn(), $sql);
-    $produto = mysqli_fetch_assoc($resultado);
-    return $produto;
+function delProduto($id)
+{
+	$sql = "DELETE FROM produto 
+			WHERE idProduto = '$id'";
+	$resultado = mysqli_query(conn(), $sql);
+	if (!$resultado) {die('Erro ao deletar produto' . mysqli_error(conn()));}
+	return 'Produto deletado com sucesso!';
 }
 
-function pegarProdutoPorId($id) {
-    $sql = "SELECT p.*, c.* "
-            . "FROM produto p "
-            . "INNER JOIN categoria c "
-            . "ON  p.categoria = c.idcategoria "
-            . "WHERE idproduto = '$id'";
-    $resultado = mysqli_query(conn(), $sql);
-    $produto = mysqli_fetch_assoc($resultado);
-    return $produto;
+function addProduto(
+	$nome,
+	$preco,
+	$categoria,
+	$marca,
+	$serie,
+	$descricao,
+	$imagem,
+	$estoque_minimo,
+	$estoque_maximo,
+	$quant_estoque,
+	$cod_barras,
+	$cor,
+	$tipo_chip,
+	$quant_chip,
+	$mem_interna,
+	$mem_ram,
+	$processador,
+	$display,
+	$so
+)
+{
+	$sql = "INSERT INTO produto 
+			VALUES(
+				NULL,
+				'$nome',
+				'$preco',
+				'$categoria',
+				'$marca',
+				'$serie',
+				'$descricao',
+				'$imagem',
+				'$estoque_minimo',
+				'$estoque_maximo',
+				'$quant_estoque',
+				'$cod_barras',
+				'$cor',
+				'$tipo_chip',
+				'$quant_chip',
+				'$mem_interna',
+				'$mem_ram',
+				'$processador',
+				'$display',
+				'$so'
+			)";
+	$resultado = mysqli_query(conn(), $sql);
+	if (!$resultado) {die('Erro ao cadastrar produto!' . mysqli_error(conn()));}
+	return 'Produto cadastrado com sucesso!';
 }
 
-function deletarProduto($id) {
-    $sql = "DELETE FROM produto WHERE idproduto = '$id'";
-    $resultado = mysqli_query($cnx = conn(), $sql);
-    if (!$resultado) {
-        die('Erro ao deletar produto' . mysqli_error($cnx));
-    }
-    return 'Produto deletado com sucesso!';
-}
-
-function editarProduto($id, $categoria, $nome_do_produto, $preco_do_produto,  $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so) {
-    $sql = "UPDATE produto SET categoria = '$categoria', nomeproduto =  '$nome_do_produto', preco = '$preco_do_produto', descricao = '$infoProduto', imagem = '$imagem', estoque_minimo = '$estoque_minimo', estoque_maximo =  '$estoque_maximo', quant_estoque = '$quant_estoque', cod_barras = '$cod_barras', marca = '$marca', modelo = '$modelo', cor = '$cor', tipo_chip = '$tipo_chip', quant_chip = '$quant_chip', mem_interna = '$mem_interna', processador = '$processador', display = '$display', so = '$so' WHERE idproduto = $id";
-    $resultado = mysqli_query($cnx = conn(), $sql);
-    if (!$resultado) {
-        die('Erro ao alterar produto' . mysqli_error($cnx));
-    }
-    return 'Produto alterado com sucesso!';
+function editProduto(
+	$id,
+	$nome,
+	$preco,
+	$categoria,
+	$marca,
+	$serie,
+	$descricao,
+	$imagem,
+	$estoque_minimo,
+	$estoque_maximo,
+	$quant_estoque,
+	$cod_barras,
+	$cor,
+	$tipo_chip,
+	$quant_chip,
+	$mem_interna,
+	$mem_ram,
+	$processador,
+	$display,
+	$so
+)
+{
+	$sql = "UPDATE produto 
+			SET nome = 				'$nome',
+				preco = 			'$preco',
+				categoria = 		'$categoria',
+				marca = 			'$marca',
+				serie = 			'$serie',
+				descricao = 		'$descricao',
+				imagem = 			'$imagem',
+				estoque_minimo = 	'$estoque_minimo',
+				estoque_maximo = 	'$estoque_maximo',
+				quant_estoque = 	'$quant_estoque',
+				cod_barras = 		'$cod_barras',
+				cor = 				'$cor',
+				tipo_chip = 		'$tipo_chip',
+				quant_chip = 		'$quant_chip',
+				mem_interna = 		'$mem_interna',
+				mem_ram = 			'$mem_ram',
+				processador = 		'$processador',
+				display = 			'$display',
+				so = 				'$so' 
+			WHERE idProduto = '$id'";
+	$resultado = mysqli_query(conn(), $sql);
+	if (!$resultado) {die('Erro ao alterar produto' . mysqli_error(conn()));}
+	return 'Produto alterado com sucesso!';
 }
