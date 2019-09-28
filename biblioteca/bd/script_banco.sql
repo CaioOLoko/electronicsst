@@ -2,6 +2,17 @@ DROP DATABASE IF EXISTS electronicsst;
 CREATE DATABASE electronicsst;
 USE electronicsst;
 
+/*
+
+Falta o CRUD das tabelas:
+
+* estoque
+* log_produto
+* pedido
+* pedido_produto
+
+*/
+
 CREATE TABLE usuario(
 	idUsuario BIGINT(11) NOT NULL AUTO_INCREMENT, 
 	nome VARCHAR(60) NOT NULL,
@@ -128,6 +139,9 @@ CREATE TABLE estoque(
 	FOREIGN KEY(idProduto) REFERENCES produto(idProduto) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
+-- INSERÇÃO DOS ADMINISTRADORES DO SISTEMA
+
 INSERT INTO usuario VALUES(
 	NULL,
 	"Samuel",
@@ -151,3 +165,7 @@ INSERT INTO usuario VALUES(
 	"M",
 	"admin"
 );
+
+
+/* 
+* ARRUMAR VISUALIZAR CATEGORIA 

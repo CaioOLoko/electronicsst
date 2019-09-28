@@ -35,7 +35,6 @@ function adicionar($idProduto) {
     redirecionar("compras/listar");
 }
 
-/** anon */
 function existeProdutoNoCarrinho($produtos, $idProduto) {
     foreach ($produtos as $chave => $produto) {
         if ($produto["idproduto"] == $idProduto) { //ja existe

@@ -4,65 +4,76 @@ require_once "servico/validacaoServico.php";
 require_once "modelo/categoriaModelo.php";
 
 /** admin */
-function adicionar() {
-    if (ehPost()) {
-        $categoria = $_POST["nomecategoria"];
-        $errors = array();
-        if (validar_quantidade_de_campos($categoria, "Categoria") != NULL) {
-            $errors[] = validar_quantidade_de_campos($categoria, "Categoria");
-        }
-        if (count($errors) > 0) {
-            $dados = array();
-            $dados["errors"] = $errors;
-            exibir("categoria/formulario", $dados);
-        } else {
-            $msg = adicionarCategoria($categoria);
-            redirecionar("categoria/listarCategoria");
-        }
-    } else {
-        exibir("categoria/formulario");
-    }
+function index()
+{
+	$dados = array();
+	$dados["categorias"] = allCategoria();
+	exibir("categoria/index", $dados);
 }
 
 /** admin */
-function listarCategoria() {
-    $dados = array();
-    $dados["categorias"] = pegarTodasCategorias();
-    exibir("categoria/listar", $dados);
+function visualizar($id)
+{
+	$dados = array();
+	$dados["categoria"] = viewCategoria($id);
+	exibir("categoria/visualizar", $dados);
 }
 
 /** admin */
-function ver($id) {
-    $dados["categoria"] = pegarCategoriaPorId($id);
-    exibir("categoria/visualizar", $dados);
+function deletar($id)
+{
+	delCategoria($id);
+	redirecionar("categoria/");
 }
 
 /** admin */
-function deletar($id) {
-    $msg = deletarCategoria($id);
-    redirecionar("categoria/listarCategoria");
+function adicionar()
+{
+	if (ehPost()) {
+		$categoria = $_POST["nome"];
+		$errors = array();
+
+		if (strlen($categoria) == 0) {
+		// if (!validar_Categoria($categoria)) {
+			$errors["categoria"] = "Categoria inválida";
+		}
+
+		if (count($errors) > 0) {
+			$dados = array();
+			$dados["errors"] = $errors;
+			exibir("categoria/formulario", $dados);
+		} else {
+			addCategoria($categoria);
+			redirecionar("categoria/");
+		}
+	} else {
+		exibir("categoria/formulario");
+	}
 }
 
 /** admin */
-function editar($id) {
-    if (ehPost()) {
-        $categoria = $_POST["nomecategoria"];
-        $errors = array();
-        if (validar_quantidade_de_campos($categoria, "Categoria") != NULL) {
-            $errors[] = validar_quantidade_de_campos($categoria, "Categoria");
-        }
-        if (count($errors) > 0) {
-            $dados = array();
-            $dados["errors"] = $errors;
-            exibir("categoria/formulario", $dados);
-        } else {
-            editarCategoria($id, $categoria);
-            redirecionar("categoria/listarCategoria");
-        }
-    } else {
-        $dados["categoria"] = pegarCategoriaPorId($id);
-        exibir("categoria/formulario", $dados);
-    }
-}
-?>
+function editar($id)
+{
+	if (ehPost()) {
+		$categoria = $_POST["nome"];
+		$errors = array();
 
+		if (strlen($categoria) == 0) {
+		// if (!validar_Categoria($categoria)) {
+			$errors["categoria"] = "Categoria inválida";
+		}
+
+		if (count($errors) > 0) {
+			$dados = array();
+			$dados["errors"] = $errors;
+			exibir("categoria/editar", $dados);
+		} else {
+			editCategoria($id, $categoria);
+			redirecionar("categoria/");
+		}
+	} else {
+		$dados = array();
+		$dados["categoria"] = viewCategoria($id);
+		exibir("categoria/editar", $dados);
+	}
+}

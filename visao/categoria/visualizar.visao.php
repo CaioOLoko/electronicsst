@@ -1,8 +1,14 @@
 <h2>Descrição da Categoria</h2>
 
-<strong>Código:</strong>      <?= $categoria['idcategoria'] ?>
-<strong>Descrição:</strong>        <?= $categoria['nomecategoria'] ?>
+<strong>Código:</strong>      
+<?= $categoria['idCategoria'] ?>
+
+<strong>Descrição:</strong>        
+<?= $categoria['nome'] ?>
+
+<strong>Quantidade de Produtos:</strong>        
+<?= $categoria['quantidade'] ?>
 
 <br><br>
 
-<a href="categoria/listarCategoria">Voltar</a>
+<a href="categoria/">Voltar</a>

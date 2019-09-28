@@ -14,9 +14,11 @@ function allCategoria()
 
 function viewCategoria($id)
 {
-	$sql = "SELECT * 
-			FROM categoria 
-			WHERE idCategoria = '$id'";
+	$sql = "SELECT c.nome, c.idCategoria, COUNT(p.idProduto) AS quantidade 
+			FROM categoria c 
+			INNER JOIN produto p 
+			ON c.idCategoria = p.categoria 
+			WHERE c.idCategoria = '$id'";
 	$resultado = mysqli_query(conn(), $sql);
 	$categoria = mysqli_fetch_assoc($resultado);
 	return $categoria;

@@ -1,80 +1,82 @@
 <?php
 
 require_once "servico/validacaoServico.php";
+
 require_once "modelo/cupomModelo.php";
 
 /** admin */
-function adicionar() {
-    if (ehPost()) {
-
-        $nomecupom = $_POST["nomecupom"];
-        $desconto = $_POST["desconto"];
-
-        $errors = array();
-        if (validar_quantidade_de_campos($nomecupom, "Cupom") != NULL) {
-            $errors[] = validar_quantidade_de_campos($nomecupom, "Cupom");
-        }
-        if (validar_elementos_especificos($desconto, "Desconto") != NULL) {
-            $errors[] = validar_elementos_especificos($desconto, "Desconto");
-        }
-        if (count($errors) > 0) {
-            $dados = array();
-            $dados["errors"] = $errors;
-            exibir("cupom/formulario", $dados);
-        } else {
-            $msg = adicionarCupom($nomecupom, $desconto);
-            redirecionar("cupom/listarCupom");
-        }
-    } else {
-        exibir("cupom/formulario");
-    }
+function index()
+{
+	$dados = array();
+	$dados["cupons"] = allCupom();
+	exibir("cupom/listar", $dados);
 }
 
 /** admin */
-function listarCupom() {
-    $dados = array();
-    $dados["cupons"] = pegarTodosCupons();
-    exibir("cupom/listar", $dados);
+function visualizar($id)
+{
+	$dados = array();
+	$dados["cupom"] = viewCupom($id);
+	exibir("cupom/visualizar", $dados);
 }
 
 /** admin */
-function ver($id) {
-    $dados["cupom"] = pegarCupomPorId($id);
-    exibir("cupom/visualizar", $dados);
+function deletar($id)
+{
+	delCupom($id);
+	redirecionar("cupom/");
 }
 
 /** admin */
-function deletar($id) {
-    $msg = deletarCupom($id);
-    redirecionar("cupom/listarCupom");
+function adicionar()
+{
+	if (ehPost()) {
+		$nome = $_POST["nome"];
+		$desconto = $_POST["desconto"];
+
+		$errors = array();
+
+		if (!validar_Nome($nome)) {$errors['nome'] = "Cupom inválido!";}
+		if (!validar_Desconto($desconto)) {$errors['desconto'] = "Desconto inválido!";}
+
+		if (count($errors) > 0) {
+			$dados = array();
+			$dados["errors"] = $errors;
+			exibir("cupom/formulario", $dados);
+		} else {
+			addCupom($nome, $desconto);
+			redirecionar("cupom/");
+		}
+	} else {
+		exibir("cupom/formulario");
+	}
 }
 
 /** admin */
-function editar($id) {
-    if (ehPost()) {
+function editar($id)
+{
+	if (ehPost()) {
+		$nomecupom = $_POST["nomecupom"];
+		$desconto = $_POST["desconto"];
 
-        $nomecupom = $_POST["nomecupom"];
-        $desconto = $_POST["desconto"];
+		$errors = array();
+		
+		if (!validar_Nome($nome)) {$errors['nome'] = "Cupom inválido!";}
+		if (!validar_Desconto($desconto)) {$errors['desconto'] = "Desconto inválido!";}
 
-        $errors = array();
-        if (validar_quantidade_de_campos($nomecupom, "Cupom") != NULL) {
-            $errors[] = validar_quantidade_de_campos($nomecupom, "Cupom");
-        }
-        if (validar_elementos_especificos($desconto, "Desconto") != NULL) {
-            $errors[] = validar_elementos_especificos($desconto, "Desconto");
-        }
-        if (count($errors) > 0) {
-            $dados = array();
-            $dados["errors"] = $errors;
-            exibir("cupom/formulario", $dados);
-        } else {
-            editarCupom($id, $nomecupom, $desconto);
-            redirecionar("cupom/listarCupom");
-        }
-    } else {
-        $dados["cupom"] = pegarCupomPorId($id);
-        exibir("cupom/formulario", $dados);
-    }
+		if (count($errors) > 0) {
+			$dados = array();
+			$dados["errors"] = $errors;
+			exibir("cupom/editar", $dados);
+		} else {
+			editCupom($id, $nome, $desconto);
+			redirecionar("cupom/");
+		}
+	} else {
+		$dados = array();
+		$dados["cupom"] = viewCupom($id);
+		exibir("cupom/editar", $dados);
+	}
 }
 ?>
 
