@@ -10,19 +10,19 @@ function index()
 {
 	$dados = array();
 	$dados["usuarios"] = allUsuario();
-	exibir("usuario/listar", $dados);
+	exibir("usuario/index", $dados);
 }
 
 /** anon */
 function visualizar($id)
 {
 	$dados = array();
-	$dados["usuario"] = viewUsuario($id);
-	$dados["enderecos"] = getEnderecoByUsuario($id);
+	$dados["usuario"] = 	viewUsuario($id);
+	$dados["enderecos"] = 	getEnderecoByUsuario($id);
 	exibir("usuario/visualizar", $dados);
 }
 
-/** admin */
+/** anon */
 function deletar($id) {
 	delUsuario($id);
 	delEnderecoByUsuario($id);
@@ -33,15 +33,16 @@ function deletar($id) {
 function adicionar()
 {
 	if (ehPost()) {
-		$nome = $_POST["nome"];
-		$sobrenome = $_POST["sobrenome"];
-		$email = $_POST["email"];
-		$senha = $_POST["senha"];
-		$cpf = $_POST["cpf"];
-		$sexo = $_POST["sexo"];
-		$dia = $_POST["dia"];
-		$mes = $_POST["mes"];
-		$ano = $_POST["ano"];
+
+		$nome = 		$_POST["nome"];
+		$sobrenome = 	$_POST["sobrenome"];
+		$email = 		$_POST["email"];
+		$senha = 		$_POST["senha"];
+		$cpf = 			$_POST["cpf"];
+		$sexo = 		$_POST["sexo"];
+		$dia = 			$_POST["dia"];
+		$mes = 			$_POST["mes"];
+		$ano = 			$_POST["ano"];
 
 		$errors = array();
 
@@ -57,9 +58,10 @@ function adicionar()
 			$dados["errors"] = $errors;
 			exibir("usuario/cadastro", $dados);
 		} else {
-			$retirarCPF = array(0 => "-", 1 => ".");
+			$retirarCPF = array("-", ".");
 			$cpf = str_replace($retirarCPF, "", $cpf);
 			$nascimento = $ano.'-'.$mes.'-'.$dia;
+
 			addUsuario(
 				$nome,
 				$sobrenome,
@@ -81,15 +83,16 @@ function adicionar()
 function editar($id)
 {
 	if (ehPost()) {
-		$nome = $_POST["nome"];
-		$sobrenome = $_POST["sobrenome"];
-		$email = $_POST["email"];
-		$senha = $_POST["senha"];
-		$cpf = $_POST["cpf"];
-		$sexo = $_POST["sexo"];
-		$dia = $_POST["dia"];
-		$mes = $_POST["mes"];
-		$ano = $_POST["ano"];
+
+		$nome = 		$_POST["nome"];
+		$sobrenome = 	$_POST["sobrenome"];
+		$email = 		$_POST["email"];
+		$senha = 		$_POST["senha"];
+		$cpf = 			$_POST["cpf"];
+		$sexo = 		$_POST["sexo"];
+		$dia = 			$_POST["dia"];
+		$mes = 			$_POST["mes"];
+		$ano = 			$_POST["ano"];
 
 		$errors = array();
 
@@ -102,12 +105,14 @@ function editar($id)
 
 		if (count($errors) > 0) {
 			$dados = array();
-			$dados["errors"] = $errors;
-			exibir("usuario/cadastro", $dados);
+			$dados["errors"] = 	$errors;
+			$dados["usuario"] = viewUsuario($id);
+			exibir("usuario/editar", $dados);
 		} else {
-			$retirarCPF = array(0 => "-", 1 => ".");
+			$retirarCPF = array("-", ".");
 			$cpf = str_replace($retirarCPF, "", $cpf);
 			$nascimento = $ano.'-'.$mes.'-'.$dia;
+
 			editUsuario(
 				$id,
 				$nome,

@@ -5,8 +5,9 @@ define('ACESSO', true);
 function acessoLogar($usuario) {
     if(!empty($usuario)) {
         $_SESSION["acesso"] = array(
+            "isUsuario" => $usuario['id'],
             "email" => $usuario["email"], 
-            "tipousuario" => $usuario["tipousuario"]
+            "tipo" => $usuario["tipo"]
         );
         return true; 
     }
@@ -26,7 +27,7 @@ function acessoUsuarioEstaLogado() {
 
 function acessoPegarPapelDoUsuario() {
     if (acessoUsuarioEstaLogado()) {
-        return $_SESSION["acesso"]["tipousuario"];
+        return $_SESSION["acesso"]["tipo"];
     }
 }
 

@@ -31,8 +31,8 @@ function deletar($id)
 function adicionar()
 {
 	if (ehPost()) {
-		$nome = $_POST["nome"];
-		$desconto = $_POST["desconto"];
+		$nome = 		$_POST["nome"];
+		$desconto = 	$_POST["desconto"];
 
 		$errors = array();
 
@@ -44,7 +44,10 @@ function adicionar()
 			$dados["errors"] = $errors;
 			exibir("cupom/formulario", $dados);
 		} else {
-			addCupom($nome, $desconto);
+			addCupom(
+				$nome,
+				$desconto
+			);
 			redirecionar("cupom/");
 		}
 	} else {
@@ -56,8 +59,8 @@ function adicionar()
 function editar($id)
 {
 	if (ehPost()) {
-		$nomecupom = $_POST["nomecupom"];
-		$desconto = $_POST["desconto"];
+		$nome = 		$_POST["nome"];
+		$desconto = 	$_POST["desconto"];
 
 		$errors = array();
 		
@@ -69,7 +72,11 @@ function editar($id)
 			$dados["errors"] = $errors;
 			exibir("cupom/editar", $dados);
 		} else {
-			editCupom($id, $nome, $desconto);
+			editCupom(
+				$id,
+				$nome,
+				$desconto
+			);
 			redirecionar("cupom/");
 		}
 	} else {
@@ -78,5 +85,3 @@ function editar($id)
 		exibir("cupom/editar", $dados);
 	}
 }
-?>
-

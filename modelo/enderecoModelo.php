@@ -4,7 +4,7 @@ function allEndereco()
 {
 	$sql = "SELECT * 
 			FROM endereco
-			ORDER BY idUsuario ASC";
+			ORDER BY idUsuario,logradouro ASC";
 	$resultado = mysqli_query(conn(), $sql);
 	$enderecos = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {

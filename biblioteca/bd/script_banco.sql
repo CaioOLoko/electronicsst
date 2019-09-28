@@ -165,7 +165,3 @@ INSERT INTO usuario VALUES(
 	"M",
 	"admin"
 );
-
-
-/* 
-* ARRUMAR VISUALIZAR CATEGORIA 

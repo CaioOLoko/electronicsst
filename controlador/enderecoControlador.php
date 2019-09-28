@@ -1,107 +1,117 @@
 <?php
 
 require_once "servico/validacaoServico.php";
+
 require_once "modelo/enderecoModelo.php";
 
-/** anon */
-function adicionar($idusuario) {
-    if (ehPost()) {
-        
-        $logradouro = $_POST["logradouro"];
-        $numero = $_POST["numero"];
-        $complemento = $_POST["complemento"];
-        $bairro = $_POST["bairro"];
-        $cidade = $_POST["cidade"];
-        $cep = $_POST["cep"];
-
-        $errors = array();
-
-        if (validar_elementos_obrigatorios($logradouro, "Logradouro") != NULL) {
-            $errors['logradouro'] = validar_elementos_obrigatorios($logradouro, "Logradouro");
-        }
-        if (validar_elementos_obrigatorios($numero, "Número") != NULL) {
-            $errors['numero'] = validar_elementos_obrigatorios($numero, "Número");
-        }
-        if (validar_elementos_obrigatorios($bairro, "Bairro") != NULL) {
-            $errors['bairro'] = validar_elementos_obrigatorios($bairro, "Bairro");
-        }
-        if (validar_elementos_obrigatorios($cidade, "Cidade") != NULL) {
-            $errors['cidade'] = validar_elementos_obrigatorios($cidade, "Cidade");
-        }
-        /* if (validarCep($cep) != NULL) {
-          $errors['cep'] = validaCPF($cep);
-          } */
-
-        if (count($errors) > 0) {
-            $dados = array();
-            $dados["errors"] = $errors;
-            exibir("endereco/formulario", $dados);
-        } else {
-            $msg = adicionarEndereco($idusuario,$logradouro, $numero, $complemento, $bairro, $cidade, $cep);
-            redirecionar("cliente/ver/$idusuario");
-        }
-    } else {
-        exibir("endereco/formulario");
-    }
-}
-
 /** admin */
-function listarEnderecos() {
-    $dados = array();
-    $dados["enderecos"] = pegarTodosEnderecos();
-    exibir("endereco/listar", $dados);
+function index()
+{
+	$dados = array();
+	$dados["enderecos"] = allEndereco();
+	exibir("endereco/index", $dados);
 }
 
 /** anon */
-function ver($id) {
-    $dados["endereco"] = pegarEnderecoPorId($id);
-    exibir("endereco/visualizar", $dados);
-}
-
-/** admin */
-function deletar($id) {
-    $msg = deletarEndereco($id);
-    redirecionar("endereco/listarEnderecos");
+function visualizar($idEndereco)
+{
+	$dados = array();
+	$dados["endereco"] = viewEndereco($idEndereco);
+	exibir("endereco/visualizar", $dados);
 }
 
 /** anon */
-function editar($idusuario, $idendereco) {
-    if (ehPost()) {
-        $logradouro = $_POST["logradouro"];
-        $numero = $_POST["numero"];
-        $complemento = $_POST["complemento"];
-        $bairro = $_POST["bairro"];
-        $cidade = $_POST["cidade"];
-        $cep = $_POST["cep"];
+function deletar($id)
+{
+	delEndereco($id);
+	redirecionar("endereco/");
+}
 
-        $errors = array();
+/** anon */
+function adicionar($idUsuario)
+{
+	if (ehPost()) {
+		
+		$logradouro = 		$_POST["logradouro"];
+		$numero = 			$_POST["numero"];
+		$complemento = 		$_POST["complemento"];
+		$bairro = 			$_POST["bairro"];
+		$cidade = 			$_POST["cidade"];
+		$cep = 				$_POST["cep"];
 
-        if (validar_elementos_obrigatorios($logradouro, "Logradouro") != NULL) {
-            $errors['logradouro'] = validar_elementos_obrigatorios($logradouro, "Logradouro");
-        }
-        if (validar_elementos_obrigatorios($numero, "Número") != NULL) {
-            $errors['numero'] = validar_elementos_obrigatorios($numero, "Número");
-        }
-        if (validar_elementos_obrigatorios($bairro, "Bairro") != NULL) {
-            $errors['bairro'] = validar_elementos_obrigatorios($bairro, "Bairro");
-        }
-        if (validar_elementos_obrigatorios($cidade, "Cidade") != NULL) {
-            $errors['cidade'] = validar_elementos_obrigatorios($cidade, "Cidade");
-        }
-        /* if (validarCep($cep) != NULL) {
-          $errors['cep'] = validaCPF($cep);
-          } */
-        
-        if (count($errors) > 0) {
-            $dados = array();
-            $dados["errors"] = $errors;
-            exibir("endereco/formulario", $dados);
-        } else {
-            editarEndereco($idendereco, $logradouro, $numero, $complemento, $bairro, $cidade, $cep);
-            redirecionar("cliente/ver/$idusuario");
-        }
-    } else {
-        $dados["endereco"] = pegarEnderecoPorId($idendereco);
-        exibir("endereco/formulario", $dados);
-    }
+		$errors = array();
+
+		if (!validar_Logradouro($logradouro)){$errors['logradouro'] = "Logradouro inválido!";}
+		if (!validar_Numero($numero)) {$errors['numero'] = "Número inválido!";}
+		if (!validar_Complemento($complemento)){$errors['complemento'] = "Complemento inválido!";}
+		if (!validar_Bairro($bairro)) {$errors['bairro'] = "Bairro inválido!";}
+		if (!validar_Cidade($cidade)) {$errors['cidade'] = "Cidade inválida!";}
+		if (!validar_Cep($cep)) {$errors['cep'] = "CEP inválido!";}
+
+		if (count($errors) > 0) {
+			$dados = array();
+			$dados["errors"] = $errors;
+			exibir("endereco/formulario", $dados);
+		} else {
+			addEndereco(
+				$idUsuario,
+				$logradouro,
+				$numero,
+				$complemento,
+				$bairro,
+				$cidade,
+				$cep
+			);
+			redirecionar("usuario/visualizar/$idUsuario");
+		}
+	} else {
+		exibir("endereco/formulario");
+	}
+}
+
+/** anon */
+function editar(
+	$idUsuario,
+	$idEndereco
+)
+{
+	if (ehPost()) {
+
+		$logradouro = 		$_POST["logradouro"];
+		$numero = 			$_POST["numero"];
+		$complemento = 		$_POST["complemento"];
+		$bairro = 			$_POST["bairro"];
+		$cidade = 			$_POST["cidade"];
+		$cep = 				$_POST["cep"];
+
+		$errors = array();
+
+		if (!validar_Logradouro($logradouro)){$errors['logradouro'] = "Logradouro inválido!";}
+		if (!validar_Numero($numero)) {$errors['numero'] = "Número inválido!";}
+		if (!validar_Complemento($complemento)){$errors['complemento'] = "Complemento inválido!";}
+		if (!validar_Bairro($bairro)) {$errors['bairro'] = "Bairro inválido!";}
+		if (!validar_Cidade($cidade)) {$errors['cidade'] = "Cidade inválida!";}
+		if (!validar_Cep($cep)) {$errors['cep'] = "CEP inválido!";}
+		
+		if (count($errors) > 0) {
+			$dados = array();
+			$dados["errors"] = $errors;
+			exibir("endereco/formulario", $dados);
+		} else {
+			editEndereco(
+				$idEndereco,
+				$logradouro,
+				$numero,
+				$complemento,
+				$bairro,
+				$cidade,
+				$cep
+			);
+			redirecionar("usuario/visualizar/$idUsuario");
+		}
+	} else {
+		$dados = array();
+		$dados["endereco"] = viewEndereco($idEndereco);
+		exibir("endereco/formulario", $dados);
+	}
 }

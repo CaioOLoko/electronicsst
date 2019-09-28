@@ -6,11 +6,11 @@ require_once "modelo/usuarioModelo.php";
 function index() {
     if (ehPost()) {
         extract($_POST);
-        $usuario = pegarUsuarioPorEmailSenha($email, $senha);
+        $usuario = getUsuarioByEmailSenha($email, $senha);
         
         if (acessoLogar($usuario)) {
-            alert("bem vindo" . $login);
-            redirecionar("usuario");
+            // alert("Bem vindo" . $usuario['nome']);
+            redirecionar("usuario/visualizar/$usuario[id]");
         } else {
             alert("usuario ou senha invalidos!");
         }
@@ -24,5 +24,3 @@ function logout() {
     alert("deslogado com sucesso!");
     redirecionar("usuario");
 }
-
-?>

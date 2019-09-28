@@ -2,169 +2,259 @@
 
 require_once "servico/validacaoServico.php";
 require_once "servico/uploadServico.php";
+
 require_once "modelo/produtoModelo.php";
 require_once "modelo/categoriaModelo.php";
+require_once "modelo/marcaModelo.php";
+require_once "modelo/serieModelo.php";
 
 /** admin */
-function adicionar() {
-    if (ehPost()) {
-        $nome_do_produto = $_POST["nomeproduto"];
-        $preco_do_produto = $_POST["preco"];
-        $categoria = $_POST["categoria"];
-        $infoProduto = $_POST["descricao"];
-
-        $cod_barras = $_POST["cod_barras"];
-        $marca = $_POST["marca"];
-        $modelo = $_POST["modelo"];
-        $cor = $_POST["cor"];
-        $tipo_chip = $_POST["tipo_chip"];
-        $quant_chip = $_POST["quant_chip"];
-        $mem_interna = $_POST["mem_interna"];
-        $processador = $_POST["processador"];
-        $display = $_POST["display"];
-        $so = $_POST["so"];
-
-        $imagem_temp_name = $_FILES["imagem"]["tmp_name"];
-        $name_imagem = $_FILES["imagem"]["name"];
-        $imagem = uploadImagem($imagem_temp_name, $name_imagem);
-
-        $estoque_minimo = $_POST["estoque_minimo"];
-        $estoque_maximo = $_POST["estoque_maximo"];
-        $quant_estoque = $_POST["quant_estoque"];
-
-        $errors = array();
-
-        if (validar_elementos_obrigatorios($nome_do_produto, "Nome") != NULL) {
-            $errors['nome'] = validaNome($nome_do_produto, "Nome");
-        }
-        //if (validar_elementos_obrigatorios($infoProduto, "Informações do Produto") != NULL) {
-        //    $errors['informacoes'] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
-        //}
-        if (validar_elementos_especificos($estoque_minimo, "Estoque Mínimo") != NULL) {
-            $errors['estoque_minimo'] = validar_elementos_especificos($estoque_minimo, "Estoque Mínimo");
-        }
-        if (validar_elementos_especificos($estoque_maximo, "Estoque Máximo") != NULL) {
-            $errors['estoque_maximo'] = validar_elementos_especificos($estoque_maximo, "Estoque Máximo");
-        }
-        if (validar_elementos_especificos($quant_estoque, "Quantidade de Estoque") != NULL) {
-            $errors['quant_estoque'] = validar_elementos_especificos($quant_estoque, "Quantidade de Estoque");
-        }
-        if ($categoria == "default") {
-            $errors['categoria'] = "Informe uma categoria";
-        }
-
-        if (count($errors) > 0) {
-            $dados = array();
-            $dados["errors"] = $errors;
-            $dados["categorias"] = pegarTodasCategorias();
-            exibir("produtos/formulario", $dados);
-        } else {
-            $msg = adicionarProduto($categoria, $nome_do_produto, $preco_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
-            redirecionar("produto/listarProdutos");
-        }
-    } else {
-        $dados = array();
-        $dados["categorias"] = pegarTodasCategorias();
-        exibir("produtos/formulario", $dados);
-    }
+function index()
+{
+	$dados = array();
+	$dados["produtos"] = allProduto();
+	exibir("produtos/index", $dados);
 }
 
 /** anon */
-function listarProdutos() {
-    $dados = array();
-    $dados["produtos"] = pegarTodosProdutos();
-    exibir("produtos/listar", $dados);
+function buscar($nome)
+{
+	if (ehPost()) {
+		$nome = $_POST['buscar'];
+		$dados['categorias'] = allCategoria();
+		$dados['marcas'] = allMarca();
+		$dados['series'] = allSerie();
+		$dados['produtos'] = getProdutoByNome($nome);
+		exibir("produtos/index", $dados);
+	}
 }
 
 /** anon */
-function ver($id) {
-    $dados["produto"] = pegarProdutoPorId($id);
-    exibir("produtos/visualizar", $dados);
+function buscarPorCategoria($categoria)
+{
+	$dados['categorias'] = allCategoria();
+	$dados['produtos'] = getProdutoByCategoria($categoria);
+	exibir("produtos/index", $dados);
+}
+
+/** anon */
+function buscarPorMarca($marca)
+{
+	$dados['categorias'] = allCategoria();
+	$dados['marcas'] = allMarca();
+	$dados['series'] = allSerie();
+	$dados['produtos'] = getProdutoByMarca($marca);
+	exibir("produtos/index", $dados);
+}
+
+/** anon */
+function buscarPorSerie($serie)
+{
+	$dados['categorias'] = allCategoria();
+	$dados['marcas'] = allMarca();
+	$dados['series'] = allSerie();
+	$dados['produtos'] = getProdutoBySerie($serie);
+	exibir("produtos/index", $dados);
+}
+
+/** anon */
+function visualizar($id)
+{
+	$dados = array();
+	$dados["produto"] = viewProduto($id);
+	exibir("produtos/visualizar", $dados);
 }
 
 /** admin */
-function deletar($id) {
-    deletarProduto($id);
-    redirecionar("produto/listarProdutos");
-}
-
-/** anon */
-function buscar($nome) {
-    if (ehPost()) {
-        $nome = $_POST['buscar'];
-        $dados['categorias'] = pegarTodasCategorias();
-        $dados['produtos'] = buscarProdutosPorNome($nome);
-        exibir("produtos/listar", $dados);
-    }
-}
-
-/** anon */
-function buscarPorCategoria($idCategoria) {
-    $dados['categorias'] = pegarTodasCategorias();
-    $dados['produtos'] = buscarProdutoPorIDcategoria($idCategoria);
-    exibir("produtos/listar", $dados);
+function deletar($id)
+{
+	delProduto($id);
+	redirecionar("produto/");
 }
 
 /** admin */
-function editar($id) {
-    if (ehPost()) {
-        $preco_do_produto = $_POST["preco"];
-        $nome_do_produto = $_POST["nomeproduto"];
-        $categoria = $_POST["categoria"];
-        $infoProduto = $_POST["descricao"];
+function adicionar()
+{
+	if (ehPost()) {
 
-        $cod_barras = $_POST["cod_barras"];
-        $marca = $_POST["marca"];
-        $modelo = $_POST["modelo"];
-        $cor = $_POST["cor"];
-        $tipo_chip = $_POST["tipo_chip"];
-        $quant_chip = $_POST["quant_chip"];
-        $mem_interna = $_POST["mem_interna"];
-        $processador = $_POST["processador"];
-        $display = $_POST["display"];
-        $so = $_POST["so"];
+		$nome = 			$_POST["nome"];
+		$preco = 			$_POST["preco"];
+		$categoria = 		$_POST["categoria"];
+		$marca = 			$_POST["marca"];
+		$serie = 			$_POST["serie"];
+		$descricao = 		$_POST["descricao"];
+		$estoque_minimo = 	$_POST["estoque_minimo"];
+		$estoque_maximo = 	$_POST["estoque_maximo"];
+		$quant_estoque = 	$_POST["quant_estoque"];
+		$cod_barras = 		$_POST["cod_barras"];
+		$cor = 				$_POST["cor"];
+		$tipo_chip = 		$_POST["tipo_chip"];
+		$quant_chip = 		$_POST["quant_chip"];
+		$mem_interna = 		$_POST["mem_interna"];
+		$mem_ram = 			$_POST["mem_ram"];
+		$processador = 		$_POST["processador"];
+		$display = 			$_POST["display"];
+		$so = 				$_POST["so"];
 
-        $imagem_temp_name = $_FILES["imagem"]["tmp_name"];
-        $name_imagem = $_FILES["imagem"]["name"];
-        $imagem = uploadImagem($imagem_temp_name, $name_imagem);
+		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
+		$name_img = 		$_FILES["imagem"]["name"];
+		$imagem = uploadImagem($imagem_tmp, $name_img);
 
-        $estoque_minimo = $_POST["estoque_minimo"];
-        $estoque_maximo = $_POST["estoque_maximo"];
-        $quant_estoque = $_POST["quant_estoque"];
+		$errors = array();
 
-        $errors = array();
+		/* Validações comentadas por enquanto, até terminar de revisar e organizar o código
+		
+			if (!validar_Nome($nome)) {$errors['nome'] = "Nome inválido!";}
+			if (!validar_Preco($preco)) {$errors['preco'] = "Preco inválido!";}
+			if (!validar_Categoria($categoria)) {$errors['categoria'] = "Categoria inválida!";}
+			if (!validar_Marca($marca)) {$errors['marca'] = "Marca inválida!";}
+			if (!validar_Serie($serie)) {$errors['serie'] = "Serie inválida!";}
+			if (!validar_Descricao($descricao)) {$errors['descricao'] = "Descrição inválida!";}
+			if (!validar_Imagem($imagem)) {$errors['imagem'] = "Extensão inválida!";}
+			if (!validar_Estoque($estoque_minimo,$estoque_maximo,$quant_estoque)) {$errors['estoque'] = "Quantidade em estoque não permitida!";}
+			if (!validar_CodBarra($cod_barra)) {$errors['cod_barra'] = "Código inválido!";}
+			if (!validar_Cor($cor)) {$errors['cor'] = "Cor inválida!";}
+			if (!validar_TipoChip($tipo_chip)) {$errors['tipo_chip'] = "Tipo inválido!";}
+			if (!validar_QuantChip($quant_chip)) {$errors['quant-chip'] = "Quantidade inválida!";}
+			if (!validar_MemInterna($mem_interna)) {$errors['mem_interna'] = "Memória interna inválida!";}
+			if (!validar_MemRAM($mem_ram)) {$errors['mem_ram'] = "Memória RAM inválida!";}
+			if (!validar_Processador($processador)) {$errors['processador'] = "Processador inválido!";}
+			if (!validar_($display)) {$errors['display'] = "Tamanho inválido!";}
+			if (!validar_SO($so)) {$errors['so'] = "Sistema operacional não permitido!";}
+		
+		*/
 
-        if (validar_elementos_obrigatorios($nome_do_produto, "Nome") != NULL) {
-            $errors['nome'] = validaNome($nome_do_produto, "Nome");
-        }
-        if (validar_elementos_obrigatorios($infoProduto, "Informações do Produto") != NULL) {
-            $errors['informacoes'] = validar_elementos_obrigatorios($infoProduto, "Informações do Produto");
-        }
-        if (validar_elementos_especificos($estoque_minimo, "Estoque Mínimo") != NULL) {
-            $errors['estoque_minimo'] = validar_elementos_especificos($estoque_minimo, "Estoque Mínimo");
-        }
-        if (validar_elementos_especificos($estoque_maximo, "Estoque Máximo") != NULL) {
-            $errors['estoque_maximo'] = validar_elementos_especificos($estoque_maximo, "Estoque Máximo");
-        }
-        if (validar_elementos_especificos($quant_estoque, "Quantidade de Estoque") != NULL) {
-            $errors['quant_estoque'] = validar_elementos_especificos($quant_estoque, "Quantidade de Estoque");
-        }
-        if ($categoria == "default") {
-            $errors['categoria'] = "Informe uma categoria";
-        }
+		if (count($errors) > 0) {
+			$dados = array();
+			$dados["errors"] = 		$errors;
+			$dados['categorias'] = 	allCategoria();
+			$dados['marcas'] = 		allMarca();
+			$dados['series'] = 		allSerie();
+			exibir("produtos/formulario", $dados);
+		} else {
+			addProduto(
+				$nome,
+				$preco,
+				$categoria,
+				$marca,
+				$serie,
+				$descricao,
+				$imagem,
+				$estoque_minimo,
+				$estoque_maximo,
+				$quant_estoque,
+				$cod_barras,
+				$cor,
+				$tipo_chip,
+				$quant_chip,
+				$mem_interna,
+				$mem_ram,
+				$processador,
+				$display,
+				$so
+			);
+			redirecionar("produto/");
+		}
+	} else {
+		$dados = array();
+		$dados['categorias'] = 	allCategoria();
+		$dados['marcas'] = 		allMarca();
+		$dados['series'] = 		allSerie();
+		exibir("produtos/formulario", $dados);
+	}
+}
 
-        if (count($errors) > 0) {
-            $dados = array();
-            $dados["errors"] = $errors;
-            $dados["categorias"] = pegarTodasCategorias();
-            exibir("produtos/editar", $dados);
-        } else {
-            editarProduto($id, $categoria, $nome_do_produto, $preco_do_produto, $infoProduto, $imagem, $estoque_minimo, $estoque_maximo, $quant_estoque, $cod_barras, $marca, $modelo, $cor, $tipo_chip, $quant_chip, $mem_interna, $processador, $display, $so);
-            redirecionar("produto/listarProdutos");
-        }
-    } else {
-        $dados["categorias"] = pegarTodasCategorias();
-        $dados["produto"] = pegarProdutoPorId($id);
-        exibir("produtos/editar", $dados);
-    }
+/** admin */
+function editar($id)
+{
+	if (ehPost()) {
+
+		$nome = 			$_POST["nome"];
+		$preco = 			$_POST["preco"];
+		$categoria = 		$_POST["categoria"];
+		$marca = 			$_POST["marca"];
+		$serie = 			$_POST["serie"];
+		$descricao = 		$_POST["descricao"];
+		$estoque_minimo = 	$_POST["estoque_minimo"];
+		$estoque_maximo = 	$_POST["estoque_maximo"];
+		$quant_estoque = 	$_POST["quant_estoque"];
+		$cod_barras = 		$_POST["cod_barras"];
+		$cor = 				$_POST["cor"];
+		$tipo_chip = 		$_POST["tipo_chip"];
+		$quant_chip = 		$_POST["quant_chip"];
+		$mem_interna = 		$_POST["mem_interna"];
+		$mem_ram = 			$_POST["mem_ram"];
+		$processador = 		$_POST["processador"];
+		$display = 			$_POST["display"];
+		$so = 				$_POST["so"];
+
+		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
+		$name_img = 		$_FILES["imagem"]["name"];
+		$imagem = uploadImagem($imagem_tmp, $name_img);
+
+		$errors = array();
+
+		/* Validações comentadas por enquanto, até terminar de revisar e organizar o código
+		
+			if (!validar_Nome($nome)) {$errors['nome'] = "Nome inválido!";}
+			if (!validar_Preco($preco)) {$errors['preco'] = "Preco inválido!";}
+			if (!validar_Categoria($categoria)) {$errors['categoria'] = "Categoria inválida!";}
+			if (!validar_Marca($marca)) {$errors['marca'] = "Marca inválida!";}
+			if (!validar_Serie($serie)) {$errors['serie'] = "Serie inválida!";}
+			if (!validar_Descricao($descricao)) {$errors['descricao'] = "Descrição inválida!";}
+			if (!validar_Imagem($imagem)) {$errors['imagem'] = "Extensão inválida!";}
+			if (!validar_Estoque($estoque_minimo,$estoque_maximo,$quant_estoque)) {$errors['estoque'] = "Quantidade em estoque não permitida!";}
+			if (!validar_CodBarra($cod_barra)) {$errors['cod_barra'] = "Código inválido!";}
+			if (!validar_Cor($cor)) {$errors['cor'] = "Cor inválida!";}
+			if (!validar_TipoChip($tipo_chip)) {$errors['tipo_chip'] = "Tipo inválido!";}
+			if (!validar_QuantChip($quant_chip)) {$errors['quant-chip'] = "Quantidade inválida!";}
+			if (!validar_MemInterna($mem_interna)) {$errors['mem_interna'] = "Memória interna inválida!";}
+			if (!validar_MemRAM($mem_ram)) {$errors['mem_ram'] = "Memória RAM inválida!";}
+			if (!validar_Processador($processador)) {$errors['processador'] = "Processador inválido!";}
+			if (!validar_($display)) {$errors['display'] = "Tamanho inválido!";}
+			if (!validar_SO($so)) {$errors['so'] = "Sistema operacional não permitido!";}
+		
+		*/
+
+		if (count($errors) > 0) {
+			$dados = array();
+			$dados["errors"] = 		$errors;
+			$dados['produto'] = 	viewProduto($id);
+			$dados['categorias'] = 	allCategoria();
+			$dados['marcas'] = 		allMarca();
+			$dados['series'] = 		allSerie();
+			exibir("produtos/editar", $dados);
+		} else {
+			editProduto(
+				$id,
+				$nome,
+				$preco,
+				$categoria,
+				$marca,
+				$serie,
+				$descricao,
+				$imagem,
+				$estoque_minimo,
+				$estoque_maximo,
+				$quant_estoque,
+				$cod_barras,
+				$cor,
+				$tipo_chip,
+				$quant_chip,
+				$mem_interna,
+				$mem_ram,
+				$processador,
+				$display,
+				$so
+			);
+			redirecionar("produto/");
+		}
+	} else {
+		$dados = array();
+		$dados['produto'] = 	viewProduto($id);
+		$dados['categorias'] = 	allCategoria();
+		$dados['marcas'] = 		allMarca();
+		$dados['series'] = 		allSerie();
+		exibir("produtos/editar", $dados);
+	}
 }

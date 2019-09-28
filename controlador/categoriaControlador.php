@@ -31,12 +31,11 @@ function adicionar()
 {
 	if (ehPost()) {
 		$categoria = $_POST["nome"];
+
 		$errors = array();
 
-		if (strlen($categoria) == 0) {
-		// if (!validar_Categoria($categoria)) {
-			$errors["categoria"] = "Categoria inválida";
-		}
+		if (strlen($categoria) == 0) {$errors["categoria"] = "Categoria inválida";}
+		// if (!validar_Categoria($categoria)) {$errors["categoria"] = "Categoria inválida";}
 
 		if (count($errors) > 0) {
 			$dados = array();
@@ -56,19 +55,21 @@ function editar($id)
 {
 	if (ehPost()) {
 		$categoria = $_POST["nome"];
+
 		$errors = array();
 
-		if (strlen($categoria) == 0) {
-		// if (!validar_Categoria($categoria)) {
-			$errors["categoria"] = "Categoria inválida";
-		}
+		if (strlen($categoria) == 0) {$errors["categoria"] = "Categoria inválida";}
+		// if (!validar_Categoria($categoria)) {$errors["categoria"] = "Categoria inválida";}
 
 		if (count($errors) > 0) {
 			$dados = array();
 			$dados["errors"] = $errors;
 			exibir("categoria/editar", $dados);
 		} else {
-			editCategoria($id, $categoria);
+			editCategoria(
+				$id,
+				$categoria
+			);
 			redirecionar("categoria/");
 		}
 	} else {

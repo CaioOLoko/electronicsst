@@ -38,6 +38,32 @@ function getProdutoByCategoria($categoria)
 	return $produtos;
 }
 
+function getProdutoByMarca($marca)
+{
+	$sql = "SELECT * 
+			FROM produto 
+			WHERE marca = '$marca'";
+	$resultado = mysqli_query(conn(), $sql);
+	$produtos = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$produtos[] = $linha;
+	}
+	return $produtos;
+}
+
+function getProdutoBySerie($serie)
+{
+	$sql = "SELECT * 
+			FROM produto 
+			WHERE serie = '$serie'";
+	$resultado = mysqli_query(conn(), $sql);
+	$produtos = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$produtos[] = $linha;
+	}
+	return $produtos;
+}
+
 function viewProduto($id)
 {
 	$sql = "SELECT p.*, c.nome AS categoria, m.nome AS marca, s.nome AS serie 
