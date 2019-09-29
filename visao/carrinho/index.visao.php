@@ -29,4 +29,10 @@
         </div>
         <a></a>
     </div>
+    <div>
+        <form action="" method="POST">
+            <input type="number" name="cep" placeholder="Informe um cep" max-lenght="8">
+            <button type="submit">Vai</button>
+        </form>
+    </div>
 </div>
