@@ -59,7 +59,7 @@ function deletar($id)
 	redirecionar("produto/");
 }
 
-/** anon */
+/** admin */
 function adicionar()
 {
 	if (ehPost()) {

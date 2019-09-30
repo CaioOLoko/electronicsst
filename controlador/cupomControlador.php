@@ -36,8 +36,8 @@ function adicionar()
 
 		$errors = array();
 
-		if (!validar_Nome($nome)) {$errors['nome'] = "Cupom inválido!";}
-		if (!validar_Desconto($desconto)) {$errors['desconto'] = "Desconto inválido!";}
+//		if (!validar_Nome($nome)) {$errors['nome'] = "Cupom inválido!";}
+//		if (!validar_Desconto($desconto)) {$errors['desconto'] = "Desconto inválido!";}
 
 		if (count($errors) > 0) {
 			$dados = array();
@@ -64,8 +64,8 @@ function editar($id)
 
 		$errors = array();
 		
-		if (!validar_Nome($nome)) {$errors['nome'] = "Cupom inválido!";}
-		if (!validar_Desconto($desconto)) {$errors['desconto'] = "Desconto inválido!";}
+//		if (!validar_Nome($nome)) {$errors['nome'] = "Cupom inválido!";}
+//		if (!validar_Desconto($desconto)) {$errors['desconto'] = "Desconto inválido!";}
 
 		if (count($errors) > 0) {
 			$dados = array();

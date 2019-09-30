@@ -139,7 +139,7 @@ INSERT INTO usuario VALUES(
 	"SaLe23091976",
 	47380334840,
 	"2002-09-16",
-	"M",
+	"Masculino",
 	"admin"
 );
 
@@ -151,6 +151,9 @@ INSERT INTO usuario VALUES(
 	"Thiago160103",
 	52535138840,
 	"2003-01-16",
-	"M",
+	"Masculino",
 	"admin"
 );
+
+
+-- AULA 12 GBD, MANIPULAÇÃO DE ARQUIVOS PW2

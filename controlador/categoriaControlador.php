@@ -34,8 +34,7 @@ function adicionar()
 
 		$errors = array();
 
-		if (strlen($categoria) == 0) {$errors["categoria"] = "Categoria inválida";}
-		// if (!validar_Categoria($categoria)) {$errors["categoria"] = "Categoria inválida";}
+//		if (!validar_Categoria($categoria)) {$errors["categoria"] = "Categoria inválida";}
 
 		if (count($errors) > 0) {
 			$dados = array();
@@ -58,8 +57,7 @@ function editar($id)
 
 		$errors = array();
 
-		if (strlen($categoria) == 0) {$errors["categoria"] = "Categoria inválida";}
-		// if (!validar_Categoria($categoria)) {$errors["categoria"] = "Categoria inválida";}
+//		if (!validar_Categoria($categoria)) {$errors["categoria"] = "Categoria inválida";}
 
 		if (count($errors) > 0) {
 			$dados = array();

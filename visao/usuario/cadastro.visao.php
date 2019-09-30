@@ -17,10 +17,10 @@
 </div>
 <form method="POST" action="" class="form-user">
     <label class="label-user">Nome<span>*</span></label><br>
-    <input class="input-user" type="text" name="nomeusuario" maxlength="60" required="" placeholder="Insira um nome"><br>
+    <input class="input-user" type="text" name="nome" maxlength="60" required="" placeholder="Insira um nome"><br>
 
     <label class="label-user">Sobrenome<span>*</span></label><br>
-    <input class="input-user" type="text" name="sobrenomeusuario" maxlength="60" required="" placeholder="Insira um sobrenome"><br>
+    <input class="input-user" type="text" name="sobrenome" maxlength="60" required="" placeholder="Insira um sobrenome"><br>
 
     <label class="label-user">E-mail<span>*</span></label><br>
     <input class="input-user" type="email" name="email" required="" placeholder="Insira um email"><br>

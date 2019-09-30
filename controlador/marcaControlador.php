@@ -35,7 +35,6 @@ function adicionar()
 
 		$errors = array();
 
-		if (strlen($marca) == 0) {$errors["marca"] = "Marca inválida";}
 		// if (!validar_Marca($marca)) {$errors["marca"] = "Marca inválida";}
 
 		if (count($errors) > 0) {
@@ -60,7 +59,6 @@ function editar($id)
 
 		$errors = array();
 
-		if (strlen($nome) == 0) {$errors["marca"] = "Marca inválida";}
 		// if (!validar_Marca($marca)) {$errors["marca"] = "Marca inválida";}
 
 		if (count($errors) > 0) {

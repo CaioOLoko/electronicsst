@@ -41,12 +41,12 @@ function adicionar($idUsuario)
 
 		$errors = array();
 
-		if (!validar_Logradouro($logradouro)){$errors['logradouro'] = "Logradouro inválido!";}
-		if (!validar_Numero($numero)) {$errors['numero'] = "Número inválido!";}
-		if (!validar_Complemento($complemento)){$errors['complemento'] = "Complemento inválido!";}
-		if (!validar_Bairro($bairro)) {$errors['bairro'] = "Bairro inválido!";}
-		if (!validar_Cidade($cidade)) {$errors['cidade'] = "Cidade inválida!";}
-		if (!validar_Cep($cep)) {$errors['cep'] = "CEP inválido!";}
+//		if (!validar_Logradouro($logradouro)){$errors['logradouro'] = "Logradouro inválido!";}
+//		if (!validar_Numero($numero)) {$errors['numero'] = "Número inválido!";}
+//		if (!validar_Complemento($complemento)){$errors['complemento'] = "Complemento inválido!";}
+//		if (!validar_Bairro($bairro)) {$errors['bairro'] = "Bairro inválido!";}
+//		if (!validar_Cidade($cidade)) {$errors['cidade'] = "Cidade inválida!";}
+//		if (!validar_Cep($cep)) {$errors['cep'] = "CEP inválido!";}
 
 		if (count($errors) > 0) {
 			$dados = array();
@@ -86,12 +86,12 @@ function editar(
 
 		$errors = array();
 
-		if (!validar_Logradouro($logradouro)){$errors['logradouro'] = "Logradouro inválido!";}
-		if (!validar_Numero($numero)) {$errors['numero'] = "Número inválido!";}
-		if (!validar_Complemento($complemento)){$errors['complemento'] = "Complemento inválido!";}
-		if (!validar_Bairro($bairro)) {$errors['bairro'] = "Bairro inválido!";}
-		if (!validar_Cidade($cidade)) {$errors['cidade'] = "Cidade inválida!";}
-		if (!validar_Cep($cep)) {$errors['cep'] = "CEP inválido!";}
+//		if (!validar_Logradouro($logradouro)){$errors['logradouro'] = "Logradouro inválido!";}
+//		if (!validar_Numero($numero)) {$errors['numero'] = "Número inválido!";}
+//		if (!validar_Complemento($complemento)){$errors['complemento'] = "Complemento inválido!";}
+//		if (!validar_Bairro($bairro)) {$errors['bairro'] = "Bairro inválido!";}
+//		if (!validar_Cidade($cidade)) {$errors['cidade'] = "Cidade inválida!";}
+//		if (!validar_Cep($cep)) {$errors['cep'] = "CEP inválido!";}
 		
 		if (count($errors) > 0) {
 			$dados = array();

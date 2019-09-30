@@ -36,7 +36,7 @@ function adicionar()
 		
 		$errors = array();
 		
-		if (!validar_Nome($nome)) {$errors['pagamento'] = "Forma de Pagamento inválida!";}
+//		if (!validar_Nome($nome)) {$errors['pagamento'] = "Forma de Pagamento inválida!";}
 
 		if (count($errors) > 0) {
 			$dados = array();
@@ -60,7 +60,7 @@ function editar($id)
 		
 		$errors = array();
 		
-		if (!validar_Nome($nome)) {$errors['pagamento'] = "Forma de Pagamento inválida!";}
+//		if (!validar_Nome($nome)) {$errors['pagamento'] = "Forma de Pagamento inválida!";}
 
 		if (count($errors) > 0) {
 			$dados = array();

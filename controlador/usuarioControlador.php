@@ -35,7 +35,7 @@ function adicionar()
 	if (ehPost()) {
 
 		$nome = 		$_POST["nome"];
-		$sobrenome = 	$_POST["sobrenome"];
+		$sobrenome =            $_POST["sobrenome"];
 		$email = 		$_POST["email"];
 		$senha = 		$_POST["senha"];
 		$cpf = 			$_POST["cpf"];
@@ -46,12 +46,12 @@ function adicionar()
 
 		$errors = array();
 
-		if (!validar_Nome($nome)){$errors['nome'] = "Nome inválido!";}
-		if (!validar_Nome($sobrenome)){$errors['sobrenome'] = "Sobrenome inválido!";}
-		if (!validar_Email($email)){$errors['email'] = "Email inválido!";}
-		if (!validar_Senha($senha)){$errors['senha'] = "Senha não permitida!";}
-		if (!validar_CPF($cpf)){$errors['cpf'] = "CPF inválido!";}
-		if (!validar_Data($dia,$mes,$ano)){$errors['nascimento'] = "Data inválida!";}
+//		if (!validar_Nome($nome)){$errors['nome'] = "Nome inválido!";}
+//		if (!validar_Nome($sobrenome)){$errors['sobrenome'] = "Sobrenome inválido!";}
+//		if (!validar_Email($email)){$errors['email'] = "Email inválido!";}
+//		if (!validar_Senha($senha)){$errors['senha'] = "Senha não permitida!";}
+//		if (!validar_CPF($cpf)){$errors['cpf'] = "CPF inválido!";}
+//		if (!validar_Data($dia,$mes,$ano)){$errors['nascimento'] = "Data inválida!";}
 
 		if (count($errors) > 0) {
 			$dados = array();
@@ -85,7 +85,7 @@ function editar($id)
 	if (ehPost()) {
 
 		$nome = 		$_POST["nome"];
-		$sobrenome = 	$_POST["sobrenome"];
+		$sobrenome =            $_POST["sobrenome"];
 		$email = 		$_POST["email"];
 		$senha = 		$_POST["senha"];
 		$cpf = 			$_POST["cpf"];
@@ -96,12 +96,12 @@ function editar($id)
 
 		$errors = array();
 
-		if (!validar_Nome($nome)){$errors['nome'] = "Nome inválido!";}
-		if (!validar_Nome($sobrenome)){$errors['sobrenome'] = "Sobrenome inválido!";}
-		if (!validar_Email($email)){$errors['email'] = "Email inválido!";}
-		if (!validar_Senha($senha)){$errors['senha'] = "Senha não permitida!";}
-		if (!validar_CPF($cpf)){$errors['cpf'] = "CPF inválido!";}
-		if (!validar_Data($dia,$mes,$ano)){$errors['nascimento'] = "Data inválida!";}
+//		if (!validar_Nome($nome)){$errors['nome'] = "Nome inválido!";}
+//		if (!validar_Nome($sobrenome)){$errors['sobrenome'] = "Sobrenome inválido!";}
+//		if (!validar_Email($email)){$errors['email'] = "Email inválido!";}
+//		if (!validar_Senha($senha)){$errors['senha'] = "Senha não permitida!";}
+//		if (!validar_CPF($cpf)){$errors['cpf'] = "CPF inválido!";}
+//		if (!validar_Data($dia,$mes,$ano)){$errors['nascimento'] = "Data inválida!";}
 
 		if (count($errors) > 0) {
 			$dados = array();

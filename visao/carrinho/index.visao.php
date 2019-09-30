@@ -43,6 +43,7 @@
 		<a></a>
 	</div>
 </div>
+<a href="compras/finalizar">FINALIZAR PEDIDO</a><br>
 <div>
 	<form action="" method="POST">
 		<input type="text" name="cep" placeholder="Informe um cep" OnKeyPress="formatar('#####-###', this)" maxlength="9">

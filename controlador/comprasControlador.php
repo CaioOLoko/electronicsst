@@ -93,3 +93,12 @@ function limparCarrinho() {
 	unset($_SESSION['carrinho']);
 	redirecionar("paginas/");
 }
+
+function finalizar(){
+    if(acessoUsuarioEstaLogado()){
+        exibir("carrinho/finalizar");
+    } else {
+        $_SESSION['verificar'] = false;
+        redirecionar("login/");
+    }
+}
