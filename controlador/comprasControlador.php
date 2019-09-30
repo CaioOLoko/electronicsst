@@ -5,53 +5,12 @@ require_once "servico/correiosServico.php";
 require_once "modelo/produtoModelo.php";
 
 /** anon */
-function adicionar($idProduto) {
-
-	if (isset($_SESSION["carrinho"])) {
-		$produtos = $_SESSION["carrinho"];
-	} else {
-		$produtos = array();
-	}
-	
-	//verificar se existe o produto ja na lista de produtos!
-	$chave = existeProdutoNoCarrinho($produtos, $idProduto);
-	
-	if($chave === false) {
-		$produto = viewProduto($idProduto);
-		$produto["quantidade"] = 1;
-		$produtos[] = $produto;
-	} else {
-		$produto = $produtos[$chave];
-		$produto["quantidade"]++;
-		$produtos[$chave] = $produto;
-	}
-
-	// salva todos os produtos na session carrinho
-	$_SESSION["carrinho"] = $produtos;
-	// redirecionar para a função de exibição de produtos
-	redirecionar("compras/index");
-}
-
-/** admin */
-function existeProdutoNoCarrinho($produtos, $idProduto) {
-	foreach ($produtos as $chave => $produto) {
-		if ($produto["idproduto"] == $idProduto) { //ja existe
-			return $chave;
-		} 
-	}
-	return false;
-}
-
-/** anon */
 function index() {
 
 	// testar cep/frete
 	if (ehPost()) {
-		$frete = $_POST['cep'];
-		$frete = calcular_frete(
-			$cep_origem, 
-			$frete// completar cálculo do frete
-		);
+		$cep_destino = $_POST['cep'];
+		$frete = calcular_frete($cep_destino,$valor);
 	} else {
 		$frete = 0;
 	}
@@ -71,8 +30,6 @@ function index() {
 		$quantidadeProdutos += $valor["quantidade"];
 		$subtotal += ($valor["preco"]*$valor["quantidade"]);
 	}
-
-
 	
 	$dados['quantidadeProdutos'] = $quantidadeProdutos;
 	$dados['subtotal'] =  $subtotal;
@@ -84,9 +41,39 @@ function index() {
 }
 
 /** anon */
-function limparCarrinho() {
-	unset($_SESSION['carrinho']);
-	redirecionar("paginas/");
+function adicionar($idProduto) {
+
+	if (isset($_SESSION["carrinho"])) {
+		$produtos = $_SESSION["carrinho"];
+	} else {
+		$produtos = array();
+	}
+
+	$chave = existeProdutoNoCarrinho($produtos, $idProduto);
+	
+	if($chave === false) {
+		$produto = viewProduto($idProduto);
+		$produto["quantidade"] = 1;
+		$produtos[] = $produto;
+	} else {
+		$produto = $produtos[$chave];
+		$produto["quantidade"]++;
+		$produtos[$chave] = $produto;
+	}
+
+	$_SESSION["carrinho"] = $produtos;
+
+	redirecionar("compras/index");
+}
+
+/** admin */
+function existeProdutoNoCarrinho($produtos, $idProduto) {
+	foreach ($produtos as $chave => $produto) {
+		if ($produto["idproduto"] == $idProduto) { //ja existe
+			return $chave;
+		} 
+	}
+	return false;
 }
 
 /** anon */
@@ -99,4 +86,10 @@ function removerProduto($id) {
 	}
 	$_SESSION['carrinho'] = $produtos;
 	redirecionar("compras/");
+}
+
+/** anon */
+function limparCarrinho() {
+	unset($_SESSION['carrinho']);
+	redirecionar("paginas/");
 }

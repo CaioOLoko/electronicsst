@@ -30,14 +30,14 @@
 			<td><?= $endereco['bairro'] ?></td>
 			<td><?= $endereco['cidade'] ?></td>
 			<td><?= $endereco['cep'] ?></td>
-			<td><a href="endereco/visualizar/<?= $endereco['idendereco'] ?>">Ver</a></td>
-			<td><a href="endereco/editar/<?= $endereco['idusuario'] ?>/<?= $endereco['idendereco'] ?>">Alterar</a></td>
-			<td><a href="endereco/deletar/<?= $endereco['idendereco'] ?>">Deletar</a></td>
+			<td><a href="endereco/visualizar/<?= $endereco['idEndereco'] ?>">Ver</a></td>
+			<td><a href="endereco/editar/<?= $endereco['idUsuario'] ?>/<?= $endereco['idEndereco'] ?>">Alterar</a></td>
+			<td><a href="endereco/deletar/<?= $endereco['idEndereco'] ?>">Deletar</a></td>
 		</tr>
 	<?php endforeach; ?>
 </table>
 
-<a href="endereco/adicionar/<?= $usuario['idusuario'] ?>" class="btn btn-primary" style="color:black; text-decoration: underline;">Adicionar Endereço</a><br>
+<a href="endereco/adicionar/<?= $usuario['idUsuario'] ?>" class="btn btn-primary" style="color:black; text-decoration: underline;">Adicionar Endereço</a><br>
 
 <?php if (acessoPegarPapelDoUsuario() == 'admin'):?>
 	<a href="usuario/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Voltar</a>

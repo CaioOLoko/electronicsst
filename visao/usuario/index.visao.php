@@ -14,17 +14,17 @@
             <th>Deletar o Usuário</th>
         </tr>
     </thead>
-    <?php foreach ($clientes as $cliente): ?>
+    <?php foreach ($usuarios as $usuario): ?>
         <tr>
-            <td><?= $cliente['nomeusuario'] ?></td>
-            <td><?= $cliente['email'] ?></td>
-            <td><?= $cliente['cpf'] ?></td>
-            <td><?= $cliente['datadenascimento'] ?></td>
-            <td><?= $cliente['sexo'] ?></td>
-            <td><?= $cliente['tipousuario'] ?></td>
-            <td><a href="./cliente/ver/<?= $cliente['idusuario'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
-            <td><a href="./cliente/editar/<?= $cliente['idusuario'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
-            <td><a href="./cliente/deletar/<?= $cliente['idusuario'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
+            <td><?= $usuario['nome'] ?></td>
+            <td><?= $usuario['email'] ?></td>
+            <td><?= $usuario['cpf'] ?></td>
+            <td><?= $usuario['nascimento'] ?></td>
+            <td><?= $usuario['sexo'] ?></td>
+            <td><?= $usuario['tipo'] ?></td>
+            <td><a href="usuario/visualizar/<?= $usuario['idUsuario'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
+            <td><a href="usuario/editar/<?= $usuario['idUsuario'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
+            <td><a href="usuario/deletar/<?= $usuario['idUsuario'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

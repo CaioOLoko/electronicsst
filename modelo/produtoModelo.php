@@ -51,29 +51,14 @@ function getProdutoByMarca($marca)
 	return $produtos;
 }
 
-function getProdutoBySerie($serie)
-{
-	$sql = "SELECT * 
-			FROM produto 
-			WHERE serie = '$serie'";
-	$resultado = mysqli_query(conn(), $sql);
-	$produtos = array();
-	while ($linha = mysqli_fetch_assoc($resultado)) {
-		$produtos[] = $linha;
-	}
-	return $produtos;
-}
-
 function viewProduto($id)
 {
-	$sql = "SELECT p.*, c.nome AS categoria, m.nome AS marca, s.nome AS serie 
+	$sql = "SELECT p.*, c.nome AS categoria, m.nome AS marca 
 			FROM produto p 
 			INNER JOIN categoria c
 			ON p.categoria = c.idCategoria 
 			INNER JOIN marca m 
 			ON p.marca = m.idMarca 
-			INNER JOIN serie s
-			ON p.serie = s.idSerie 
 			WHERE idProduto = '$id'";
 	$resultado = mysqli_query(conn(), $sql);
 	$produto = mysqli_fetch_assoc($resultado);
@@ -94,7 +79,6 @@ function addProduto(
 	$preco,
 	$categoria,
 	$marca,
-	$serie,
 	$descricao,
 	$imagem,
 	$estoque_minimo,
@@ -118,7 +102,6 @@ function addProduto(
 				'$preco',
 				'$categoria',
 				'$marca',
-				'$serie',
 				'$descricao',
 				'$imagem',
 				'$estoque_minimo',
@@ -145,7 +128,6 @@ function editProduto(
 	$preco,
 	$categoria,
 	$marca,
-	$serie,
 	$descricao,
 	$imagem,
 	$estoque_minimo,
@@ -167,7 +149,6 @@ function editProduto(
 				preco = 			'$preco',
 				categoria = 		'$categoria',
 				marca = 			'$marca',
-				serie = 			'$serie',
 				descricao = 		'$descricao',
 				imagem = 			'$imagem',
 				estoque_minimo = 	'$estoque_minimo',

@@ -6,7 +6,6 @@ require_once "servico/uploadServico.php";
 require_once "modelo/produtoModelo.php";
 require_once "modelo/categoriaModelo.php";
 require_once "modelo/marcaModelo.php";
-require_once "modelo/serieModelo.php";
 
 /** admin */
 function index()
@@ -23,7 +22,6 @@ function buscar($nome)
 		$nome = $_POST['buscar'];
 		$dados['categorias'] = allCategoria();
 		$dados['marcas'] = allMarca();
-		$dados['series'] = allSerie();
 		$dados['produtos'] = getProdutoByNome($nome);
 		exibir("produtos/index", $dados);
 	}
@@ -42,18 +40,7 @@ function buscarPorMarca($marca)
 {
 	$dados['categorias'] = allCategoria();
 	$dados['marcas'] = allMarca();
-	$dados['series'] = allSerie();
 	$dados['produtos'] = getProdutoByMarca($marca);
-	exibir("produtos/index", $dados);
-}
-
-/** anon */
-function buscarPorSerie($serie)
-{
-	$dados['categorias'] = allCategoria();
-	$dados['marcas'] = allMarca();
-	$dados['series'] = allSerie();
-	$dados['produtos'] = getProdutoBySerie($serie);
 	exibir("produtos/index", $dados);
 }
 
@@ -72,7 +59,7 @@ function deletar($id)
 	redirecionar("produto/");
 }
 
-/** admin */
+/** anon */
 function adicionar()
 {
 	if (ehPost()) {
@@ -81,8 +68,12 @@ function adicionar()
 		$preco = 			$_POST["preco"];
 		$categoria = 		$_POST["categoria"];
 		$marca = 			$_POST["marca"];
-		$serie = 			$_POST["serie"];
 		$descricao = 		$_POST["descricao"];
+		
+		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
+		$name_img = 		$_FILES["imagem"]["name"];
+		$imagem = 			uploadImagem($imagem_tmp, $name_img);
+		
 		$estoque_minimo = 	$_POST["estoque_minimo"];
 		$estoque_maximo = 	$_POST["estoque_maximo"];
 		$quant_estoque = 	$_POST["quant_estoque"];
@@ -90,15 +81,12 @@ function adicionar()
 		$cor = 				$_POST["cor"];
 		$tipo_chip = 		$_POST["tipo_chip"];
 		$quant_chip = 		$_POST["quant_chip"];
-		$mem_interna = 		$_POST["mem_interna"];
+		$mem_interna = 		$_POST["mem_interna"]." ".$_POSt['mem_interna_quant'];
 		$mem_ram = 			$_POST["mem_ram"];
 		$processador = 		$_POST["processador"];
 		$display = 			$_POST["display"];
 		$so = 				$_POST["so"];
 
-		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
-		$name_img = 		$_FILES["imagem"]["name"];
-		$imagem = uploadImagem($imagem_tmp, $name_img);
 
 		$errors = array();
 
@@ -108,7 +96,6 @@ function adicionar()
 			if (!validar_Preco($preco)) {$errors['preco'] = "Preco inválido!";}
 			if (!validar_Categoria($categoria)) {$errors['categoria'] = "Categoria inválida!";}
 			if (!validar_Marca($marca)) {$errors['marca'] = "Marca inválida!";}
-			if (!validar_Serie($serie)) {$errors['serie'] = "Serie inválida!";}
 			if (!validar_Descricao($descricao)) {$errors['descricao'] = "Descrição inválida!";}
 			if (!validar_Imagem($imagem)) {$errors['imagem'] = "Extensão inválida!";}
 			if (!validar_Estoque($estoque_minimo,$estoque_maximo,$quant_estoque)) {$errors['estoque'] = "Quantidade em estoque não permitida!";}
@@ -129,15 +116,13 @@ function adicionar()
 			$dados["errors"] = 		$errors;
 			$dados['categorias'] = 	allCategoria();
 			$dados['marcas'] = 		allMarca();
-			$dados['series'] = 		allSerie();
-			exibir("produtos/formulario", $dados);
+			exibir("produtos/adicionar", $dados);
 		} else {
 			addProduto(
 				$nome,
 				$preco,
 				$categoria,
 				$marca,
-				$serie,
 				$descricao,
 				$imagem,
 				$estoque_minimo,
@@ -159,8 +144,7 @@ function adicionar()
 		$dados = array();
 		$dados['categorias'] = 	allCategoria();
 		$dados['marcas'] = 		allMarca();
-		$dados['series'] = 		allSerie();
-		exibir("produtos/formulario", $dados);
+		exibir("produtos/adicionar", $dados);
 	}
 }
 
@@ -173,7 +157,6 @@ function editar($id)
 		$preco = 			$_POST["preco"];
 		$categoria = 		$_POST["categoria"];
 		$marca = 			$_POST["marca"];
-		$serie = 			$_POST["serie"];
 		$descricao = 		$_POST["descricao"];
 		$estoque_minimo = 	$_POST["estoque_minimo"];
 		$estoque_maximo = 	$_POST["estoque_maximo"];
@@ -200,7 +183,6 @@ function editar($id)
 			if (!validar_Preco($preco)) {$errors['preco'] = "Preco inválido!";}
 			if (!validar_Categoria($categoria)) {$errors['categoria'] = "Categoria inválida!";}
 			if (!validar_Marca($marca)) {$errors['marca'] = "Marca inválida!";}
-			if (!validar_Serie($serie)) {$errors['serie'] = "Serie inválida!";}
 			if (!validar_Descricao($descricao)) {$errors['descricao'] = "Descrição inválida!";}
 			if (!validar_Imagem($imagem)) {$errors['imagem'] = "Extensão inválida!";}
 			if (!validar_Estoque($estoque_minimo,$estoque_maximo,$quant_estoque)) {$errors['estoque'] = "Quantidade em estoque não permitida!";}
@@ -222,7 +204,6 @@ function editar($id)
 			$dados['produto'] = 	viewProduto($id);
 			$dados['categorias'] = 	allCategoria();
 			$dados['marcas'] = 		allMarca();
-			$dados['series'] = 		allSerie();
 			exibir("produtos/editar", $dados);
 		} else {
 			editProduto(
@@ -231,7 +212,6 @@ function editar($id)
 				$preco,
 				$categoria,
 				$marca,
-				$serie,
 				$descricao,
 				$imagem,
 				$estoque_minimo,
@@ -254,7 +234,6 @@ function editar($id)
 		$dados['produto'] = 	viewProduto($id);
 		$dados['categorias'] = 	allCategoria();
 		$dados['marcas'] = 		allMarca();
-		$dados['series'] = 		allSerie();
 		exibir("produtos/editar", $dados);
 	}
 }

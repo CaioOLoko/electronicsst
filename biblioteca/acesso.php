@@ -5,7 +5,6 @@ define('ACESSO', true);
 function acessoLogar($usuario) {
     if(!empty($usuario)) {
         $_SESSION["acesso"] = array(
-            "isUsuario" => $usuario['id'],
             "email" => $usuario["email"], 
             "tipo" => $usuario["tipo"]
         );
