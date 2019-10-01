@@ -1,7 +1,3 @@
-DROP DATABASE IF EXISTS electronicsst;
-CREATE DATABASE electronicsst;
-USE electronicsst;
-
 /*
 
 Falta o CRUD das tabelas:
@@ -12,6 +8,10 @@ Falta o CRUD das tabelas:
 * pedido_produto
 
 */
+
+DROP DATABASE IF EXISTS electronicsst;
+CREATE DATABASE electronicsst;
+USE electronicsst;
 
 CREATE TABLE usuario(
 	idUsuario BIGINT(11) NOT NULL AUTO_INCREMENT, 
