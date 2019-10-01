@@ -11,6 +11,7 @@
 		if (
 			($_SERVER['PHP_SELF'] != '/electronicsst/index.php/usuario/adicionar') &&
 			($_SERVER['PHP_SELF'] != '/electronicsst/index.php/login/') &&
+                        ($_SERVER['PHP_SELF'] != '/electronicsst/index.php/login') &&
 			($_SERVER['PHP_SELF'] != '/electronicsst/index.php/paginas/contact') &&
 			($_SERVER['PHP_SELF'] != '/electronicsst/index.php/paginas/about') &&
 			($_SERVER['PHP_SELF'] != '/electronicsst/index.php/paginas/politics')
@@ -29,7 +30,8 @@
 		<?php
 		if (
 			($_SERVER['PHP_SELF'] != '/electronicsst/index.php/usuario/adicionar') &&
-			($_SERVER['PHP_SELF'] != '/electronicsst/index.php/login/')
+			($_SERVER['PHP_SELF'] != '/electronicsst/index.php/login/') &&
+                        ($_SERVER['PHP_SELF'] != '/electronicsst/index.php/login')
 		)
 		{
 			require('rodape.php');

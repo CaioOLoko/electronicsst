@@ -6,7 +6,18 @@
 <p><strong>Sexo:</strong> <?= $usuario['sexo'] ?></p>
 <p><strong>Tipo de Usuário:</strong> <?= $usuario['tipo'] ?></p>
 
-<br><br>
+<br>
+
+<?php if ($usuario['tipo'] == 'admin'):?>
+<a href="cupom/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br>Cupons</a>
+<a href="FormaPagamento/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br>Pagamentos</a>
+<a href="produto/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br>Produtos</a>
+<a href="categoria/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br>Categorias</a>
+<a href="marca/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br>Marcas</a>
+<a href="endereco/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br>Endereços</a>
+<?php endif;?>
+
+<br>
 
 <table class="table" border="1">
 	<thead>
@@ -37,8 +48,8 @@
 	<?php endforeach; ?>
 </table>
 
-<a href="endereco/adicionar/<?= $usuario['idUsuario'] ?>" class="btn btn-primary" style="color:black; text-decoration: underline;">Adicionar Endereço</a><br>
+<a href="endereco/adicionar/<?= $usuario['idUsuario'] ?>" class="btn btn-primary" style="color:black; text-decoration: underline;">Adicionar Endereço</a>
 
 <?php if (acessoPegarPapelDoUsuario() == 'admin'):?>
-	<a href="usuario/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Voltar</a>
+	<a href="usuario/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br>Voltar</a>
 <?php endif;?>
