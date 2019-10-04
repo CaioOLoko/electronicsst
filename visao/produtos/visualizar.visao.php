@@ -3,12 +3,12 @@
         <img class="prod-img" src="<?= $produto["imagem"] ?>">
     </div>
     <div class="prod-description">
-        <h2 class="infoprincipal"><?= $produto["nomeproduto"] ?></h2>
-        <h4 class="categoriaproduto">Categoria: <?= $produto['nomecategoria'] ?></h4>
-        <h4 class="codigoproduto">(Cód. <?= $produto["idproduto"] ?>)</h4>
+        <h2 class="infoprincipal"><?= $produto["nome"] ?></h2>
+        <h4 class="categoriaproduto">Categoria: <?= $produto['categoria'] ?></h4>
+        <h4 class="codigoproduto">(Cód. <?= $produto["idProduto"] ?>)</h4>
         <h3 class="infoprincipal">R$ <?= number_format($produto['preco'], 2) ?></h3>
 
-        <a class="send-product" href="compras/adicionar/<?= $produto['idproduto'] ?>">ADICIONAR AO CARRINHO</a>
+        <a class="send-product" href="compras/adicionar/<?= $produto['idProduto'] ?>">ADICIONAR AO CARRINHO</a>
 
         <button class="accordion">INFORMAÇÕES DO PRODUTO</button>
         <div class="panel">
@@ -43,7 +43,6 @@
             <p class="caracteristica-especifica">Código</p>
             <p class="caracteristica-especifica">Código de barras</p>
             <p class="caracteristica-especifica">Marca</p>
-            <p class="caracteristica-especifica">Modelo</p>
             <p class="caracteristica-especifica">Cor</p>
             <p class="caracteristica-especifica">Tipo de Chip</p>
             <p class="caracteristica-especifica">Quantidade de Chips</p>
@@ -53,10 +52,9 @@
             <p class="caracteristica-especifica">Sistema Operacional</p>						
         </div>
         <div class="caracteristica">
-            <p class="caracteristica-especifica"><?= $produto['idproduto'] ?></p>
+            <p class="caracteristica-especifica"><?= $produto['idProduto'] ?></p>
             <p class="caracteristica-especifica"><?= $produto['cod_barras'] ?></p>
             <p class="caracteristica-especifica"><?= $produto['marca'] ?></p>
-            <p class="caracteristica-especifica"><?= $produto['modelo'] ?></p>
             <p class="caracteristica-especifica"><?= $produto['cor'] ?></p>
             <p class="caracteristica-especifica"><?= $produto['tipo_chip'] ?></p>
             <p class="caracteristica-especifica"><?= $produto['quant_chip'] ?></p>

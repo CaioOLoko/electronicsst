@@ -9,13 +9,14 @@
         </form>
     </div>
     <?php if (acessoUsuarioEstaLogado()): ?>
-        <div class="" style="margin-right: 50px;">
-            <p style="color: #FFFFFF;">Bem vindo <br><?= acessoPegarUsuarioLogado() ?></p>
-        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Bem vindo <br><?= acessoPegarUsuarioLogado() ?></button>
+            <div class="dropdown-content">
+                <a href="usuario/visualizar/<?= acessoPegarUsuarioLogado() ?>"><h3>Minha Conta</h3></a>
+                <a href="login/logout"><h3>Sair</h3></a>
+            </div>
+        </div>  
 
-        <div class="">
-            <a style="color: #FFFFFF;" href="login/logout">Sair</a>
-        </div>
     <?php else: ?>
         <div class="dropdown">
             <button class="dropbtn">Login ou<br>Cadastro</button>

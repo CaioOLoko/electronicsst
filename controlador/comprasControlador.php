@@ -69,7 +69,7 @@ function adicionar($idProduto) {
 /** admin */
 function existeProdutoNoCarrinho($produtos, $idProduto) {
 	foreach ($produtos as $chave => $produto) {
-		if ($produto["idproduto"] == $idProduto) { //ja existe
+		if ($produto["idProduto"] == $idProduto) { //ja existe
 			return $chave;
 		} 
 	}
@@ -80,7 +80,7 @@ function existeProdutoNoCarrinho($produtos, $idProduto) {
 function removerProduto($id) {
 	$produtos = $_SESSION['carrinho'];
 	foreach ($produtos as $key => $produto) {
-		if ($produto['idproduto'] == $id) {
+		if ($produto['idProduto'] == $id) {
 			unset($produtos[$key]);
 		}
 	}
