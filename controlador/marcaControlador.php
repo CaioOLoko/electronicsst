@@ -69,7 +69,7 @@ function editar($id)
 		} else {
 			editMarca(
 				$id,
-				$marca
+				$nome
 			);
 			redirecionar("marca/");
 		}
