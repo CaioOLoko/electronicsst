@@ -61,7 +61,6 @@ CREATE TABLE produto(
 	preco DOUBLE NOT NULL,
 	categoria BIGINT(11) NOT NULL,
 	marca BIGINT(11) NOT NULL,
-
 	descricao VARCHAR(800) NOT NULL,
 	imagem VARCHAR(200) NOT NULL,
 	estoque_minimo BIGINT(11) NOT NULL,
@@ -76,7 +75,6 @@ CREATE TABLE produto(
 	processador VARCHAR(30) NOT NULL,
 	display VARCHAR(10) NOT NULL,
 	so VARCHAR(20) NOT NULL,
-
 	PRIMARY KEY(idProduto),
 	FOREIGN KEY(categoria) REFERENCES categoria(idCategoria) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(marca) REFERENCES marca(idMarca) ON DELETE CASCADE ON UPDATE CASCADE

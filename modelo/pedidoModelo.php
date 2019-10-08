@@ -2,7 +2,15 @@
 
 function allPedido()
 {
-    $sql = "SELECT * FROM pedido ORDER BY dataCompra";
+    $sql = "SELECT pedido.*, usuario.*, FormaPagamento.nome AS Pagamento, endereco.* "
+            . "FROM pedido "
+            . "INNER JOIN FormaPagamento "
+            . "ON pedido.idFormaPagamento = FormaPagamento.idFormaPagamento "
+            . "INNER JOIN usuario "
+            . "ON pedido.idUsuario = usuario.idUsuario "
+            . "INNER JOIN usuario "
+            . "ON usuario.idUsuario = endereco.idUsuario "
+            . "ORDER BY dataCompra";
     $resultado = mysqli_query(conn(), $sql);
     $pedidos = array();
     while ($linha = mysqli_fetch_assoc($resultado)) {
