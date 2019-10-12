@@ -61,7 +61,7 @@ CREATE TABLE produto(
 	preco DOUBLE NOT NULL,
 	categoria BIGINT(11) NOT NULL,
 	marca BIGINT(11) NOT NULL,
-	descricao VARCHAR(800) NOT NULL,
+	descricao VARCHAR(2000) NOT NULL,
 	imagem VARCHAR(200) NOT NULL,
 	estoque_minimo BIGINT(11) NOT NULL,
 	estoque_maximo BIGINT(11) NOT NULL,
