@@ -237,3 +237,39 @@ function editar($id)
 		exibir("produtos/editar", $dados);
 	}
 }
+
+/** admin */
+function uploadProduto($arquivo)
+{
+	$dados = fopen($arquivo, 'r');
+	
+	while (!feof($dados)) {
+		$linha[""] = fgets(handle);
+
+	}
+	
+	addProduto(
+		$nome,
+		$preco,
+		$categoria,
+		$marca,
+		$descricao,
+		$imagem,
+		$estoque_minimo,
+		$estoque_maximo,
+		$quant_estoque,
+		$cod_barras,
+		$cor,
+		$tipo_chip,
+		$quant_chip,
+		$mem_interna,
+		$mem_ram,
+		$processador,
+		$display,
+		$so
+	);
+	
+	fclose($arquivo);
+
+	redirecionar("produto/");
+}
