@@ -2,11 +2,14 @@
 
 require_once "servico/correiosServico.php";
 
+require_once "modelo/enderecoModelo.php";
 require_once "modelo/produtoModelo.php";
+require_once "modelo/FormaPagamentoModelo.php";
+require_once "modelo/cupomModelo.php";
 
 /** anon */
-function index() {
-
+function index()
+{
 	// testar cep/frete
 	if (ehPost()) {
 		$cep_destino = $_POST['cep'];
@@ -41,7 +44,8 @@ function index() {
 }
 
 /** anon */
-function adicionar($idProduto) {
+function adicionar($idProduto)
+{
 
 	if (isset($_SESSION["carrinho"])) {
 		$produtos = $_SESSION["carrinho"];
@@ -67,38 +71,55 @@ function adicionar($idProduto) {
 }
 
 /** admin */
-function existeProdutoNoCarrinho($produtos, $idProduto) {
+function existeProdutoNoCarrinho($produtos, $idProduto)
+{
 	foreach ($produtos as $chave => $produto) {
 		if ($produto["idProduto"] == $idProduto) { //ja existe
 			return $chave;
-		} 
+		}
 	}
 	return false;
 }
 
 /** anon */
-function removerProduto($id) {
+function removerProduto($id)
+{
 	$produtos = $_SESSION['carrinho'];
 	foreach ($produtos as $key => $produto) {
 		if ($produto['idProduto'] == $id) {
 			unset($produtos[$key]);
 		}
 	}
+
 	$_SESSION['carrinho'] = $produtos;
 	redirecionar("compras/");
 }
 
 /** anon */
-function limparCarrinho() {
+function limparCarrinho()
+{
 	unset($_SESSION['carrinho']);
 	redirecionar("paginas/");
 }
 
-function finalizar(){
-    if(acessoUsuarioEstaLogado()){
-        exibir("carrinho/finalizar");
-    } else {
-        $_SESSION['verificar'] = false;
-        redirecionar("login/");
-    }
+/** anon */
+function finalizar()
+{
+	if(acessoUsuarioEstaLogado()){
+
+		if (ehPost()) {
+			$cupom = $_POST['cupom'];
+		} else {
+			$idUsuario = acessoPegarUsuarioLogado();
+
+			$dados = array();
+			$dados['pagamentos'] = allPagamento();
+			$dados['enderecos'] = getEnderecoByUsuario($idUsuario);
+			exibir("carrinho/finalizar", $dados);
+		}
+
+	} else {
+		$_SESSION['verificar'] = false;
+		redirecionar("login/");
+	}
 }

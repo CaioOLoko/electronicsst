@@ -265,14 +265,11 @@ span{
 
 /* :--:  CATÁLOGO  :--: */
 .product-list{
-    border-top: 1px solid #DCDCDC;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    overflow-x: auto;
-    max-height: 600px;
 }
 .product-link{
     margin: 20px;

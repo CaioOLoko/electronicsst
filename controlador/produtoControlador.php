@@ -81,7 +81,7 @@ function adicionar()
 		$cor = 				$_POST["cor"];
 		$tipo_chip = 		$_POST["tipo_chip"];
 		$quant_chip = 		$_POST["quant_chip"];
-		$mem_interna = 		$_POST["mem_interna"]." ".$_POSt['mem_interna_quant'];
+		$mem_interna = 		$_POST["mem_interna"]." ".$_POST['mem_interna_quant'];
 		$mem_ram = 			$_POST["mem_ram"];
 		$processador = 		$_POST["processador"];
 		$display = 			$_POST["display"];

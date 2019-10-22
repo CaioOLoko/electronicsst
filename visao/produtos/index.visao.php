@@ -5,7 +5,7 @@
         </thead>
         <?php foreach ($categorias as $categoria): ?>
             <tr>
-                <td><a href="produto/buscarPorCategoria/<?= $categoria['idcategoria'] ?>"><?= $categoria['nomecategoria'] ?></a></td>
+                <td><a href="produto/buscarPorCategoria/<?= $categoria['idCategoria'] ?>"><?= $categoria['nome'] ?></a></td>
             </tr>
         <?php endforeach; ?>
     </table>
@@ -30,16 +30,16 @@
     <?php foreach ($produtos as $produto): ?>
         <tr>
             <td><img src="<?= $produto['imagem'] ?>" style="heigth: 100px; width: 100px;"></td>
-            <td><?= $produto['idproduto'] ?></td>
-            <td><?= $produto['nomeproduto'] ?></td>
+            <td><?= $produto['idProduto'] ?></td>
+            <td><?= $produto['nome'] ?></td>
             <td><?= $produto['preco'] ?></td>
             <td><?= substr($produto['descricao'], 0, 30) . "..." ?></td>
             <td><?= $produto['estoque_minimo'] ?></td>
             <td><?= $produto['estoque_maximo'] ?></td>
             <td><?= $produto['quant_estoque'] ?></td>
-            <td><a href="produto/ver/<?= $produto['idproduto'] ?>" style="color: #000000;">Detalhes</a></td>
-            <td><a href="produto/editar/<?= $produto['idproduto'] ?>">Alterar</a></td>
-            <td><a href="produto/deletar/<?= $produto['idproduto'] ?>">Deletar</a></td>
+            <td><a href="produto/visualizar/<?= $produto['idProduto'] ?>" style="color: #000000;">Detalhes</a></td>
+            <td><a href="produto/editar/<?= $produto['idProduto'] ?>">Alterar</a></td>
+            <td><a href="produto/deletar/<?= $produto['idProduto'] ?>">Deletar</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

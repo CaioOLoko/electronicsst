@@ -7,7 +7,6 @@
         </figure>
 </div>
 -->
-
 <div class="product-list">
     <?php foreach ($produtos as $produto): ?>
         <a href="produto/visualizar/<?= $produto['idProduto'] ?>" class="product-link">

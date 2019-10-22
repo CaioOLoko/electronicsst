@@ -4,7 +4,7 @@ function conn() {
 	$local = "biblioteca/manipulacao/local.csv";
 	$servidor = "biblioteca/manipulacao/servidor.csv";
 
-	$arquivo = $servidor;
+	$arquivo = $local;
 
 	$file = fopen($arquivo, 'r');
 
