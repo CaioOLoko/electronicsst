@@ -3,7 +3,8 @@
 function calcular_frete(
 	$cep_destino,
 	$valor // valor de serviço adicionais
-) {
+)
+{
 
 	$cep_origem = 18202000;
 	$peso = 5; // em quilogramas

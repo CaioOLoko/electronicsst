@@ -5,7 +5,9 @@
         </thead>
         <?php foreach ($categorias as $categoria): ?>
             <tr>
-                <td><a href="produto/buscarPorCategoria/<?= $categoria['idCategoria'] ?>"><?= $categoria['nome'] ?></a></td>
+                <td>
+                    <a href="produto/buscarPorCategoria/<?= $categoria['idCategoria'] ?>"><?= $categoria['nome'] ?></a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>
@@ -43,3 +45,9 @@
         </tr>
     <?php endforeach; ?>
 </table>
+
+<a href="produto/adicionar" class="btn btn-primary" style="color:black; text-decoration: underline;">Adicionar Produto</a>
+
+<br>
+
+<a href="produto/upload" class="btn btn-primary" style="color:black; text-decoration: underline;">Adicionar Lista de Produtos</a>

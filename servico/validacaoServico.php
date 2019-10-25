@@ -1,19 +1,17 @@
 <?php
 
-# VALIDAÇÃO DO USUÁRIO/ADM
-
 function validar_Nome($nome)
 {
-	$regex = "/^[A-Za-záàâãéèêîíìóòôõúùûçñÁÀÂÃÉÈÊÍÌÎÓÒÔÕÚÙÛÇÑ]+$/";
+	$regex = "/^[áàâãéèêîíìóòôõúùûçñÁÀÂÃÉÈÊÍÌÎÓÒÔÕÚÙÛÇÑ]+$/";
 
 	if ((!strlen(trim($nome)) > 0) && (!strlen(trim($nome)) < 60)) {
 		return false;
 	} else {
 		$nome = trim($nome);
 		if (preg_match($regex, $nome)) {
-			return true;
-		} else {
 			return false;
+		} else {
+			return true;
 		}
 	}
 }
@@ -94,16 +92,26 @@ function validar_Cep($cep)
 	}
 }
 
-function validar_Extensao_Imagem($image_name)
+function validar_Imagem($image_name)
 {
 	$extensao = strtolower(substr($image_name, -4));
 	if (
 		$extensao == ".jpg" ||
-		$extensao == ".png" ||
-		$extensao == ".gif"
+		$extensao == ".png"
 	){
 		return true;
 	}else{
 		return false;
+	}
+}
+
+function validar_Arquivo($arquivo)
+{
+	$extensao = strtolower(substr($arquivo,-4));
+
+	if (($extensao != ".txt") && ($extensao != ".csv")){
+		return false;
+	}else{
+		return true;
 	}
 }

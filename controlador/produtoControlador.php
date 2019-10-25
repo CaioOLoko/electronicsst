@@ -69,11 +69,6 @@ function adicionar()
 		$categoria = 		$_POST["categoria"];
 		$marca = 			$_POST["marca"];
 		$descricao = 		$_POST["descricao"];
-		
-		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
-		$name_img = 		$_FILES["imagem"]["name"];
-		$imagem = 			uploadImagem($imagem_tmp, $name_img);
-		
 		$estoque_minimo = 	$_POST["estoque_minimo"];
 		$estoque_maximo = 	$_POST["estoque_maximo"];
 		$quant_estoque = 	$_POST["quant_estoque"];
@@ -83,9 +78,13 @@ function adicionar()
 		$quant_chip = 		$_POST["quant_chip"];
 		$mem_interna = 		$_POST["mem_interna"]." ".$_POST['mem_interna_quant'];
 		$mem_ram = 			$_POST["mem_ram"];
-		$processador = 		$_POST["processador"];
+		$processador = 		$_POST["marca_proc"]." ".$_POST["processador"];
 		$display = 			$_POST["display"];
 		$so = 				$_POST["so"];
+
+		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
+		$name_img = 		$_FILES["imagem"]["name"];
+		$imagem = 			uploadImagem($imagem_tmp, $name_img);
 
 
 		$errors = array();
@@ -165,15 +164,15 @@ function editar($id)
 		$cor = 				$_POST["cor"];
 		$tipo_chip = 		$_POST["tipo_chip"];
 		$quant_chip = 		$_POST["quant_chip"];
-		$mem_interna = 		$_POST["mem_interna"];
+		$mem_interna = 		$_POST["mem_interna"]." ".$_POST['mem_interna_quant'];
 		$mem_ram = 			$_POST["mem_ram"];
-		$processador = 		$_POST["processador"];
+		$processador = 		$_POST["marca_proc"]." ".$_POST["processador"];
 		$display = 			$_POST["display"];
 		$so = 				$_POST["so"];
 
 		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
 		$name_img = 		$_FILES["imagem"]["name"];
-		$imagem = uploadImagem($imagem_tmp, $name_img);
+		$imagem = 			uploadImagem($imagem_tmp, $name_img);
 
 		$errors = array();
 
@@ -239,37 +238,40 @@ function editar($id)
 }
 
 /** admin */
-function uploadProduto($arquivo)
+function upload()
 {
-	$dados = fopen($arquivo, 'r');
-	
-	while (!feof($dados)) {
-		$linha[""] = fgets(handle);
+	if (ehPost()) {
+		$dados = fopen($arquivo, 'r');
+		
+		while (!feof($dados)) {
+			$linha = fgets($dados);
+		}
+		
+		addProduto(
+			$nome,
+			$preco,
+			$categoria,
+			$marca,
+			$descricao,
+			$imagem,
+			$estoque_minimo,
+			$estoque_maximo,
+			$quant_estoque,
+			$cod_barras,
+			$cor,
+			$tipo_chip,
+			$quant_chip,
+			$mem_interna,
+			$mem_ram,
+			$processador,
+			$display,
+			$so
+		);
+		
+		fclose($arquivo);
 
+		redirecionar("produto/");
+	} else {
+		exibir("produtos/upload");
 	}
-	
-	addProduto(
-		$nome,
-		$preco,
-		$categoria,
-		$marca,
-		$descricao,
-		$imagem,
-		$estoque_minimo,
-		$estoque_maximo,
-		$quant_estoque,
-		$cod_barras,
-		$cor,
-		$tipo_chip,
-		$quant_chip,
-		$mem_interna,
-		$mem_ram,
-		$processador,
-		$display,
-		$so
-	);
-	
-	fclose($arquivo);
-
-	redirecionar("produto/");
 }

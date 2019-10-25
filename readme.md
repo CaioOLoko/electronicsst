@@ -3,45 +3,6 @@ MVCd - MVC desorientado
 
 Este é um projeto desenvolvido com propósito educacional e não deve ser usado em projetos reais. A ideia geral do projeto é apresentar as ideias e conceitos de arquitetura, modelos e framework para alunos que ainda não conhecem a orientação a objetos.
  
-## Estrutura do projeto
-A estrutura do projeto é ilustrada abaixo:
-
-    mvcd/
-    ├── biblioteca/
-    │   ├── bd/
-    |   |   └── script_banco.sql
-    │   ├── acesso.php
-    │   ├── alert.php
-    │   ├── mysqli.php
-    │   ├── uteis.php
-    │   └── visao.php
-    └── controlador/
-    │   ├── usuarioControlador.php
-    │   └── loginControlador.php
-    └── modelo/
-    │   └── usuarioModelo.php
-    └── publico/
-    │   ├── css/
-    |   |   └── app.css
-    │   └── js/
-    |       └── app.js
-    └── servico/
-    └── visao/
-    │   ├── login/
-    |   |   └── index.visao.php
-    │   ├── paginas/
-    |   |   └── inicial.visao.php
-    │   ├── usuario/
-    |   |   ├── formulario.visao.php
-    |   |   ├── listar.visao.php
-    |   |   └── visualizar.visao.php
-    |   ├── cabecalho.php
-    |   └── template.php
-    ├── .htaccess
-    ├── app.php
-    ├── index.php
-    └── readme.md
-
 O framework utiliza o padrão arquitetural MVC, logo sua estrutura básica apresenta os três principais objetos da arquitetura, representados pelas pastas `modelo`, `controlador` e `visao`. 
 
 ## Rotas
