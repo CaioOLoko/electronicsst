@@ -150,29 +150,29 @@ INSERT INTO usuario VALUES(
 	52535138840,
 	"2003-01-16",
 	"Masculino",
-	"admin"
+	"admins"
 );
 
 INSERT INTO produto VALUES (NULL,
-        "Moto G",
-        999.99,
-        1,
-        1,
-        "Bonito",
-        "lala.jpg",
-        1, 
-        2,
-        10,
-        12345689,
-        "preto",
-        "nano",
-        3,
-        "64GB",
-        "4GB",
-        "snapdragon",
-        "5.7",
-        "android"
-    );
+    "Moto G",
+    999.99,
+    1,
+    1,
+    "Bonito",
+    "lala.jpg",
+    1, 
+    2,
+    10,
+    12345689,
+    "preto",
+    "nano",
+    3,
+    "64GB",
+    "4GB",
+    "snapdragon",
+    "5.7",
+    "android"
+);
 
 
 -- AULA 12 GBD, MANIPULAÇÃO DE ARQUIVOS PW2
