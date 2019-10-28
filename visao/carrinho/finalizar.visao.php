@@ -9,6 +9,9 @@
 			<?php endforeach;?>
 		</select>
 	</div>
+	<p><?= $quantidade ?> produto(s) <a href="">visualizar produtos</a></p>
+	<br>
+	<p>Total a pagar: <?= $total?></p>
 
 	<form action="" method="POST" class="cupom">
 		<h2>Possui cupom?</h2>
@@ -16,9 +19,7 @@
 		<button type="submit">Verificar</button>
 	</form>
 
-	<form class="pagamento">
 		<?php foreach($pagamentos as $pagamento):?>
-			<a href=""><?=$pagamento['idFormaPagamento']?> - <?=$pagamento['nome']?></a><br>
+			<input type="radio" name="pagamento" value="<?=$pagamento['idFormaPagamento']?>"><?=$pagamento['nome']?>&nbsp;&nbsp;&nbsp;
 		<?php endforeach;?>
-	</div>
 </div>

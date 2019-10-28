@@ -1,10 +1,10 @@
 <h2>Descrição do Cupom</h2>
 
-<strong>Código:</strong>      <?= $cupom['idcupom'] ?>
-<strong>Nome:</strong>        <?= $cupom['nomecupom'] ?>
+<strong>Código:</strong>      <?= $cupom['idCupom'] ?>
+<strong>Nome:</strong>        <?= $cupom['nome'] ?>
 <strong>Desconto:</strong>        <?= $cupom['desconto'] ?>
 
 <br><br>
 
-<a href="./cupom/listarCupom" style="color:black; text-decoration: underline;">Voltar</a>
+<a href="./cupom/" style="color:black; text-decoration: underline;">Voltar</a>
 

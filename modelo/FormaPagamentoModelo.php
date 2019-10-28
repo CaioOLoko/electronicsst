@@ -43,7 +43,7 @@ function editPagamento(
 )
 {
 	$sql = "CALL sp_updPagamento (
-				'$idFormaPagamento',
+				'$id',
 				'$nome'
 			)";
 	$resultado = mysqli_query(conn(), $sql);

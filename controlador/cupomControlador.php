@@ -9,7 +9,7 @@ function index()
 {
 	$dados = array();
 	$dados["cupons"] = allCupom();
-	exibir("cupom/listar", $dados);
+	exibir("cupom/index", $dados);
 }
 
 /** admin */

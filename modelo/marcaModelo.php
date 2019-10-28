@@ -11,7 +11,7 @@ function allMarca()
 	return $marcas;
 }
 
-function viewMarca($id)
+function viewMarca($idMarca)
 {
 	$sql = "CALL sp_selMarca ('$idMarca')";
 	$resultado = mysqli_query(conn(), $sql);

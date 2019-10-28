@@ -29,6 +29,9 @@ function index()
 	$quantidadeProdutos = 0;
 	$subtotal = 0;
 
+
+	var_dump($_SESSION['carrinho']); 
+
 	foreach ($produtos as $posicao => $valor) {
 		$quantidadeProdutos += $valor["quantidade"];
 		$subtotal += ($valor["preco"]*$valor["quantidade"]);
@@ -105,21 +108,39 @@ function limparCarrinho()
 /** anon */
 function finalizar()
 {
+	$total = 0;
 	if(acessoUsuarioEstaLogado()){
 
-		if (ehPost()) {
-			$cupom = $_POST['cupom'];
-		} else {
-			$idUsuario = acessoPegarUsuarioLogado();
+		$produtos = $_SESSION["carrinho"];
+		$quantidade = 0;
 
-			$dados = array();
-			$dados['pagamentos'] = allPagamento();
-			$dados['enderecos'] = getEnderecoByUsuario($idUsuario);
-			exibir("carrinho/finalizar", $dados);
+		foreach ($produtos as $key => $produto) {
+			$subtotal = $produto['quantidade'] * $produto['preco'];
+
+			$total += $subtotal;
+
+			$quantidade = $produto['quantidade']+$quantidade;
 		}
+	}
 
+	$idUsuario = acessoPegarUsuarioLogado();
+
+	$dados = array();
+	$dados['subtotal'] = $subtotal;
+	$dados['total'] = $total;
+	$dados['quantidade'] = $quantidade;
+	$dados['pagamentos'] = allPagamento();
+	$dados['enderecos'] = getEnderecoByUsuario($idUsuario);
+	exibir("carrinho/finalizar", $dados);
+
+	if (ehPost()) {
+		$cupom = $_POST['cupom'];
 	} else {
-		$_SESSION['verificar'] = false;
-		redirecionar("login/");
+		$idUsuario = acessoPegarUsuarioLogado();
+
+		$dados = array();
+		$dados['pagamentos'] = allPagamento();
+		$dados['enderecos'] = getEnderecoByUsuario($idUsuario);
+		exibir("carrinho/finalizar", $dados);
 	}
 }

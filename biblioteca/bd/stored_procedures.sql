@@ -346,7 +346,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_updMarca (
 				v_idMarca BIGINT(11),
-				v_nome
+				v_nome VARCHAR(20)
 			)
 			BEGIN
 				UPDATE marca 
@@ -485,8 +485,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_delUsuario (v_idUsuario BIGINT(11))
 			BEGIN
-				DELETE * 
-				FROM usuario
+				DELETE FROM usuario
 				WHERE idUsuario = v_idUsuario;
 			END; $$
 		DELIMITER ;
@@ -497,8 +496,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_delCupom (v_idCupom BIGINT(8))
 			BEGIN
-				DELETE *
-				FROM cupom 
+				DELETE FROM cupom 
 				WHERE idCupom = v_idCupom;
 			END; $$
 		DELIMITER ;
@@ -509,8 +507,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_delCategoria (v_idCategoria BIGINT(11))
 			BEGIN
-				DELETE *
-				FROM categoria 
+				DELETE FROM categoria 
 				WHERE idCategoria = v_idCategoria;
 			END; $$
 		DELIMITER ;
@@ -521,8 +518,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_delMarca (v_idMarca BIGINT(11))
 			BEGIN
-				DELETE *
-				FROM marca 
+				DELETE FROM marca 
 				WHERE idMarca = v_idMarca;
 			END; $$
 		DELIMITER ;
@@ -533,8 +529,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_delProduto (v_idProduto BIGINT(11))
 			BEGIN
-				DELETE *
-				FROM produto 
+				DELETE FROM produto 
 				WHERE idProduto = v_idProduto;
 			END; $$
 		DELIMITER ;
@@ -545,8 +540,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_delEndereco (v_idEndereco BIGINT(11))
 			BEGIN
-				DELETE *
-				FROM endereco 
+				DELETE FROM endereco 
 				WHERE idEndereco = v_idEndereco;
 			END; $$
 		DELIMITER ;
@@ -557,8 +551,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_delPagamento (v_idPagamento BIGINT(11))
 			BEGIN
-				DELETE * 
-				FROM FormaPagamento 
+				DELETE FROM FormaPagamento 
 				WHERE idFormaPagamento = v_idPagamento;
 			END; $$
 		DELIMITER ;
@@ -608,11 +601,9 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_selMarca (v_idMarca BIGINT(11))
 			BEGIN
-				SELECT m.*, COUNT(p.idProduto) AS quantidade 
-				FROM marca m 
-				INNER JOIN produto p 
-				ON m.idMarca = p.marca 
-				WHERE m.idMarca = v_idMarca;
+				SELECT * 
+				FROM marca 
+				WHERE idMarca = v_idMarca;
 			END; $$
 		DELIMITER ;
 		CALL sp_selMarca ('$idMarca');
@@ -949,4 +940,4 @@
 		DELIMITER ;
 		CALL sp_ProdutoByMarca ('$marca');
 
--- -- < <> > -- --
+-- -- < - < : > - > -- --

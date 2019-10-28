@@ -9,7 +9,7 @@ function index()
 {
 	$dados = array();
 	$dados["formaspagamento"] = allPagamento();
-	exibir("FormaPagamento/listar", $dados);
+	exibir("FormaPagamento/index", $dados);
 }
 
 /** admin */

@@ -10,11 +10,11 @@
             <th>Deletar</th>
         </tr>
     </thead>
-    <?php foreach ($formaspagamentos as $formapagamento): ?>
+    <?php foreach ($formaspagamento as $formapagamento): ?>
     <tr>
         <td><?=$formapagamento['idFormaPagamento']?></td>
-        <td><?=$formapagamento['descricao']?></td>
-        <td><a href="./FormaPagamento/ver/<?= $formapagamento['idFormaPagamento'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
+        <td><?=$formapagamento['nome']?></td>
+        <td><a href="./FormaPagamento/visualizar/<?= $formapagamento['idFormaPagamento'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
         <td><a href="./FormaPagamento/editar/<?= $formapagamento['idFormaPagamento'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
         <td><a href="./FormaPagamento/deletar/<?= $formapagamento['idFormaPagamento'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
     </tr>
