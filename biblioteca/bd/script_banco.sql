@@ -94,7 +94,8 @@ CREATE TABLE log_produto(
 	usuario VARCHAR(45) NOT NULL,
 	data_hora DATETIME NOT NULL,
 	acao VARCHAR(45) NOT NULL,
-	dados VARCHAR(3000) NOT NULL,
+	dadosAntigos VARCHAR(2500) NOT NULL,
+	dadosNovos VARCHAR(2500) NOT NULL,
 	PRIMARY KEY(idLog)
 );
 CREATE TABLE estoque(
@@ -117,7 +118,6 @@ INSERT INTO usuario VALUES(
 	"Masculino",
 	"admin"
 );
-
 INSERT INTO usuario VALUES(
 	NULL,
 	"Thiago",

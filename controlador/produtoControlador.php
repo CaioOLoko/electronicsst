@@ -55,7 +55,10 @@ function visualizar($id)
 /** admin */
 function deletar($id)
 {
+	$produto = viewProduto($id);
 	delProduto($id);
+	unlink($produto['imagem']);
+	unset($produto);
 	redirecionar("produto/");
 }
 
@@ -240,35 +243,69 @@ function editar($id)
 /** admin */
 function upload()
 {
+	$c = 0;
 	if (ehPost()) {
-		$dados = fopen($arquivo, 'r');
-		
-		while (!feof($dados)) {
-			$linha = fgets($dados);
+
+		$nome_arquivo = 	$_FILES['listaProdutos']['name'];
+		$nome_tmp_arquivo = $_FILES['listaProdutos']['tmp_name'];
+
+		$arquivo = uploadFile($nome_tmp_arquivo, $nome_arquivo);
+
+		$registros = fopen($arquivo, 'r');
+
+		while (!feof($registros)) {
+			if ($c == 0) {
+				continue;
+			}
+
+			$linha = fgets($registros);
+
+			$dados = explode(',', $linha);
+
+			var_dump($dados);
+
+			$nome = 			$dados[0];
+			$preco = 			$dados[1];
+			$categoria = 		$dados[2];
+			$marca = 			$dados[3];
+			$descricao = 		$dados[4];
+			$imagem = 			$dados[5];
+			$estoque_minimo = 	$dados[6];
+			$estoque_maximo = 	$dados[7];
+			$quant_estoque = 	$dados[8];
+			$cod_barras = 		$dados[9];
+			$cor = 				$dados[10];
+			$tipo_chip = 		$dados[11];
+			$quant_chip = 		$dados[12];
+			$mem_interna = 		$dados[13];
+			$mem_ram = 			$dados[14];
+			$processador = 		$dados[15];
+			$display = 			$dados[16];
+			$so = 				$dados[17];
+
+			addProduto(
+				$nome,
+				$preco,
+				$categoria,
+				$marca,
+				$descricao,
+				$imagem,
+				$estoque_minimo,
+				$estoque_maximo,
+				$quant_estoque,
+				$cod_barras,
+				$cor,
+				$tipo_chip,
+				$quant_chip,
+				$mem_interna,
+				$mem_ram,
+				$processador,
+				$display,
+				$so
+			);
 		}
-		
-		addProduto(
-			$nome,
-			$preco,
-			$categoria,
-			$marca,
-			$descricao,
-			$imagem,
-			$estoque_minimo,
-			$estoque_maximo,
-			$quant_estoque,
-			$cod_barras,
-			$cor,
-			$tipo_chip,
-			$quant_chip,
-			$mem_interna,
-			$mem_ram,
-			$processador,
-			$display,
-			$so
-		);
-		
-		fclose($arquivo);
+
+		fclose($registros);
 
 		redirecionar("produto/");
 	} else {

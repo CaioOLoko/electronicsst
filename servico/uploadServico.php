@@ -11,13 +11,13 @@ function uploadImagem($imagem_temp_name,$name_imagem)
 	return $diretorio.$novo_nome;
 }
 
-function uploadFile($arquivo)
+function uploadFile($nome_tmp_arquivo, $nome_arquivo)
 {
-	$extensao = 	strtolower(substr($arquivo,-4));
-	$novo_nome = 	time().$extensao;
+	$extensao = 	strtolower(substr($nome_arquivo,-4));
+	$novo_nome = 	date("Y-m-d_H-i-s").$extensao;
 	$diretorio = 	"publico/upload/files/";
 
-	move_uploaded_file($arquivo, $diretorio.$novo_nome);
+	move_uploaded_file($nome_tmp_arquivo, $diretorio.$novo_nome);
 
 	return $diretorio.$novo_nome;
 }

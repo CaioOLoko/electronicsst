@@ -1,6 +1,6 @@
 <?php
 
-function allMarca() 
+function allMarca()
 {
 	$sql = "CALL sp_TodasMarcas ()";
 	$resultado = mysqli_query(conn(), $sql);
@@ -17,6 +17,17 @@ function viewMarca($idMarca)
 	$resultado = mysqli_query(conn(), $sql);
 	$marca = mysqli_fetch_assoc($resultado);
 	return $marca;
+}
+
+function getMarcaByNome($nome)
+{
+	$sql = "CALL sp_MarcaByNome ('$nome')";
+	$resultado = mysqli_query(conn(), $sql);
+	$marcas = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$marcas[] = $linha;
+	}
+	return $marcas;
 }
 
 function delMarca($idMarca)

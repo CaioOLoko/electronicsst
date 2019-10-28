@@ -7,3 +7,4 @@
     <a href="marca/deletar/<?=$marca['idMarca']?>">Remover</a>
 </div>
 <?php endforeach;?>
+<a href="marca/adicionar">Cadastrar Marca</a>

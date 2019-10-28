@@ -1,4 +1,4 @@
--- -- < - < ADICIONAR > - > -- --
+-- -- < - <  ADICIONAR  > - > -- --
 	-- Usuario
 		DROP PROCEDURE IF EXISTS sp_addUsuario;
 		DELIMITER $$
@@ -27,16 +27,6 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addUsuario (
-			'$nome', 
-			'$sobrenome', 
-			'$email',
-			'$senha', 
-			'$cpf',
-			'$nascimento', 
-			'$sexo',
-			'user'
-		);
 
 	-- Cupom
 		DROP PROCEDURE IF EXISTS sp_addCupom;
@@ -54,10 +44,6 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addCupom (
-			'$nome', 
-			'$desconto'
-		);
 
 	-- Categoria
 		DROP PROCEDURE IF EXISTS sp_addCategoria;
@@ -73,9 +59,6 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addCategoria (
-			'$nome'
-		);
 
 	-- Marca
 		DROP PROCEDURE IF EXISTS sp_addMarca;
@@ -91,9 +74,6 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addMarca (
-			'$nome'
-		);
 
 	-- Produto
 		DROP PROCEDURE IF EXISTS sp_addProduto;
@@ -143,26 +123,6 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addProduto (
-			'$nome',
-			'$preco',
-			'$categoria',
-			'$marca',
-			'$descricao',
-			'$imagem',
-			'$estoque_minimo',
-			'$estoque_maximo',
-			'$quant_estoque',
-			'$cod_barras',
-			'$cor',
-			'$tipo_chip',
-			'$quant_chip',
-			'$mem_interna',
-			'$mem_ram',
-			'$processador',
-			'$display',
-			'$so'
-		);
 
 	-- Endereco
 		DROP PROCEDURE IF EXISTS sp_addEndereco;
@@ -190,15 +150,6 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addEndereco (
-			'$idUsuario',
-			'$logradouro',
-			'$numero',
-			'$complemento',
-			'$bairro',
-			'$cidade',
-			'$cep'
-		);
 
 	-- Forma de Pagamento
 		DROP PROCEDURE IF EXISTS sp_addPagamento;
@@ -214,9 +165,6 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addPagamento (
-			'$nome'
-		);
 
 	-- Pedido
 		DROP PROCEDURE IF EXISTS sp_addPedido;
@@ -236,11 +184,6 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addPedido (
-			'$idUsuario',
-			'$idFormaPagamento',
-			'$dataCompra'
-		);
 
 	-- Pedido Produto
 		DROP PROCEDURE IF EXISTS sp_addPedidoProduto;
@@ -259,13 +202,8 @@
 				);
 			END; $$
 		DELIMITER ;
-		CALL sp_addPedidoProduto (
-			'$idPedido',
-			'$idProduto',
-			'$quantidade'
-		);
 
--- -- < - < EDITAR > - > -- --
+-- -- < - <    EDITAR   > - > -- --
 	-- Usuario
 		DROP PROCEDURE IF EXISTS sp_updUsuario;
 		DELIMITER $$
@@ -291,16 +229,6 @@
 				WHERE idUsuario = v_idUsuario;
 			END; $$
 		DELIMITER ;
-		CALL sp_updUsuario (
-			'$idUsuario', 
-			'$nome',
-			'$sobrenome',
-			'$email',
-			'$senha',
-			'$cpf',
-			'$nascimento',
-			'$sexo'
-		);
 
 	-- Cupom
 		DROP PROCEDURE IF EXISTS sp_updCupom;
@@ -317,11 +245,6 @@
 				WHERE idCupom = v_idCupom;
 			END; $$
 		DELIMITER ;
-		CALL sp_updCupom (
-			'$idCupom',
-			'$nome',
-			'$desconto'
-		);
 
 	-- Categoria
 		DROP PROCEDURE IF EXISTS sp_updCategoria;
@@ -336,10 +259,6 @@
 				WHERE idCategoria = v_idCategoria;
 			END; $$
 		DELIMITER ;
-		CALL sp_updCategoria (
-			'$idCategoria',
-			'$nome'
-		);
 
 	-- Marca
 		DROP PROCEDURE IF EXISTS sp_updMarca;
@@ -354,10 +273,6 @@
 				WHERE idMarca = v_idMarca;
 			END; $$
 		DELIMITER ;
-		CALL sp_updMarca (
-			'$idMarca',
-			'$nome'
-		);
 
 	-- Produto
 		DROP PROCEDURE IF EXISTS sp_updProduto;
@@ -406,27 +321,6 @@
 				WHERE idProduto = v_idProduto;
 			END; $$
 		DELIMITER ;
-		CALL sp_updProduto (
-			'$idProduto',
-			'$nome',
-			'$preco',
-			'$categoria',
-			'$marca',
-			'$descricao',
-			'$imagem',
-			'$estoque_minimo',
-			'$estoque_maximo',
-			'$quant_estoque',
-			'$cod_barras',
-			'$cor',
-			'$tipo_chip',
-			'$quant_chip',
-			'$mem_interna',
-			'$mem_ram',
-			'$processador',
-			'$display',
-			'$so'
-		);
 
 	-- Endereco
 		DROP PROCEDURE IF EXISTS sp_updEndereco;
@@ -451,15 +345,6 @@
 				WHERE idEndereco = v_idEndereco;
 			END; $$
 		DELIMITER ;
-		CALL sp_updEndereco (
-			'$idEndereco',
-			'$logradouro',
-			'$numero',
-			'$complemento',
-			'$bairro',
-			'$cidade',
-			'$cep'
-		);
 
 	-- Forma de Pagamento
 		DROP PROCEDURE IF EXISTS sp_updPagamento;
@@ -474,12 +359,8 @@
 				WHERE idFormaPagamento = v_idPagamento;
 			END; $$
 		DELIMITER ;
-		CALL sp_updPagamento (
-			'$idFormaPagamento',
-			'$nome'
-		);
 
--- -- < - < DELETAR > - > -- --
+-- -- < - <   DELETAR   > - > -- --
 	-- Usuario
 		DROP PROCEDURE sp_delUsuario;
 		DELIMITER $$
@@ -489,7 +370,6 @@
 				WHERE idUsuario = v_idUsuario;
 			END; $$
 		DELIMITER ;
-		CALL sp_delUsuario ('$idUsuario');
 
 	-- Cupom
 		DROP PROCEDURE IF EXISTS sp_delCupom;
@@ -500,7 +380,6 @@
 				WHERE idCupom = v_idCupom;
 			END; $$
 		DELIMITER ;
-		CALL sp_delCupom ('$idCupom');
 
 	-- Categoria
 		DROP PROCEDURE IF EXISTS sp_delCategoria;
@@ -511,7 +390,6 @@
 				WHERE idCategoria = v_idCategoria;
 			END; $$
 		DELIMITER ;
-		CALL sp_delCategoria ('$idCategoria');
 
 	-- Marca
 		DROP PROCEDURE IF EXISTS sp_delMarca;
@@ -522,7 +400,6 @@
 				WHERE idMarca = v_idMarca;
 			END; $$
 		DELIMITER ;
-		CALL sp_delMarca ('$idMarca');
 
 	-- Produto
 		DROP PROCEDURE IF EXISTS sp_delProduto;
@@ -533,7 +410,6 @@
 				WHERE idProduto = v_idProduto;
 			END; $$
 		DELIMITER ;
-		CALL sp_delProduto ('$idProduto');
 
 	-- Endereco
 		DROP PROCEDURE IF EXISTS sp_delEndereco;
@@ -544,7 +420,6 @@
 				WHERE idEndereco = v_idEndereco;
 			END; $$
 		DELIMITER ;
-		CALL sp_delEndereco ('$idEndereco');
 
 	-- Forma de Pagamento
 		DROP PROCEDURE IF EXISTS sp_delPagamento;
@@ -555,9 +430,8 @@
 				WHERE idFormaPagamento = v_idPagamento;
 			END; $$
 		DELIMITER ;
-		CALL sp_delPagamento ('$idPagamento');
 
--- -- < - < VISUALIZAR > - > -- --
+-- -- < - <  VISUALIZAR > - > -- --
 	-- Usuario
 		DROP PROCEDURE IF EXISTS sp_selUsuario;
 		DELIMITER $$
@@ -568,7 +442,6 @@
 				WHERE idUsuario = v_idUsuario;
 			END; $$
 		DELIMITER ;
-		CALL sp_selUsuario ('$idUsuario');
 
 	-- Cupom
 		DROP PROCEDURE IF EXISTS sp_selCupom;
@@ -580,7 +453,6 @@
 				WHERE v_idCupom = v_idCupom;
 			END; $$
 		DELIMITER ;
-		CALL sp_selCupom ('$idCupom');
 
 	-- Categoria
 		DROP PROCEDURE IF EXISTS sp_selCategoria;
@@ -594,7 +466,6 @@
 				WHERE c.idCategoria = v_idCategoria;
 			END; $$
 		DELIMITER ;
-		CALL sp_selCategoria ('$idCategoria');
 
 	-- Marca
 		DROP PROCEDURE IF EXISTS sp_selMarca;
@@ -606,7 +477,6 @@
 				WHERE idMarca = v_idMarca;
 			END; $$
 		DELIMITER ;
-		CALL sp_selMarca ('$idMarca');
 
 	-- Produto
 		DROP PROCEDURE IF EXISTS sp_selProduto;
@@ -622,7 +492,6 @@
 				WHERE idProduto = v_idProduto;
 			END; $$
 		DELIMITER ;
-		CALL sp_selProduto ('$idProduto');
 
 	-- Endereco
 		DROP PROCEDURE IF EXISTS sp_selEndereco;
@@ -634,7 +503,6 @@
 				WHERE idEndereco = v_idEndereco;
 			END; $$
 		DELIMITER ;
-		CALL sp_selEndereco ('$idEndereco');
 
 	-- Pagamento
 		DROP PROCEDURE IF EXISTS sp_selPagamento;
@@ -646,7 +514,6 @@
 				WHERE idFormaPagamento = v_idPagamento;
 			END; $$
 		DELIMITER ;
-		CALL sp_selPagamento ('$idPagamento');
 
 	-- Pedido
 		DROP PROCEDURE IF EXISTS sp_selPedido;
@@ -658,7 +525,6 @@
 				WHERE idPedido = v_idPedido;
 			END; $$
 		DELIMITER ;
-		CALL sp_selPedido ('$idPedido');
 
 	-- Pedido Produto
 		DROP PROCEDURE IF EXISTS sp_selPedidoProduto;
@@ -670,7 +536,6 @@
 				WHERE idPedido = v_idPedido;
 			END; $$
 		DELIMITER ;
-		CALL sp_selPedidoProduto ('$idPedido');
 
 	-- LogProduto
 		DROP PROCEDURE IF EXISTS sp_selLogProduto;
@@ -682,7 +547,6 @@
 				WHERE idLog = v_idLog;
 			END; $$
 		DELIMITER ;
-		CALL sp_selLogProduto ('$idLog');
 
 	-- Estoque
 		DROP PROCEDURE IF EXISTS sp_selEstoque;
@@ -694,9 +558,8 @@
 				WHERE idEstoque = v_idEstoque;
 			END; $$
 		DELIMITER ;
-		CALL sp_selEstoque ('$idEstoque');
 
--- -- < - < LISTAR > - > -- --
+-- -- < - <   LISTAR    > - > -- --
 	-- Usuarios
 		DROP PROCEDURE IF EXISTS sp_TodosUsuarios;
 		DELIMITER $$
@@ -707,7 +570,6 @@
 				ORDER BY tipo, nome, sobrenome ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodosUsuarios ();
 
 	-- Cupons
 		DROP PROCEDURE IF EXISTS sp_TodosCupons;
@@ -719,7 +581,6 @@
 				ORDER BY idCupom ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodosCupons ();
 
 	-- Categorias
 		DROP PROCEDURE IF EXISTS sp_TodasCategorias;
@@ -731,7 +592,6 @@
 				ORDER BY nome ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodasCategorias ();
 
 	-- Marcas
 		DROP PROCEDURE IF EXISTS sp_TodasMarcas;
@@ -743,7 +603,6 @@
 				ORDER BY nome ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodasMarcas ();
 
 	-- Produtos
 		DROP PROCEDURE IF EXISTS sp_TodosProdutos;
@@ -755,7 +614,6 @@
 				ORDER BY nome ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodosProdutos ();
 
 	-- Enderecos
 		DROP PROCEDURE IF EXISTS sp_TodosEnderecos;
@@ -767,7 +625,6 @@
 				ORDER BY idUsuario, logradouro ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodosEnderecos ();
 
 	-- Pagamentos
 		DROP PROCEDURE IF EXISTS sp_TodosPagamentos;
@@ -779,7 +636,6 @@
 				ORDER BY nome ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodosPagamentos ();
 
 	-- Pedidos
 		DROP PROCEDURE IF EXISTS sp_TodosPedidos;
@@ -797,7 +653,6 @@
 				ORDER BY dataCompra ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodosPedidos ();
 
 	-- LogProdutos
 		DROP PROCEDURE IF EXISTS sp_TodosLogProutos;
@@ -809,9 +664,8 @@
 				ORDER BY data_hora ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_TodosLogProutos ();
 
--- -- < - <   OUTROS   > - > -- --
+-- -- < - <   OUTROS    > - > -- --
 	-- Usuario para Adm
 		DROP PROCEDURE IF EXISTS sp_UsuarioToAdm;
 		DELIMITER $$
@@ -822,7 +676,6 @@
 				WHERE idUsuario = v_idUsuario;
 			END; $$
 		DELIMITER ;
-		CALL sp_UsuarioToAdm ('$idUsuario');
 
 	-- Usuario por Email e Senha
 		DROP PROCEDURE IF EXISTS sp_UsuarioByEmailSenha;
@@ -837,8 +690,7 @@
 				WHERE email = v_email AND senha = v_senha;
 			END; $$
 		DELIMITER ;
-		CALL sp_UsuarioByEmailSenha ('$email', '$senha');
-	
+
 	-- Enderecos por Usuario
 		DROP PROCEDURE IF EXISTS sp_EnderecosByUsuario;
 		DELIMITER $$
@@ -850,7 +702,6 @@
 				ORDER BY logradouro ASC;
 			END; $$
 		DELIMITER ;
-		CALL sp_EnderecosByUsuario ('$idUsuario');
 
 	-- Deletar Enderecos por Usuario
 		DROP PROCEDURE IF EXISTS sp_delEnderecosByUsuario;
@@ -861,7 +712,6 @@
 				WHERE idUsuario = v_idUsuario;
 			END; $$
 		DELIMITER ;
-		CALL sp_delEnderecosByUsuario ('$idUsuario');
 
 	-- Pedidos por Usuario
 		DROP PROCEDURE IF EXISTS sp_PedidosByUsuario;
@@ -874,7 +724,6 @@
 				ORDER BY dataCompra;
 			END; $$
 		DELIMITER ;
-		CALL sp_PedidosByUsuario ('$idUsuario');
 
 	-- Pedidos por dataCompra
 		DROP PROCEDURE IF EXISTS sp_PedidosByDataCompra;
@@ -886,7 +735,6 @@
 				WHERE dataCompra = v_dataCompra;
 			END; $$
 		DELIMITER ;
-		CALL sp_PedidosByDataCompra ('$data');
 
 	-- Pedidos por Cidade
 		DROP PROCEDURE IF EXISTS sp_PedidosPorCidade;
@@ -902,7 +750,6 @@
 				WHERE endereco.cidade = '$cidade'
 			END; $$
 		DELIMITER ;
-		CALL sp_PedidosPorCidade ('$cidade');
 
 	-- Produto por Nome
 		DROP PROCEDURE sp_ProdutoByNome;
@@ -914,7 +761,6 @@
 				WHERE nome LIKE v_nome;
 			END; $$
 		DELIMITER ;
-		CALL sp_ProdutoByNome ('%$nome%');
 
 	-- Produto por Categoria
 		DROP PROCEDURE sp_ProdutoByCategoria;
@@ -926,7 +772,6 @@
 				WHERE categoria = v_categoria;
 			END; $$
 		DELIMITER ;
-		CALL sp_ProdutoByCategoria ('$categoria');
 
 	-- Produto por Marca
 		DROP PROCEDURE sp_ProdutoByMarca;
@@ -938,6 +783,16 @@
 				WHERE marca = v_marca;
 			END; $$
 		DELIMITER ;
-		CALL sp_ProdutoByMarca ('$marca');
+
+	-- Marca por Nome
+		DROP PROCEDURE IF EXISTS sp_MarcaByNome;
+		DELIMITER $$
+			CREATE PROCEDURE sp_MarcaByNome (v_nome VARCHAR(20))
+			BEGIN
+				SELECT *
+				FROM marca 
+				WHERE nome LIKE "%v_nome%";
+			END; $$
+		DELIMITER ;
 
 -- -- < - < : > - > -- --
