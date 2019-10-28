@@ -2,9 +2,7 @@
 
 function allUsuario()
 {
-	$sql = "SELECT * 
-			FROM usuario
-			ORDER BY tipo,nome,sobrenome ASC";
+	$sql = "CALL sp_TodosUsuarios ()";
 	$resultado = mysqli_query(conn(), $sql);
 	$usuarios = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -15,9 +13,7 @@ function allUsuario()
 
 function viewUsuario($id)
 {
-	$sql = "SELECT * 
-			FROM usuario 
-			WHERE idUsuario = '$id'";
+	$sql = "CALL sp_selUsuario ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	$usuario = mysqli_fetch_assoc($resultado);
 	return $usuario;
@@ -25,8 +21,7 @@ function viewUsuario($id)
 
 function delUsuario($id)
 {
-	$sql = "DELETE FROM usuario 
-			WHERE idUsuario = '$id'";
+	$sql = "CALL sp_delUsuario ('$id')";
 	$resultado = mysqli_query($cnx = conn(), $sql);
 	if(!$resultado) { die('Erro ao deletar usuário' . mysqli_error($cnx)); }
 	return 'Usuario deletado com sucesso!';
@@ -34,26 +29,10 @@ function delUsuario($id)
 
 function convertUsuarioAdm($id)
 {
-	$sql = "UPDATE usuario 
-			SET tipo = 'admin' 
-			WHERE idUsuario = '$id'";
+	$sql = "CALL sp_UsuarioToAdm ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao tornar adm' . mysqli_error(conn()));}
-	return 'Bem Vindo Adm';
-}
-
-function getUsuarioByNome($nome)
-{
-	$sql = "SELECT * 
-			FROM usuario 
-			WHERE nome LIKE '%$nome%' 
-			ORDER BY tipo,nome,sobrenome ASC";
-	$resultado = mysqli_query(conn(), $sql);
-	$usuarios = array();
-	while ($linha = mysqli_fetch_assoc($resultado)) {
-		$usuarios[] = $linha;
-	}
-	return $usuarios;
+	return true;
 }
 
 function getUsuarioByEmailSenha(
@@ -61,9 +40,7 @@ function getUsuarioByEmailSenha(
 	$senha
 )
 {
-	$sql = "SELECT * 
-			FROM usuario 
-			WHERE email = '$email' AND senha = '$senha'";
+	$sql = "CALL sp_UsuarioByEmailSenha ('$email', '$senha')";
 	$resultado = mysqli_query(conn(), $sql);
 	$usuario = mysqli_fetch_assoc($resultado);
 	return $usuario;
@@ -76,21 +53,18 @@ function addUsuario(
 	$senha,
 	$cpf,
 	$nascimento,
-	$sexo,
-	$tipo
+	$sexo
 )
 {
-	$sql = "INSERT INTO usuario 
-			VALUES (
-				NULL,
-				'$nome',
-				'$sobrenome',
+	$sql = "CALL sp_addUsuario (
+				'$nome', 
+				'$sobrenome', 
 				'$email',
-				'$senha',
+				'$senha', 
 				'$cpf',
-				'$nascimento',
+				'$nascimento', 
 				'$sexo',
-				'$tipo'
+				'user'
 			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if(!$resultado) { die('Erro ao cadastrar usuário' . mysqli_error(conn())); }
@@ -108,15 +82,16 @@ function editUsuario(
 	$sexo
 )
 {
-	$sql = "UPDATE usuario 
-			SET nome = 			'$nome',
-				sobrenome = 	'$sobrenome',
-				email = 		'$email',
-				senha = 		'$senha',
-				cpf = 			'$cpf',
-				nascimento =	'$nascimento',
-				sexo = 			'$sexo'
-			WHERE idUsuario = '$id'";
+	$sql = "CALL sp_updUsuario (
+				'$id', 
+				'$nome',
+				'$sobrenome',
+				'$email',
+				'$senha',
+				'$cpf',
+				'$nascimento',
+				'$sexo'
+			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if(!$resultado) { die('Erro ao alterar usuário' . mysqli_error(conn())); }
 	return 'Usuário alterado com sucesso!';

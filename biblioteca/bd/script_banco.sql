@@ -1,14 +1,3 @@
-/*
-
-Falta o CRUD das tabelas:
-
-* estoque
-* log_produto
-* pedido
-* pedido_produto
-
-*/
-
 DROP DATABASE IF EXISTS electronicsst;
 CREATE DATABASE electronicsst;
 USE electronicsst;
@@ -25,36 +14,22 @@ CREATE TABLE usuario(
 	tipo VARCHAR(5) NOT NULL,
 	PRIMARY KEY(idUsuario)
 );
-
 CREATE TABLE cupom(
-	idCupom BIGINT(8) NOT NULL AUTO_INCREMENT,
+	idCupom BIGINT(11) NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(20) NOT NULL,
 	desconto INT(5) NOT NULL,
 	PRIMARY KEY(idCupom)
 );
-
-CREATE TABLE log_produto(
-	idLog BIGINT(11) NOT NULL AUTO_INCREMENT,
-	tabela VARCHAR(45) NOT NULL,
-	usuario VARCHAR(45) NOT NULL,
-	data_hora DATETIME NOT NULL,
-	acao VARCHAR(45) NOT NULL,
-	dados VARCHAR(1000) NOT NULL,
-	PRIMARY KEY(idLog)
-);
-
 CREATE TABLE categoria(
 	idCategoria BIGINT(11) NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(30) NOT NULL,
 	PRIMARY KEY(idCategoria)
 );
-
 CREATE TABLE marca(
 	idMarca BIGINT(11) NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(20) NOT NULL,
 	PRIMARY KEY(idMarca)
 );
-
 CREATE TABLE produto(
 	idProduto BIGINT(11) NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(30) NOT NULL,
@@ -79,7 +54,6 @@ CREATE TABLE produto(
 	FOREIGN KEY(categoria) REFERENCES categoria(idCategoria) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(marca) REFERENCES marca(idMarca) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE endereco(
 	idEndereco BIGINT(11) NOT NULL AUTO_INCREMENT,
 	idUsuario BIGINT(11) NOT NULL,
@@ -92,13 +66,11 @@ CREATE TABLE endereco(
 	PRIMARY KEY(idEndereco),
 	FOREIGN KEY(idUsuario) REFERENCES usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE FormaPagamento(
-	idFormaPagamento BIGINT NOT NULL AUTO_INCREMENT,
+	idFormaPagamento BIGINT(11) NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(45) NOT NULL,
 	PRIMARY KEY(idFormaPagamento)
 );
-
 CREATE TABLE pedido (
 	idPedido BIGINT(11) NOT NULL AUTO_INCREMENT,
 	idUsuario BIGINT(11) NOT NULL,
@@ -108,7 +80,6 @@ CREATE TABLE pedido (
 	FOREIGN KEY(idUsuario) REFERENCES usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(idFormaPagamento) REFERENCES FormaPagamento(idFormaPagamento) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE pedido_produto(
 	idPedido BIGINT(11) NOT NULL,
 	idProduto BIGINT(11) NOT NULL,
@@ -117,7 +88,15 @@ CREATE TABLE pedido_produto(
 	FOREIGN KEY(idProduto) REFERENCES produto(idProduto) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(idPedido) REFERENCES pedido(idPedido) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
+CREATE TABLE log_produto(
+	idLog BIGINT(11) NOT NULL AUTO_INCREMENT,
+	tabela VARCHAR(45) NOT NULL,
+	usuario VARCHAR(45) NOT NULL,
+	data_hora DATETIME NOT NULL,
+	acao VARCHAR(45) NOT NULL,
+	dados VARCHAR(3000) NOT NULL,
+	PRIMARY KEY(idLog)
+);
 CREATE TABLE estoque(
 	idEstoque BIGINT(11) NOT NULL AUTO_INCREMENT,
 	idProduto BIGINT(11) NOT NULL,
@@ -126,9 +105,7 @@ CREATE TABLE estoque(
 	FOREIGN KEY(idProduto) REFERENCES produto(idProduto) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
 -- INSERÇÃO DOS ADMINISTRADORES DO SISTEMA
-
 INSERT INTO usuario VALUES(
 	NULL,
 	"Samuel",
@@ -150,29 +127,5 @@ INSERT INTO usuario VALUES(
 	52535138840,
 	"2003-01-16",
 	"Masculino",
-	"admins"
+	"user"
 );
-
-INSERT INTO produto VALUES (NULL,
-    "Moto G",
-    999.99,
-    1,
-    1,
-    "Bonito",
-    "lala.jpg",
-    1, 
-    2,
-    10,
-    12345689,
-    "preto",
-    "nano",
-    3,
-    "64GB",
-    "4GB",
-    "snapdragon",
-    "5.7",
-    "android"
-);
-
-
--- AULA 12 GBD, MANIPULAÇÃO DE ARQUIVOS PW2

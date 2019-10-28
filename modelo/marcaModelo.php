@@ -2,8 +2,7 @@
 
 function allMarca() 
 {
-	$sql = "SELECT * 
-			FROM marca";
+	$sql = "CALL sp_TodasMarcas ()";
 	$resultado = mysqli_query(conn(), $sql);
 	$marcas = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -14,18 +13,15 @@ function allMarca()
 
 function viewMarca($id)
 {
-	$sql = "SELECT * 
-			FROM marca 
-			WHERE idMarca = '$id'";
+	$sql = "CALL sp_selMarca ('$idMarca')";
 	$resultado = mysqli_query(conn(), $sql);
 	$marca = mysqli_fetch_assoc($resultado);
 	return $marca;
 }
 
-function delMarca($id)
+function delMarca($idMarca)
 {
-	$sql = "DELETE FROM marca 
-			WHERE idMarca = '$id'";
+	$sql = "CALL sp_delMarca ('$idMarca')";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao deletar marca' . mysqli_error(conn()));}
 	return 'Marca deletada com sucesso!';
@@ -33,24 +29,21 @@ function delMarca($id)
 
 function addMarca($nome)
 {
-	$sql = "INSERT INTO marca 
-			VALUES(
-				NULL,
-				'$nome'
-			)";
+	$sql = "CALL sp_addMarca ('$nome')";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao cadastrar marca'.mysqli_error(conn()));}
 	return 'Marca cadastrada com sucesso!';
 }
 
 function editMarca(
-	$id,
+	$idMarca,
 	$nome
 )
 {
-	$sql = "UPDATE marca 
-			SET nome = '$nome' 
-			WHERE idMarca = '$id'";
+	$sql = "CALL sp_updMarca (
+				'$idMarca',
+				'$nome'
+			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao alterar marca' . mysqli_error(conn()));}
 	return 'Marca alterada com sucesso!';

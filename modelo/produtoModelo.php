@@ -2,8 +2,7 @@
 
 function allProduto()
 {
-	$sql = "SELECT * 
-			FROM produto";
+	$sql = "CALL sp_TodosProdutos ()";
 	$resultado = mysqli_query(conn(), $sql);
 	$produtos = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -14,9 +13,7 @@ function allProduto()
 
 function getProdutoByNome($nome)
 {
-	$sql = "SELECT * 
-			FROM produto 
-			WHERE nome LIKE '%$nome%'";
+	$sql = "CALL sp_ProdutoByNome ('%$nome%')";
 	$resultado = mysqli_query(conn(), $sql);
 	$busca = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -27,9 +24,7 @@ function getProdutoByNome($nome)
 
 function getProdutoByCategoria($categoria)
 {
-	$sql = "SELECT * 
-			FROM produto 
-			WHERE categoria = '$categoria'";
+	$sql = "CALL sp_ProdutoByCategoria ('$categoria')";
 	$resultado = mysqli_query(conn(), $sql);
 	$produtos = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -40,9 +35,7 @@ function getProdutoByCategoria($categoria)
 
 function getProdutoByMarca($marca)
 {
-	$sql = "SELECT * 
-			FROM produto 
-			WHERE marca = '$marca'";
+	$sql = "CALL sp_ProdutoByMarca ('$marca')";
 	$resultado = mysqli_query(conn(), $sql);
 	$produtos = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -53,13 +46,7 @@ function getProdutoByMarca($marca)
 
 function viewProduto($id)
 {
-	$sql = "SELECT p.*, c.nome AS categoria, m.nome AS marca 
-			FROM produto p 
-			INNER JOIN categoria c
-			ON p.categoria = c.idCategoria 
-			INNER JOIN marca m 
-			ON p.marca = m.idMarca 
-			WHERE idProduto = '$id'";
+	$sql = "CALL sp_selProduto ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	$produto = mysqli_fetch_assoc($resultado);
 	return $produto;
@@ -67,8 +54,7 @@ function viewProduto($id)
 
 function delProduto($id)
 {
-	$sql = "DELETE FROM produto 
-			WHERE idProduto = '$id'";
+	$sql = "CALL sp_delProduto ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao deletar produto' . mysqli_error(conn()));}
 	return 'Produto deletado com sucesso!';
@@ -95,9 +81,7 @@ function addProduto(
 	$so
 )
 {
-	$sql = "INSERT INTO produto 
-			VALUES(
-				NULL,
+	$sql = "CALL sp_addProduto (
 				'$nome',
 				'$preco',
 				'$categoria',
@@ -144,26 +128,27 @@ function editProduto(
 	$so
 )
 {
-	$sql = "UPDATE produto 
-			SET nome = 				'$nome',
-				preco = 			'$preco',
-				categoria = 		'$categoria',
-				marca = 			'$marca',
-				descricao = 		'$descricao',
-				imagem = 			'$imagem',
-				estoque_minimo = 	'$estoque_minimo',
-				estoque_maximo = 	'$estoque_maximo',
-				quant_estoque = 	'$quant_estoque',
-				cod_barras = 		'$cod_barras',
-				cor = 				'$cor',
-				tipo_chip = 		'$tipo_chip',
-				quant_chip = 		'$quant_chip',
-				mem_interna = 		'$mem_interna',
-				mem_ram = 			'$mem_ram',
-				processador = 		'$processador',
-				display = 			'$display',
-				so = 				'$so' 
-			WHERE idProduto = '$id'";
+	$sql = "CALL sp_updProduto (
+				'$id',
+				'$nome',
+				'$preco',
+				'$categoria',
+				'$marca',
+				'$descricao',
+				'$imagem',
+				'$estoque_minimo',
+				'$estoque_maximo',
+				'$quant_estoque',
+				'$cod_barras',
+				'$cor',
+				'$tipo_chip',
+				'$quant_chip',
+				'$mem_interna',
+				'$mem_ram',
+				'$processador',
+				'$display',
+				'$so'
+			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao alterar produto' . mysqli_error(conn()));}
 	return 'Produto alterado com sucesso!';

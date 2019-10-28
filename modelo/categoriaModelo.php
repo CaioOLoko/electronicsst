@@ -2,8 +2,7 @@
 
 function allCategoria() 
 {
-	$sql = "SELECT * 
-			FROM categoria";
+	$sql = "CALL sp_TodasCategorias ()";
 	$resultado = mysqli_query(conn(), $sql);
 	$categorias = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -14,11 +13,7 @@ function allCategoria()
 
 function viewCategoria($id)
 {
-	$sql = "SELECT c.nome, c.idCategoria, COUNT(p.idProduto) AS quantidade 
-			FROM categoria c 
-			INNER JOIN produto p 
-			ON c.idCategoria = p.categoria 
-			WHERE c.idCategoria = '$id'";
+	$sql = "CALL sp_selCategoria ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	$categoria = mysqli_fetch_assoc($resultado);
 	return $categoria;
@@ -26,8 +21,7 @@ function viewCategoria($id)
 
 function delCategoria($id)
 {
-	$sql = "DELETE FROM categoria 
-			WHERE idCategoria = '$id'";
+	$sql = "CALL sp_delCategoria ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao deletar categoria' . mysqli_error(conn()));}
 	return 'Categoria deletada com sucesso!';
@@ -35,9 +29,7 @@ function delCategoria($id)
 
 function addCategoria($nome)
 {
-	$sql = "INSERT INTO categoria 
-			VALUES(
-				NULL,
+	$sql = "CALL sp_addCategoria (
 				'$nome'
 			)";
 	$resultado = mysqli_query(conn(), $sql);
@@ -50,9 +42,10 @@ function editCategoria(
 	$nome
 )
 {
-	$sql = "UPDATE categoria 
-			SET nome = '$nome' 
-			WHERE idCategoria = '$id'";
+	$sql = "CALL sp_updCategoria (
+				'$id',
+				'$nome'
+			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao alterar categoria' . mysqli_error(conn()));}
 	return 'Categoria alterada com sucesso!';

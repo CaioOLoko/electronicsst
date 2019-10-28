@@ -69,8 +69,7 @@ function adicionar()
 				$senha,
 				$cpf,
 				$nascimento,
-				$sexo,
-				'user'
+				$sexo
 			);
 			redirecionar("usuario/");
 		}
@@ -85,7 +84,7 @@ function editar($id)
 	if (ehPost()) {
 
 		$nome = 		$_POST["nome"];
-		$sobrenome =            $_POST["sobrenome"];
+		$sobrenome =    $_POST["sobrenome"];
 		$email = 		$_POST["email"];
 		$senha = 		$_POST["senha"];
 		$cpf = 			$_POST["cpf"];

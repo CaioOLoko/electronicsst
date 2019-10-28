@@ -2,9 +2,7 @@
 
 function allEndereco()
 {
-	$sql = "SELECT * 
-			FROM endereco
-			ORDER BY idUsuario,logradouro ASC";
+	$sql = "CALL sp_TodosEnderecos ()";
 	$resultado = mysqli_query(conn(), $sql);
 	$enderecos = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -15,10 +13,7 @@ function allEndereco()
 
 function getEnderecoByUsuario($idUsuario)
 {
-	$sql = "SELECT * 
-			FROM endereco 
-			WHERE idUsuario = '$idUsuario'
-			ORDER BY idEndereco ASC";
+	$sql = "CALL sp_EnderecosByUsuario ('$idUsuario')";
 	$resultado = mysqli_query(conn(), $sql);
 	$enderecos_usuario = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -29,9 +24,7 @@ function getEnderecoByUsuario($idUsuario)
 
 function viewEndereco($id)
 {
-	$sql = "SELECT * 
-			FROM endereco 
-			WHERE idEndereco = '$id'";
+	$sql = "CALL sp_selEndereco ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	$endereco = mysqli_fetch_assoc($resultado);
 	return $endereco;
@@ -39,8 +32,7 @@ function viewEndereco($id)
 
 function delEndereco($id)
 {
-	$sql = "DELETE FROM endereco 
-			WHERE idEndereco = '$id'";
+	$sql = "CALL sp_delEndereco ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao deletar endereço' . mysqli_error(conn()));}
 	return 'Endereço deletado com sucesso!';
@@ -48,8 +40,7 @@ function delEndereco($id)
 
 function delEnderecoByUsuario($idUsuario)
 {
-	$sql = "DELETE FROM endereco 
-			WHERE idUsuario = '$idUsuario'";
+	$sql = "CALL sp_delEnderecosByUsuario ('$idUsuario')";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao deletar endereço' . mysqli_error(conn()));}
 	return 'Endereço deletado com sucesso!';
@@ -65,15 +56,13 @@ function addEndereco(
 	$cep
 )
 {
-	$sql = "INSERT INTO endereco 
-			VALUES(
-				NULL,
+	$sql = "CALL sp_addEndereco (
 				'$idUsuario',
-				'$logradouro', 
+				'$logradouro',
 				'$numero',
-				'$complemento', 
-				'$bairro', 
-				'$cidade', 
+				'$complemento',
+				'$bairro',
+				'$cidade',
 				'$cep'
 			)";
 	$resultado = mysqli_query(conn(), $sql);
@@ -82,7 +71,7 @@ function addEndereco(
 }
 
 function editEndereco(
-	$id,
+	$idEndereco,
 	$logradouro,
 	$numero,
 	$complemento,
@@ -91,14 +80,15 @@ function editEndereco(
 	$cep
 )
 {
-	$sql = "UPDATE endereco 
-			SET logradouro = 	'$logradouro', 
-				numero = 		'$numero',
-				complemento = 	'$complemento', 
-				bairro = 		'$bairro', 
-				cidade = 		'$cidade', 
-				cep = 			'$cep' 
-			WHERE idEndereco = '$id'";
+	$sql = "CALL sp_updEndereco (
+				'$idEndereco',
+				'$logradouro',
+				'$numero',
+				'$complemento',
+				'$bairro',
+				'$cidade',
+				'$cep'
+			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao alterar endereço' . mysqli_error(conn()));}
 	return 'Endereço alterado com sucesso!';

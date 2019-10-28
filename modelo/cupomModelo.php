@@ -2,8 +2,7 @@
 
 function allCupom()
 {
-	$sql = "SELECT * 
-			FROM cupom";
+	$sql = "CALL sp_TodosCupons ()";
 	$resultado = mysqli_query(conn(), $sql);
 	$cupons = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -14,9 +13,7 @@ function allCupom()
 
 function viewCupom($id)
 {
-	$sql = "SELECT * 
-			FROM cupom 
-			WHERE idCupom = '$id'";
+	$sql = "CALL sp_selCupom ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	$cupom = mysqli_fetch_assoc($resultado);
 	return $cupom;
@@ -24,8 +21,7 @@ function viewCupom($id)
 
 function delCupom($id)
 {
-	$sql = "DELETE FROM cupom 
-			WHERE idCupom = '$id'";
+	$sql = "CALL sp_delCupom ('$id')";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao deletar cupom' . mysqli_error(conn()));}
 	return 'Cupom deletado com sucesso!';
@@ -36,9 +32,7 @@ function addCupom(
 	$desconto
 )
 {
-	$sql = "INSERT INTO cupom
-			VALUES(
-				NULL,
+	$sql = "CALL sp_addCupom (
 				'$nome',
 				'$desconto'
 			)";
@@ -53,10 +47,11 @@ function editCupom(
 	$desconto
 )
 {
-	$sql = "UPDATE cupom 
-			SET nome = 		'$nome',
-				desconto = 	'$desconto' 
-			WHERE idCupom = '$id'";
+	$sql = "CALL sp_updCupom (
+			'$id',
+			'$nome',
+			'$desconto'
+			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao alterar cupom' . mysqli_error(conn()));}
 	return 'Cupom alterado com sucesso!';
