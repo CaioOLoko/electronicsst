@@ -9,7 +9,6 @@ function index() {
         $usuario = getUsuarioByEmailSenha($email, $senha);
 
         if (acessoLogar($usuario)) {
-            alert("Bem vindo " . $email);
 
             if (isset($_SESSION['verificar']) && $_SESSION['verificar'] == false) {
                 

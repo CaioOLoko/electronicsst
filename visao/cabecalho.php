@@ -10,7 +10,7 @@
     </div>
     <?php if (acessoUsuarioEstaLogado()): ?>
         <div class="dropdown">
-            <button class="dropbtn">Bem vindo <br><?= acessoPegarUsuarioLogado() ?></button>
+            <button class="dropbtn">Bem vindo, <br><?= acessoPegarNomeUsuario() ?></button>
             <div class="dropdown-content">
                 <a href="usuario/visualizar/<?= acessoPegarUsuarioLogado() ?>"><h3>Minha Conta</h3></a>
                 <a href="login/logout"><h3>Sair</h3></a>

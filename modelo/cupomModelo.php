@@ -56,3 +56,11 @@ function editCupom(
 	if (!$resultado) {die('Erro ao alterar cupom' . mysqli_error(conn()));}
 	return 'Cupom alterado com sucesso!';
 }
+
+function BuscarDescontoDeCupomPorNome()
+{
+	$sql = "CALL sp_DescontoByNome ('$nome')";
+	$resultado = mysqli_query(conn(), $sql);
+	$desconto = mysqli_fetch_assoc($resultado);
+	return $desconto;
+}

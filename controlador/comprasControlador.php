@@ -108,7 +108,14 @@ function limparCarrinho()
 /** anon */
 function finalizar()
 {
+	if (ehPost()) {
+		$desconto = BuscarDescontoDeCupomPorNome($_POST['cupom']);
+	} else {
+		$desconto = 0;
+	}
+
 	$total = 0;
+
 	if(acessoUsuarioEstaLogado()){
 
 		$produtos = $_SESSION["carrinho"];
@@ -124,23 +131,12 @@ function finalizar()
 	}
 
 	$idUsuario = acessoPegarUsuarioLogado();
-
 	$dados = array();
+	$dados['desconto'] = $desconto * $total;
+	$dados['total'] = $total - $dados['desconto'];
 	$dados['subtotal'] = $subtotal;
-	$dados['total'] = $total;
 	$dados['quantidade'] = $quantidade;
 	$dados['pagamentos'] = allPagamento();
 	$dados['enderecos'] = getEnderecoByUsuario($idUsuario);
 	exibir("carrinho/finalizar", $dados);
-
-	if (ehPost()) {
-		$cupom = $_POST['cupom'];
-	} else {
-		$idUsuario = acessoPegarUsuarioLogado();
-
-		$dados = array();
-		$dados['pagamentos'] = allPagamento();
-		$dados['enderecos'] = getEnderecoByUsuario($idUsuario);
-		exibir("carrinho/finalizar", $dados);
-	}
 }

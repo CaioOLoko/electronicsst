@@ -5,9 +5,10 @@ define('ACESSO', true);
 function acessoLogar($usuario) {
     if(!empty($usuario)) {
         $_SESSION["acesso"] = array(
+            "nome" => $usuario["nome"],
             "email" =>  $usuario["email"], 
             "tipo" =>   $usuario["tipo"],
-            "id" =>     $usuario["idUsuario"],
+            "id" =>     $usuario["idUsuario"]
         );
         return true; 
     }
@@ -34,5 +35,11 @@ function acessoPegarPapelDoUsuario() {
 function acessoPegarUsuarioLogado() {
     if (acessoUsuarioEstaLogado()) {
         return $_SESSION["acesso"]["id"];
+    }   
+}
+
+function acessoPegarNomeUsuario() {
+    if (acessoUsuarioEstaLogado()) {
+        return $_SESSION["acesso"]["nome"];
     }   
 }

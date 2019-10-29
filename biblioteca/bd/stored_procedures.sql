@@ -795,4 +795,15 @@
 			END; $$
 		DELIMITER ;
 
+	-- Desconto por Nome
+		DROP PROCEDURE IF EXISTS sp_DescontoByNome;
+		DELIMITER $$
+			CREATE PROCEDURE sp_DescontoByNome (v_nome VARCHAR(20))
+			BEGIN
+				SELECT desconto
+				FROM cupom
+				WHERE nome LIKE '%v_nome%';
+			END; $$
+		DELIMITER ;
+
 -- -- < - < : > - > -- --

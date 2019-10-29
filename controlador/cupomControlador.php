@@ -32,7 +32,7 @@ function adicionar()
 {
 	if (ehPost()) {
 		$nome = 		$_POST["nome"];
-		$desconto = 	$_POST["desconto"];
+		$desconto = 	$_POST["desconto"] / 100;
 
 		$errors = array();
 
@@ -60,7 +60,7 @@ function editar($id)
 {
 	if (ehPost()) {
 		$nome = 		$_POST["nome"];
-		$desconto = 	$_POST["desconto"];
+		$desconto = 	$_POST["desconto"] / 100;
 
 		$errors = array();
 		
