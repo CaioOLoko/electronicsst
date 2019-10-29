@@ -219,13 +219,13 @@
 			)
 			BEGIN
 				UPDATE usuario 
-				SET 	nome =		v_nome, 
+				SET nome =			v_nome, 
 					sobrenome =		v_sobrenome, 
 					email = 		v_email, 
-					senha =		v_senha, 
+					senha =			v_senha, 
 					cpf =			v_cpf,
 					nascimento = 	v_nascimento,
-					sexo = 		v_sexo 
+					sexo = 			v_sexo 
 				WHERE idUsuario = v_idUsuario;
 			END; $$
 		DELIMITER ;
@@ -240,7 +240,7 @@
 			)
 			BEGIN
 				UPDATE cupom 
-				SET 	nome = 	v_nome, 
+				SET nome = 		v_nome, 
 					desconto = 	v_desconto
 				WHERE idCupom = v_idCupom;
 			END; $$
@@ -300,24 +300,24 @@
 			)
 			BEGIN
 				UPDATE produto 
-				SET 	nome = 		v_nome,
-					preco = 		v_preco,
-					categoria = 	v_categoria,
-					marca = 		v_marca,
-					descricao = 	v_descricao,
-					imagem = 		v_imagem,
+				SET nome = 				v_nome,
+					preco = 			v_preco,
+					categoria = 		v_categoria,
+					marca = 			v_marca,
+					descricao = 		v_descricao,
+					imagem = 			v_imagem,
 					estoque_minimo = 	v_estoque_minimo,
 					estoque_maximo =	v_estoque_maximo,
 					quant_estoque = 	v_quant_estoque,
-					cod_barras = 	v_cod_barras,
-					cor = 		v_cor,
-					tipo_chip = 	v_tipo_chip,
-					quant_chip = 	v_quant_chip,
-					mem_interna = 	v_mem_interna,
-					mem_ram = 		v_mem_ram,
-					processador = 	v_processador,
-					display = 		v_display,
-					so = 			v_so 
+					cod_barras = 		v_cod_barras,
+					cor = 				v_cor,
+					tipo_chip = 		v_tipo_chip,
+					quant_chip = 		v_quant_chip,
+					mem_interna = 		v_mem_interna,
+					mem_ram = 			v_mem_ram,
+					processador = 		v_processador,
+					display = 			v_display,
+					so = 				v_so 
 				WHERE idProduto = v_idProduto;
 			END; $$
 		DELIMITER ;
@@ -336,12 +336,12 @@
 			)
 			BEGIN
 				UPDATE endereco 
-				SET 	logradouro = 	v_logradouro,
+				SET logradouro = 	v_logradouro,
 					numero = 		v_numero,
 					complemento = 	v_complemento,
 					bairro = 		v_bairro,
 					cidade = 		v_cidade,
-					cep = 		v_cep 
+					cep = 			v_cep 
 				WHERE idEndereco = v_idEndereco;
 			END; $$
 		DELIMITER ;
@@ -362,7 +362,7 @@
 
 -- -- < - <   DELETAR   > - > -- --
 	-- Usuario
-		DROP PROCEDURE sp_delUsuario;
+		DROP PROCEDURE IF EXISTS sp_delUsuario;
 		DELIMITER $$
 			CREATE PROCEDURE sp_delUsuario (v_idUsuario BIGINT(11))
 			BEGIN
@@ -642,7 +642,7 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_TodosPedidos ()
 			BEGIN
-				SELECT p.*, u.nome AS usuario, fp.nome AS pagamento, COUNT(pp.idProduto)
+				SELECT p.*, u.nome AS usuario, fp.nome AS pagamento, COUNT(pp.idProduto) AS quantidadeProdutos 
 				FROM pedido p 
 				INNER JOIN FormaPagamento fp 
 				ON p.idFormaPagamento = fp.idFormaPagamento 
@@ -747,23 +747,23 @@
 				ON pedido.idUsuario = usuario.idUsuario
 				INNER JOIN endereco
 				ON usuario.idUsuario = endereco.idUsuario
-				WHERE endereco.cidade = '$cidade'
+				WHERE endereco.cidade = '$cidade';
 			END; $$
 		DELIMITER ;
 
 	-- Produto por Nome
-		DROP PROCEDURE sp_ProdutoByNome;
+		DROP PROCEDURE IF EXISTS sp_ProdutoByNome;
 		DELIMITER $$
 			CREATE PROCEDURE sp_ProdutoByNome (v_nome VARCHAR(30))
 			BEGIN
 				SELECT *
 				FROM produto
-				WHERE nome LIKE v_nome;
+				WHERE nome LIKE "%v_nome%";
 			END; $$
 		DELIMITER ;
 
 	-- Produto por Categoria
-		DROP PROCEDURE sp_ProdutoByCategoria;
+		DROP PROCEDURE IF EXISTS sp_ProdutoByCategoria;
 		DELIMITER $$
 			CREATE PROCEDURE sp_ProdutoByCategoria (v_categoria BIGINT(11))
 			BEGIN
@@ -774,7 +774,7 @@
 		DELIMITER ;
 
 	-- Produto por Marca
-		DROP PROCEDURE sp_ProdutoByMarca;
+		DROP PROCEDURE IF EXISTS sp_ProdutoByMarca;
 		DELIMITER $$
 			CREATE PROCEDURE sp_ProdutoByMarca (v_marca BIGINT(11))
 			BEGIN

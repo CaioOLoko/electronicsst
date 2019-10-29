@@ -244,6 +244,7 @@ function editar($id)
 function upload()
 {
 	$c = 0;
+
 	if (ehPost()) {
 
 		$nome_arquivo = 	$_FILES['listaProdutos']['name'];
@@ -251,15 +252,18 @@ function upload()
 
 		$arquivo = uploadFile($nome_tmp_arquivo, $nome_arquivo);
 
+		echo $arquivo;
+
 		$registros = fopen($arquivo, 'r');
-
+		echo "<br>aberto";
 		while (!feof($registros)) {
-			if ($c == 0) {
-				continue;
-			}
-
 			$linha = fgets($registros);
+			echo $linha;
+		}
 
+			
+
+	/*
 			$dados = explode(',', $linha);
 
 			var_dump($dados);
@@ -302,12 +306,13 @@ function upload()
 				$processador,
 				$display,
 				$so
-			);
-		}
+			);*/
+		//}
 
 		fclose($registros);
+		echo "<br>fechado";
 
-		redirecionar("produto/");
+		// redirecionar("produto/");
 	} else {
 		exibir("produtos/upload");
 	}
