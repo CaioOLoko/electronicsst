@@ -1,69 +1,73 @@
 <script>
-    function formatar(mascara, documento) {
-        var i = documento.value.length;
-        var saida = mascara.substring(0, 1);
-        var texto = mascara.substring(i)
+	function formatar(mascara, documento) {
+		var i = documento.value.length;
+		var saida = mascara.substring(0, 1);
+		var texto = mascara.substring(i)
 
-        if (texto.substring(0, 1) != saida) {
-            documento.value += texto.substring(0, 1);
-        }
-
-    }
+		if (texto.substring(0, 1) != saida) {
+			documento.value += texto.substring(0, 1);
+		}
+	}
 </script>
 
-<div class="welcome-user">
-    <img src="publico/img/user/user.png" style="width: auto; height: 100%;">
-    <h1>Cadastre-se</h1>
+<div class="cadastro">
+	<p class="div-p">Cadastre-se</p>
+
+	<form method="POST" action="" class="formulario">
+		<label for="nomeUsuario" class="formulario-label">Nome<span>*</span><?php if (isset($erro['nome'])) {echo "(Nome inválido!)";}?></label>
+		<input id="nomeUsuario" class="formulario-input" type="text" name="nome" maxlength="60"><br>
+
+		<label for="sobrenomeUsuario" class="formulario-label">Sobrenome<span>*</span><?php if (isset($erro['sobrenome'])) {echo "(Sobrenome inválido!)";}?></label>
+		<input id="sobrenomeUsuario" class="formulario-input" type="text" name="sobrenome" maxlength="60"><br>
+
+		<label for="emailUsuario" class="formulario-label">E-mail<span>*</span><?php if (isset($erro['email'])) {echo "(Email inválido!)";}?></label>
+		<input id="emailUsuario" class="formulario-input" type="email" name="email"><br>
+
+		<label for="senhaUsuario" class="formulario-label">Senha<span>*</span><?php if (isset($erro['senha'])) {echo "(Senha inválida!)";}?></label>
+		<input id="senhaUsuario" class="formulario-input" type="password" name="senha"><br>
+
+		<label for="cpfUsuario" class="formulario-label">CPF<span>*</span><?php if (isset($erro['cpf'])) {echo "(CPF inválido!)";}?></label>
+		<input id="cpfUsuario" class="formulario-input" type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)"><br>
+
+		<label class="formulario-label">Data de Nascimento<span>*</span><?php if (isset($erro['data'])) {echo "(Data inválida!)";}?></label>
+		<div class="div-select">
+			<label class="label-cadastro" for="dia">Dia</label>
+			<select class="formulario-select" name="dia" id="dia">
+				<option value="default">--</option>
+				<?php for ($day = 1; $day <= 31; $day++): ?>
+					<option value="<?= $day ?>"><?= $day ?></option>
+				<?php endfor; ?>
+			</select>
+		</div>
+		<div class="div-select">
+			<label class="label-cadastro" for="mes">Mês</label>
+			<select class="formulario-select" name="mes" id="mes">
+				<option value="default">--</option>
+				<?php for ($month = 1; $month <= 12; $month ++): ?>
+					<option value="<?= $month ?>"><?= $month ?></option>
+				<?php endfor; ?>
+			</select>
+		</div>
+		<div class="div-select">
+			<label class="label-cadastro" for="ano">Ano</label>
+			<select class="formulario-select" name="ano" id="ano">
+				<option value="default">--</option>
+				<?php for ($year = date("Y"); $year >= 1960; $year--): ?>
+					<option value="<?= $year ?>"><?= $year ?></option>
+				<?php endfor; ?>
+			</select>
+		</div>
+
+		<label class="formulario-label">Sexo<span>*</span></label>
+		<div class="div-input-radio">
+			<input type="radio" name="sexo" value="Masculino" checked id="man">
+			<label class="formulario-label" for="man">Masculino</label>
+		</div>
+		<div class="div-input-radio">
+			<input type="radio" name="sexo" value="Feminino" id="woman">
+			<label class="formulario-label" for="woman">Feminino</label><br>
+		</div>
+		<button type="submit" class="formulario-button">Cadastrar</button>
+	</form>
+	<p class="link-acesso">Já tem um cadastro? <a href="login/">Entre</a></p>
 </div>
-<form method="POST" action="" class="form-user">
-    <label class="label-user">Nome<span>*</span></label><br>
-    <input class="input-user" type="text" name="nome" maxlength="60" required="" placeholder="Insira um nome"><br>
-
-    <label class="label-user">Sobrenome<span>*</span></label><br>
-    <input class="input-user" type="text" name="sobrenome" maxlength="60" required="" placeholder="Insira um sobrenome"><br>
-
-    <label class="label-user">E-mail<span>*</span></label><br>
-    <input class="input-user" type="email" name="email" required="" placeholder="Insira um email"><br>
-
-    <label class="label-user">Senha<span>*</span></label><br>
-    <input class="input-user" type="password" name="senha" required="" placeholder="Insira uma senha"><br>
-
-    <label class="label-user">CPF<span>*</span></label><br>
-    <input class="input-user" type="text" name="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" required="" placeholder="Insira um cpf"><br>
-
-    <label class="label-user">Data de Nascimento<span>*</span></label><br>
-    <div class="birthday-user">
-        <select class="parameters" name="dia">
-            <option value="default">Dia</option>
-            <?php for ($day = 1; $day <= 31; $day++): ?>
-                <option value="<?= $day ?>"><?= $day ?></option>
-            <?php endfor; ?>
-        </select>
-        <select class="parameters" name="mes">
-            <option value="default">Mês</option>
-            <?php for ($month = 1; $month <= 12; $month ++): ?>
-                <option value="<?= $month ?>"><?= $month ?></option>
-            <?php endfor; ?>
-        </select>
-        <select class="parameters" name="ano">
-            <option value="default">Ano</option>
-            <?php for ($year = date("Y"); $year >= 1960; $year--): ?>
-                <option value="<?= $year ?>"><?= $year ?></option>
-            <?php endfor; ?>
-        </select>
-    </div>
-    <label class="label-user">Sexo<span>*</span></label>
-    <div class="sex-user">
-        <div class="gender-user">
-            <input type="radio" name="sexo" value="Masculino" checked="" id="man">
-            <label class="label-gender-user" for="man">Masculino</label>
-        </div>
-        <div class="gender-user">
-            <input type="radio" name="sexo" value="Feminino" id="woman">
-            <label class="label-gender-user" for="woman">Feminino</label><br>
-        </div>
-    </div>
-
-    <button type="submit" class="submit-button-user-register">Cadastrar</button>
-</form>
-<p class="question-register">Já tem um cadastro? <a href="login/">Entre</a></p>

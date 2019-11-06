@@ -35,7 +35,7 @@ function adicionar()
 	if (ehPost()) {
 
 		$nome = 		$_POST["nome"];
-		$sobrenome =            $_POST["sobrenome"];
+		$sobrenome =    $_POST["sobrenome"];
 		$email = 		$_POST["email"];
 		$senha = 		$_POST["senha"];
 		$cpf = 			$_POST["cpf"];
@@ -104,7 +104,7 @@ function editar($id)
 
 		if (count($errors) > 0) {
 			$dados = array();
-			$dados["errors"] = 	$errors;
+			$dados["erro"] = 	$errors;
 			$dados["usuario"] = viewUsuario($id);
 			exibir("usuario/editar", $dados);
 		} else {

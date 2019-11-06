@@ -50,3 +50,22 @@ function editCategoria(
 	if (!$resultado) {die('Erro ao alterar categoria' . mysqli_error(conn()));}
 	return 'Categoria alterada com sucesso!';
 }
+
+function getCategoriaByNome($nome)
+{
+	$sql = "CALL sp_CategoriaByNome ('$nome')";
+	$resultado = mysqli_query(conn(), $sql);
+	$categorias = array();
+	while ($linha = mysqli_fetch_assoc($resultado)) {
+		$categorias[] = $linha;
+	}
+	return $categorias;
+}
+
+function returnIdCategoriaByNome($nome)
+{
+	$sql = "CALL sp_IdCategoriaByNome ('$nome')";
+	$resultado = mysqli_query(conn(), $sql);
+	$idmarca = mysqli_fetch_assoc($resultado);
+	return $idmarca;
+}

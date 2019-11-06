@@ -9,14 +9,11 @@ function index() {
         $usuario = getUsuarioByEmailSenha($email, $senha);
 
         if (acessoLogar($usuario)) {
-
-            if (isset($_SESSION['verificar']) && $_SESSION['verificar'] == false) {
-                
-            }
             $id = $usuario['idUsuario'];
             redirecionar("usuario/visualizar/$id");
         } else {
-            alert("Usuário ou senha inválidos!");
+            $dados['erro'] = "Usuário ou senha inválidos!";
+            exibir("login/index", $dados);
         }
     } else {
         exibir("login/index");

@@ -1,34 +1,24 @@
 <div class="header">
-    <div class="est-logo">
-        <a href="." class="title-store"><h1>Electronic's ST</h1></a>
-    </div>
-    <div class="search-div">
-        <form method="POST" action="produto/buscar/" class="search-form">
-            <input id="busca" type="search" name="buscar" placeholder="Buscar produto" class="header-search-input">
-            <button type="submit" class="header-search-button"><img src="publico/img/header/lupa.png" class="img-search"></button>
-        </form>
-    </div>
-    <?php if (acessoUsuarioEstaLogado()): ?>
-        <div class="dropdown">
-            <button class="dropbtn">Bem vindo, <br><?= acessoPegarNomeUsuario() ?></button>
-            <div class="dropdown-content">
-                <a href="usuario/visualizar/<?= acessoPegarUsuarioLogado() ?>"><h3>Minha Conta</h3></a>
-                <a href="login/logout"><h3>Sair</h3></a>
-            </div>
-        </div>  
+	<form method="POST" action="produto/buscar/" class="busca">
+		<input class="input-busca" type="search" name="buscar" placeholder="Digite aqui">
+		<button class="button-busca" type="submit">Buscar</button>
+	</form>
 
-    <?php else: ?>
-        <div class="dropdown">
-            <button class="dropbtn">Login ou<br>Cadastro</button>
-            <div class="dropdown-content">
-                <a href="login/"><h3>Login</h3></a>
-                <a href="usuario/adicionar"><h3>Cadastro</h3></a>
-            </div>
-        </div>
-    <?php endif; ?>
-    <div class="shop-car">
-        <a href="compras/">
-            <img src="publico/img/header/shopping-cart.png" class="shopping-cart-image">
-        </a>
-    </div>
+	<div class="logo-store">
+		<a href=".">
+			<img src="publico/img/header/logo.png" style="width: auto; height: 100px;">
+		</a>
+	</div>
+
+	<div class="menu">
+		<?php if (acessoUsuarioEstaLogado()): ?>
+			<a class="menu-link" href="usuario/visualizar/<?= acessoPegarUsuarioLogado() ?>"><p>Perfil</p></a>
+			<a class="menu-link" href="login/logout"><p>Logout</p></a>
+		<?php else: ?>
+			<a class="menu-link" href="login/"><p>Login</p></a>
+			<a class="menu-link" href="usuario/adicionar"><p>Cadastro</p></a>
+		<?php endif; ?>
+
+		<a class="menu-link" href="compras/"><p>Carrinho</p></a>
+	</div>
 </div>

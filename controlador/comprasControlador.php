@@ -29,9 +29,6 @@ function index()
 	$quantidadeProdutos = 0;
 	$subtotal = 0;
 
-
-	var_dump($_SESSION['carrinho']); 
-
 	foreach ($produtos as $posicao => $valor) {
 		$quantidadeProdutos += $valor["quantidade"];
 		$subtotal += ($valor["preco"]*$valor["quantidade"]);

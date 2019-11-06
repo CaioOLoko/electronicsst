@@ -59,3 +59,11 @@ function editMarca(
 	if (!$resultado) {die('Erro ao alterar marca' . mysqli_error(conn()));}
 	return 'Marca alterada com sucesso!';
 }
+
+function returnIdMarcaByNome($nome)
+{
+	$sql = "CALL sp_IdMarcaByNome ('$nome')";
+	$resultado = mysqli_query(conn(), $sql);
+	$idmarca = mysqli_fetch_assoc($resultado);
+	return $idmarca;
+}

@@ -69,16 +69,7 @@ function addProduto(
 	$imagem,
 	$estoque_minimo,
 	$estoque_maximo,
-	$quant_estoque,
-	$cod_barras,
-	$cor,
-	$tipo_chip,
-	$quant_chip,
-	$mem_interna,
-	$mem_ram,
-	$processador,
-	$display,
-	$so
+	$quant_estoque
 )
 {
 	$sql = "CALL sp_addProduto (
@@ -90,16 +81,7 @@ function addProduto(
 				'$imagem',
 				'$estoque_minimo',
 				'$estoque_maximo',
-				'$quant_estoque',
-				'$cod_barras',
-				'$cor',
-				'$tipo_chip',
-				'$quant_chip',
-				'$mem_interna',
-				'$mem_ram',
-				'$processador',
-				'$display',
-				'$so'
+				'$quant_estoque'
 			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao cadastrar produto!' . mysqli_error(conn()));}
@@ -116,18 +98,20 @@ function editProduto(
 	$imagem,
 	$estoque_minimo,
 	$estoque_maximo,
-	$quant_estoque,
-	$cod_barras,
-	$cor,
-	$tipo_chip,
-	$quant_chip,
-	$mem_interna,
-	$mem_ram,
-	$processador,
-	$display,
-	$so
+	$quant_estoque
 )
 {
+	// $sql = "UPDATE produto 
+	// 		SET nome = '$nome',
+	// 			preco = '$preco',
+	// 			categoria = '$categoria',
+	// 			marca = '$marca',
+	// 			descricao = '$descricao',
+	// 			imagem = '$imagem',
+	// 			estoque_minimo = '$estoque_minimo',
+	// 			estoque_maximo = '$estoque_maximo',
+	// 			quant_estoque = '$quant_estoque' 
+	// 		WHERE idProduto = '$id'";
 	$sql = "CALL sp_updProduto (
 				'$id',
 				'$nome',
@@ -138,17 +122,9 @@ function editProduto(
 				'$imagem',
 				'$estoque_minimo',
 				'$estoque_maximo',
-				'$quant_estoque',
-				'$cod_barras',
-				'$cor',
-				'$tipo_chip',
-				'$quant_chip',
-				'$mem_interna',
-				'$mem_ram',
-				'$processador',
-				'$display',
-				'$so'
+				'$quant_estoque'
 			)";
+			echo $sql;
 	$resultado = mysqli_query(conn(), $sql);
 	if (!$resultado) {die('Erro ao alterar produto' . mysqli_error(conn()));}
 	return 'Produto alterado com sucesso!';

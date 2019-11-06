@@ -19,47 +19,29 @@
 		FOR EACH ROW
 		BEGIN
 			SET @dadosAntigos = CONCAT(
-				'  ID:    		 	  # ', 
-				'\nNome:   		 	  # ', 
-				'\nPreço:   	 	  # ', 
-				'\nCategoria:    	  # ', 
-				'\nMarca:   	 	  # ', 
-				'\nDescricao:         # ', 
-				'\nImage:   	 	  # ', 
-				'\nEstoque_Min:       # ', 
-				'\nEstoque_Max:       # ', 
-				'\nQuantidade:    	  # ',
-				'\nCódigo_Barra:      # ', 
-				'\nCor:   		 	  # ', 
-				'\nTipo de Chip:      # ', 
-				'\nQuanti Chip:       # ', 
-				'\nMemória Int:       # ', 
-				'\nMemória RAM:       # ', 
-				'\nProcessador:       # ', 
-				'\nDisplay:    	 	  # ', 
-				'\nSO: '
+				'ID:    		  # ', 
+				'Nome:   		  # ', 
+				'Preço:   	 	  # ', 
+				'Categoria:    	  # ', 
+				'Marca:   	 	  # ', 
+				'Descricao:       # ', 
+				'Image:   	 	  # ', 
+				'Estoque_Min:     # ', 
+				'Estoque_Max:     # ', 
+				'Quantidade:      # '
 			);
 
 			SET @dadosNovos = CONCAT(
-				'  ID: ', 			NEW.idProduto, 		' # ', 
-				'\nNome: ',			NEW.nome, 			' # ', 
-				'\nPreço: ',		NEW.preco, 			' # ', 
-				'\nCategoria: ',	NEW.categoria, 		' # ', 
-				'\nMarca: ',		NEW.marca, 			' # ', 
-				'\nDescricao: ',	NEW.descricao, 		' # ', 
-				'\nImage: ',		NEW.imagem, 		' # ', 
-				'\nEstoque_Min: ',	NEW.estoque_minimo, ' # ', 
-				'\nEstoque_Max: ',	NEW.estoque_maximo, ' # ', 
-				'\nQuantidade: ',	NEW.quant_estoque, 	' # ',
-				'\nCódigo_Barra: ',	NEW.cod_barras, 	' # ', 
-				'\nCor: ',			NEW.cor, 			' # ', 
-				'\nTipo de Chip: ', NEW.tipo_chip, 		' # ', 
-				'\nQuanti Chip: ', 	NEW.quant_chip, 	' # ', 
-				'\nMemória Int: ', 	NEW.mem_interna, 	' # ', 
-				'\nMemória RAM: ', 	NEW.mem_ram, 		' # ', 
-				'\nProcessador: ', 	NEW.processador, 	' # ', 
-				'\nDisplay: ', 		NEW.display, 		' # ', 
-				'\nSO: ', 			NEW.so
+				'ID: ', 			NEW.idProduto, 		' # ', 
+				'Nome: ',			NEW.nome, 			' # ', 
+				'Preço: ',			NEW.preco, 			' # ', 
+				'Categoria: ',		NEW.categoria, 		' # ', 
+				'Marca: ',			NEW.marca, 			' # ', 
+				'Descricao: ',		NEW.descricao, 		' # ', 
+				'Image: ',			NEW.imagem, 		' # ', 
+				'Estoque_Min: ',	NEW.estoque_minimo, ' # ', 
+				'Estoque_Max: ',	NEW.estoque_maximo, ' # ', 
+				'Quantidade: ',		NEW.quant_estoque, 	' # '
 			);
 
 			SET @DataProduto = SYSDATE();
@@ -87,47 +69,29 @@
 		FOR EACH ROW
 		BEGIN
 			SET @dadosAntigos = CONCAT(
-				'  ID: ', 			OLD.idProduto, 		' # ', 
-				'\nNome: ',			OLD.nome, 			' # ', 
-				'\nPreço: ',		OLD.preco, 			' # ', 
-				'\nCategoria: ',	OLD.categoria, 		' # ', 
-				'\nMarca: ',		OLD.marca, 			' # ', 
-				'\nDescricao: ',	OLD.descricao, 		' # ', 
-				'\nImage: ',		OLD.imagem, 		' # ', 
-				'\nEstoque_Min: ',	OLD.estoque_minimo, ' # ', 
-				'\nEstoque_Max: ',	OLD.estoque_maximo, ' # ', 
-				'\nQuantidade: ',	OLD.quant_estoque, 	' # ',
-				'\nCódigo_Barra: ',	OLD.cod_barras, 	' # ', 
-				'\nCor: ',			OLD.cor, 			' # ', 
-				'\nTipo de Chip: ', OLD.tipo_chip, 		' # ', 
-				'\nQuanti Chip: ', 	OLD.quant_chip, 	' # ', 
-				'\nMemória Int: ', 	OLD.mem_interna, 	' # ', 
-				'\nMemória RAM: ', 	OLD.mem_ram, 		' # ', 
-				'\nProcessador: ', 	OLD.processador, 	' # ', 
-				'\nDisplay: ', 		OLD.display, 		' # ', 
-				'\nSO: ', 			OLD.so
+				'ID: ', 			OLD.idProduto, 		' # ', 
+				'Nome: ',			OLD.nome, 			' # ', 
+				'Preço: ',			OLD.preco, 			' # ', 
+				'Categoria: ',		OLD.categoria, 		' # ', 
+				'Marca: ',			OLD.marca, 			' # ', 
+				'Descricao: ',		OLD.descricao, 		' # ', 
+				'Image: ',			OLD.imagem, 		' # ', 
+				'Estoque_Min: ',	OLD.estoque_minimo, ' # ', 
+				'Estoque_Max: ',	OLD.estoque_maximo, ' # ', 
+				'Quantidade: ',		OLD.quant_estoque, 	' # '
 			);
 
 			SET @dadosNovos = CONCAT(
 				'  ID: ', 			NEW.idProduto, 		' # ', 
-				'\nNome: ',			NEW.nome, 			' # ', 
-				'\nPreço: ',		NEW.preco, 			' # ', 
-				'\nCategoria: ',	NEW.categoria, 		' # ', 
-				'\nMarca: ',		NEW.marca, 			' # ', 
-				'\nDescricao: ',	NEW.descricao, 		' # ', 
-				'\nImage: ',		NEW.imagem, 		' # ', 
-				'\nEstoque_Min: ',	NEW.estoque_minimo, ' # ', 
-				'\nEstoque_Max: ',	NEW.estoque_maximo, ' # ', 
-				'\nQuantidade: ',	NEW.quant_estoque, 	' # ',
-				'\nCódigo_Barra: ',	NEW.cod_barras, 	' # ', 
-				'\nCor: ',			NEW.cor, 			' # ', 
-				'\nTipo de Chip: ', NEW.tipo_chip, 		' # ', 
-				'\nQuanti Chip: ', 	NEW.quant_chip, 	' # ', 
-				'\nMemória Int: ', 	NEW.mem_interna, 	' # ', 
-				'\nMemória RAM: ', 	NEW.mem_ram, 		' # ', 
-				'\nProcessador: ', 	NEW.processador, 	' # ', 
-				'\nDisplay: ', 		NEW.display, 		' # ', 
-				'\nSO: ', 			NEW.so
+				'Nome: ',			NEW.nome, 			' # ', 
+				'Preço: ',			NEW.preco, 			' # ', 
+				'Categoria: ',		NEW.categoria, 		' # ', 
+				'Marca: ',			NEW.marca, 			' # ', 
+				'Descricao: ',		NEW.descricao, 		' # ', 
+				'Image: ',			NEW.imagem, 		' # ', 
+				'Estoque_Min: ',	NEW.estoque_minimo, ' # ', 
+				'Estoque_Max: ',	NEW.estoque_maximo, ' # ', 
+				'Quantidade: ',		NEW.quant_estoque, 	' # '
 			);
 
 			SET @DataProduto = SYSDATE();
@@ -151,51 +115,33 @@
 	DROP TRIGGER IF EXISTS tr_remLogProduto;
 	DELIMITER $$
 		CREATE TRIGGER tr_remLogProduto
-		BEFORE DELETE ON produto
+		AFTER DELETE ON produto
 		FOR EACH ROW
 		BEGIN
 			SET @dadosAntigos = CONCAT(
-				'  ID: ', 			OLD.idProduto, 		' # ', 
-				'\nNome: ',			OLD.nome, 			' # ', 
-				'\nPreço: ',		OLD.preco, 			' # ', 
-				'\nCategoria: ',	OLD.categoria, 		' # ', 
-				'\nMarca: ',		OLD.marca, 			' # ', 
-				'\nDescricao: ',	OLD.descricao, 		' # ', 
-				'\nImage: ',		OLD.imagem, 		' # ', 
-				'\nEstoque_Min: ',	OLD.estoque_minimo, ' # ', 
-				'\nEstoque_Max: ',	OLD.estoque_maximo, ' # ', 
-				'\nQuantidade: ',	OLD.quant_estoque, 	' # ',
-				'\nCódigo_Barra: ',	OLD.cod_barras, 	' # ', 
-				'\nCor: ',			OLD.cor, 			' # ', 
-				'\nTipo de Chip: ', OLD.tipo_chip, 		' # ', 
-				'\nQuanti Chip: ', 	OLD.quant_chip, 	' # ', 
-				'\nMemória Int: ', 	OLD.mem_interna, 	' # ', 
-				'\nMemória RAM: ', 	OLD.mem_ram, 		' # ', 
-				'\nProcessador: ', 	OLD.processador, 	' # ', 
-				'\nDisplay: ', 		OLD.display, 		' # ', 
-				'\nSO: ', 			OLD.so
+				'ID: ', 			OLD.idProduto, 		' # ', 
+				'Nome: ',			OLD.nome, 			' # ', 
+				'Preço: ',			OLD.preco, 			' # ', 
+				'Categoria: ',		OLD.categoria, 		' # ', 
+				'Marca: ',			OLD.marca, 			' # ', 
+				'Descricao: ',		OLD.descricao, 		' # ', 
+				'Image: ',			OLD.imagem, 		' # ', 
+				'Estoque_Min: ',	OLD.estoque_minimo, ' # ', 
+				'Estoque_Max: ',	OLD.estoque_maximo, ' # ', 
+				'Quantidade: ',		OLD.quant_estoque, 	' # '
 			);
 
 			SET @dadosNovos = CONCAT(
-				'  ID:    		 -- # ', 
-				'\nNome:   		 -- # ', 
-				'\nPreço:   	 -- # ', 
-				'\nCategoria:    -- # ', 
-				'\nMarca:   	 -- # ', 
-				'\nDescricao:    -- # ', 
-				'\nImage:   	 -- # ', 
-				'\nEstoque_Min:  -- # ', 
-				'\nEstoque_Max:  -- # ', 
-				'\nQuantidade:   -- # ',
-				'\nCódigo_Barra: -- # ', 
-				'\nCor:   		 -- # ', 
-				'\nTipo de Chip: -- # ', 
-				'\nQuanti Chip:  -- # ', 
-				'\nMemória Int:  -- # ', 
-				'\nMemória RAM:  -- # ', 
-				'\nProcessador:  -- # ', 
-				'\nDisplay:    	 -- # ', 
-				'\nSO:           --   '
+				'ID:    	   -- # ', 
+				'Nome:   	   -- # ', 
+				'Preço:   	   -- # ', 
+				'Categoria:    -- # ', 
+				'Marca:   	   -- # ', 
+				'Descricao:    -- # ', 
+				'Image:   	   -- # ', 
+				'Estoque_Min:  -- # ', 
+				'Estoque_Max:  -- # ', 
+				'Quantidade:   -- # '
 			);
 
 			SET @DataProduto = SYSDATE();

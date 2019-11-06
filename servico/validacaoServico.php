@@ -1,5 +1,13 @@
 <?php
 
+require_once 'modelo/categoriaModelo.php';
+require_once 'modelo/cupomModelo.php';
+require_once 'modelo/enderecoModelo.php';
+require_once 'modelo/FormaPagamentoModelo.php';
+require_once 'modelo/marcaModelo.php';
+require_once 'modelo/produtoModelo.php';
+require_once 'modelo/usuarioModelo.php';
+
 function validar_Nome($nome)
 {
 	$regex = "/^[áàâãéèêîíìóòôõúùûçñÁÀÂÃÉÈÊÍÌÎÓÒÔÕÚÙÛÇÑ]+$/";
@@ -114,4 +122,44 @@ function validar_Arquivo($arquivo)
 	}else{
 		return true;
 	}
+}
+
+
+# # # # U P L O A D # # # #
+function upload_verifica_marca($marca)
+{
+	$listaMarcas = allMarca();
+
+	$quant_marcas = 0;
+
+	foreach ($listaMarcas as $nomeMarca) {
+		if ($nomeMarca['nome'] == $marca) {
+			$quant_marcas++;
+		}
+	}
+
+	if($quant_marcas == 0){
+		addMarca($marca);
+	}
+
+	return returnIdMarcaByNome($marca);
+}
+
+function upload_verifica_categoria($categoria)
+{
+	$listaCategorias = allCategoria();
+
+	$quant_categorias = 0;
+
+	foreach ($listaCategorias as $nomeCategoria) {
+		if ($nomeCategoria['nome'] == $categoria) {
+			$quant_categorias++;
+		}
+	}
+
+	if($quant_categorias == 0){
+		addCategoria($categoria);
+	}
+
+	return returnIdCategoriaByNome($categoria);
 }

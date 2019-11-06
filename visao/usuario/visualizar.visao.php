@@ -1,12 +1,16 @@
-<h2>Ver detalhes do usuario</h2>
-<p><strong>Nome:</strong> <?= $usuario['nome'] ?> <?= $usuario['sobrenome'] ?></p>
-<p><strong>Email:</strong> <?= $usuario['email'] ?></p>
-<p><strong>CPF:</strong> <?= $usuario['cpf'] ?></p>
-<p><strong>Data de Nascimento:</strong> <?= $usuario['nascimento'] ?></p>
-<p><strong>Sexo:</strong> <?= $usuario['sexo'] ?></p>
-<p><strong>Tipo de Usuário:</strong> <?= $usuario['tipo'] ?></p>
+<div>
+	<div class="">
+		<p><strong>Nome:</strong> <?= $usuario['nome'] ?> <?= $usuario['sobrenome'] ?></p>
+		<p><strong>Email:</strong> <?= $usuario['email'] ?></p>
+	</div>
+	<p><strong>CPF:</strong> <?= $usuario['cpf'] ?></p>
+	<p><strong>Data de Nascimento:</strong> <?= $usuario['nascimento'] ?></p>
+	<p><strong>Sexo:</strong> <?= $usuario['sexo'] ?></p>
+	<?php if ($usuario['tipo'] == 'admin'):?>
+		<p><strong>Tipo de Usuário:</strong> <?= $usuario['tipo'] ?></p>
+	<?php endif;?>
 
-<br>
+</div>
 
 <?php if ($usuario['tipo'] == 'admin'):?>
 <a href="cupom/" class="btn btn-primary" style="color:black; text-decoration: underline;"><br>Cupons</a>

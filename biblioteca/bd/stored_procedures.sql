@@ -79,24 +79,15 @@
 		DROP PROCEDURE IF EXISTS sp_addProduto;
 		DELIMITER $$
 			CREATE PROCEDURE sp_addProduto (
-				v_nome VARCHAR(30),
-				v_preco DOUBLE,
+				v_nome VARCHAR(40),
+				v_preco VARCHAR(10),
 				v_categoria BIGINT(11),
 				v_marca BIGINT(11),
 				v_descricao VARCHAR(2000),
 				v_imagem VARCHAR(200),
 				v_estoque_minimo BIGINT(11),
 				v_estoque_maximo BIGINT(11),
-				v_quant_estoque INT,
-				v_cod_barras BIGINT(50),
-				v_cor VARCHAR(15),
-				v_tipo_chip VARCHAR(10),
-				v_quant_chip INT(5),
-				v_mem_interna VARCHAR(15),
-				v_mem_ram VARCHAR(15),
-				v_processador VARCHAR(30),
-				v_display VARCHAR(10),
-				v_so VARCHAR(20)
+				v_quant_estoque BIGINT(11)
 			)
 			BEGIN
 				INSERT INTO produto 
@@ -110,16 +101,7 @@
 					v_imagem,
 					v_estoque_minimo,
 					v_estoque_maximo,
-					v_quant_estoque,
-					v_cod_barras,
-					v_cor,
-					v_tipo_chip,
-					v_quant_chip,
-					v_mem_interna,
-					v_mem_ram,
-					v_processador,
-					v_display,
-					v_so
+					v_quant_estoque
 				);
 			END; $$
 		DELIMITER ;
@@ -168,10 +150,10 @@
 
 	-- Pedido
 		DROP PROCEDURE IF EXISTS sp_addPedido;
-		DELMITER $$
+		DELIMITER $$
 			CREATE PROCEDURE sp_addPedido (
 				v_idUsuario BIGINT(11),
-				v_idFormaPagamento BIGINT,
+				v_idFormaPagamento BIGINT(11),
 				v_dataCompra DATE
 			)
 			BEGIN
@@ -279,24 +261,15 @@
 		DELIMITER $$
 			CREATE PROCEDURE sp_updProduto (
 				v_idProduto BIGINT(11),
-				v_nome VARCHAR(30),
-				v_preco DOUBLE,
+				v_nome VARCHAR(40),
+				v_preco VARCHAR(10),
 				v_categoria BIGINT(11),
 				v_marca BIGINT(11),
 				v_descricao VARCHAR(2000),
 				v_imagem VARCHAR(200),
 				v_estoque_minimo BIGINT(11),
 				v_estoque_maximo BIGINT(11),
-				v_quant_estoque INT,
-				v_cod_barras BIGINT(50),
-				v_cor VARCHAR(15),
-				v_tipo_chip VARCHAR(10),
-				v_quant_chip INT(5),
-				v_mem_interna VARCHAR(15),
-				v_mem_ram VARCHAR(15),
-				v_processador VARCHAR(30),
-				v_display VARCHAR(10),
-				v_so VARCHAR(20)
+				v_quant_estoque BIGINT(11)
 			)
 			BEGIN
 				UPDATE produto 
@@ -308,16 +281,7 @@
 					imagem = 			v_imagem,
 					estoque_minimo = 	v_estoque_minimo,
 					estoque_maximo =	v_estoque_maximo,
-					quant_estoque = 	v_quant_estoque,
-					cod_barras = 		v_cod_barras,
-					cor = 				v_cor,
-					tipo_chip = 		v_tipo_chip,
-					quant_chip = 		v_quant_chip,
-					mem_interna = 		v_mem_interna,
-					mem_ram = 			v_mem_ram,
-					processador = 		v_processador,
-					display = 			v_display,
-					so = 				v_so 
+					quant_estoque = 	v_quant_estoque 
 				WHERE idProduto = v_idProduto;
 			END; $$
 		DELIMITER ;
@@ -747,18 +711,18 @@
 				ON pedido.idUsuario = usuario.idUsuario
 				INNER JOIN endereco
 				ON usuario.idUsuario = endereco.idUsuario
-				WHERE endereco.cidade = '$cidade';
+				WHERE endereco.cidade = v_cidade;
 			END; $$
 		DELIMITER ;
 
 	-- Produto por Nome
 		DROP PROCEDURE IF EXISTS sp_ProdutoByNome;
 		DELIMITER $$
-			CREATE PROCEDURE sp_ProdutoByNome (v_nome VARCHAR(30))
+			CREATE PROCEDURE sp_ProdutoByNome (v_nome VARCHAR(40))
 			BEGIN
 				SELECT *
 				FROM produto
-				WHERE nome LIKE "%v_nome%";
+				WHERE nome LIKE v_nome;
 			END; $$
 		DELIMITER ;
 
@@ -791,7 +755,18 @@
 			BEGIN
 				SELECT *
 				FROM marca 
-				WHERE nome LIKE "%v_nome%";
+				WHERE nome = v_nome;
+			END; $$
+		DELIMITER ;
+
+	-- Categoria por Nome
+		DROP PROCEDURE IF EXISTS sp_CategoriaByNome;
+		DELIMITER $$
+			CREATE PROCEDURE sp_CategoriaByNome (v_nome VARCHAR(30))
+			BEGIN 
+				SELECT *
+				FROM categoria 
+				WHERE nome = v_nome;
 			END; $$
 		DELIMITER ;
 
@@ -802,8 +777,29 @@
 			BEGIN
 				SELECT desconto
 				FROM cupom
-				WHERE nome LIKE '%v_nome%';
+				WHERE nome = v_nome;
 			END; $$
 		DELIMITER ;
 
--- -- < - < : > - > -- --
+	-- IdMarca por Nome
+		DROP PROCEDURE IF EXISTS sp_IdMarcaByNome;
+		DELIMITER $$
+			CREATE PROCEDURE sp_IdMarcaByNome (v_nome VARCHAR(20))
+			BEGIN
+				SELECT idMarca
+				FROM marca 
+				WHERE nome = v_nome;
+			END; $$
+		DELIMITER ;
+
+	-- IdCategoria por Nome
+		DROP PROCEDURE IF EXISTS sp_IdCategoriaByNome;
+		DELIMITER $$
+			CREATE PROCEDURE sp_IdCategoriaByNome (v_nome VARCHAR(30))
+			BEGIN
+				SELECT idCategoria 
+				FROM categoria 
+				WHERE nome = v_nome;
+			END; $$
+		DELIMITER ;
+-- -- < - <      :      > - > -- --

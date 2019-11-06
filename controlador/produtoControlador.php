@@ -75,15 +75,6 @@ function adicionar()
 		$estoque_minimo = 	$_POST["estoque_minimo"];
 		$estoque_maximo = 	$_POST["estoque_maximo"];
 		$quant_estoque = 	$_POST["quant_estoque"];
-		$cod_barras = 		$_POST["cod_barras"];
-		$cor = 				$_POST["cor"];
-		$tipo_chip = 		$_POST["tipo_chip"];
-		$quant_chip = 		$_POST["quant_chip"];
-		$mem_interna = 		$_POST["mem_interna"]." ".$_POST['mem_interna_quant'];
-		$mem_ram = 			$_POST["mem_ram"];
-		$processador = 		$_POST["marca_proc"]." ".$_POST["processador"];
-		$display = 			$_POST["display"];
-		$so = 				$_POST["so"];
 
 		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
 		$name_img = 		$_FILES["imagem"]["name"];
@@ -101,15 +92,6 @@ function adicionar()
 			if (!validar_Descricao($descricao)) {$errors['descricao'] = "Descrição inválida!";}
 			if (!validar_Imagem($imagem)) {$errors['imagem'] = "Extensão inválida!";}
 			if (!validar_Estoque($estoque_minimo,$estoque_maximo,$quant_estoque)) {$errors['estoque'] = "Quantidade em estoque não permitida!";}
-			if (!validar_CodBarra($cod_barra)) {$errors['cod_barra'] = "Código inválido!";}
-			if (!validar_Cor($cor)) {$errors['cor'] = "Cor inválida!";}
-			if (!validar_TipoChip($tipo_chip)) {$errors['tipo_chip'] = "Tipo inválido!";}
-			if (!validar_QuantChip($quant_chip)) {$errors['quant-chip'] = "Quantidade inválida!";}
-			if (!validar_MemInterna($mem_interna)) {$errors['mem_interna'] = "Memória interna inválida!";}
-			if (!validar_MemRAM($mem_ram)) {$errors['mem_ram'] = "Memória RAM inválida!";}
-			if (!validar_Processador($processador)) {$errors['processador'] = "Processador inválido!";}
-			if (!validar_($display)) {$errors['display'] = "Tamanho inválido!";}
-			if (!validar_SO($so)) {$errors['so'] = "Sistema operacional não permitido!";}
 		
 		*/
 
@@ -129,16 +111,7 @@ function adicionar()
 				$imagem,
 				$estoque_minimo,
 				$estoque_maximo,
-				$quant_estoque,
-				$cod_barras,
-				$cor,
-				$tipo_chip,
-				$quant_chip,
-				$mem_interna,
-				$mem_ram,
-				$processador,
-				$display,
-				$so
+				$quant_estoque
 			);
 			redirecionar("produto/");
 		}
@@ -163,15 +136,6 @@ function editar($id)
 		$estoque_minimo = 	$_POST["estoque_minimo"];
 		$estoque_maximo = 	$_POST["estoque_maximo"];
 		$quant_estoque = 	$_POST["quant_estoque"];
-		$cod_barras = 		$_POST["cod_barras"];
-		$cor = 				$_POST["cor"];
-		$tipo_chip = 		$_POST["tipo_chip"];
-		$quant_chip = 		$_POST["quant_chip"];
-		$mem_interna = 		$_POST["mem_interna"]." ".$_POST['mem_interna_quant'];
-		$mem_ram = 			$_POST["mem_ram"];
-		$processador = 		$_POST["marca_proc"]." ".$_POST["processador"];
-		$display = 			$_POST["display"];
-		$so = 				$_POST["so"];
 
 		$imagem_tmp = 		$_FILES["imagem"]["tmp_name"];
 		$name_img = 		$_FILES["imagem"]["name"];
@@ -188,15 +152,6 @@ function editar($id)
 			if (!validar_Descricao($descricao)) {$errors['descricao'] = "Descrição inválida!";}
 			if (!validar_Imagem($imagem)) {$errors['imagem'] = "Extensão inválida!";}
 			if (!validar_Estoque($estoque_minimo,$estoque_maximo,$quant_estoque)) {$errors['estoque'] = "Quantidade em estoque não permitida!";}
-			if (!validar_CodBarra($cod_barra)) {$errors['cod_barra'] = "Código inválido!";}
-			if (!validar_Cor($cor)) {$errors['cor'] = "Cor inválida!";}
-			if (!validar_TipoChip($tipo_chip)) {$errors['tipo_chip'] = "Tipo inválido!";}
-			if (!validar_QuantChip($quant_chip)) {$errors['quant-chip'] = "Quantidade inválida!";}
-			if (!validar_MemInterna($mem_interna)) {$errors['mem_interna'] = "Memória interna inválida!";}
-			if (!validar_MemRAM($mem_ram)) {$errors['mem_ram'] = "Memória RAM inválida!";}
-			if (!validar_Processador($processador)) {$errors['processador'] = "Processador inválido!";}
-			if (!validar_($display)) {$errors['display'] = "Tamanho inválido!";}
-			if (!validar_SO($so)) {$errors['so'] = "Sistema operacional não permitido!";}
 		
 		*/
 
@@ -218,16 +173,7 @@ function editar($id)
 				$imagem,
 				$estoque_minimo,
 				$estoque_maximo,
-				$quant_estoque,
-				$cod_barras,
-				$cor,
-				$tipo_chip,
-				$quant_chip,
-				$mem_interna,
-				$mem_ram,
-				$processador,
-				$display,
-				$so
+				$quant_estoque
 			);
 			redirecionar("produto/");
 		}
@@ -243,8 +189,6 @@ function editar($id)
 /** admin */
 function upload()
 {
-	$c = 0;
-
 	if (ehPost()) {
 
 		$nome_arquivo = 	$_FILES['listaProdutos']['name'];
@@ -252,67 +196,51 @@ function upload()
 
 		$arquivo = uploadFile($nome_tmp_arquivo, $nome_arquivo);
 
-		echo $arquivo;
+		$vetorzao = array();
 
 		$registros = fopen($arquivo, 'r');
-		echo "<br>aberto";
-		while (!feof($registros)) {
-			$linha = fgets($registros);
-			echo $linha;
-		}
 
-			
+			while (!feof($registros))
+			{
+				$linha = fgets($registros);
+				$dados = explode(chr(9), $linha);
 
-	/*
-			$dados = explode(',', $linha);
+				if ($dados[0] == "Nome") {
+					continue;
+				}
 
-			var_dump($dados);
+				$nome = 			$dados[0];
+				$preco = 			$dados[1];
+				$categoria = 		$dados[2];
+				$marca = 			$dados[3];
+				$descricao = 		$dados[4];
+				$imagem = 			$dados[5];
+				$estoque_minimo = 	$dados[6];
+				$estoque_maximo = 	$dados[7];
+				$quant_estoque = 	$dados[8];
 
-			$nome = 			$dados[0];
-			$preco = 			$dados[1];
-			$categoria = 		$dados[2];
-			$marca = 			$dados[3];
-			$descricao = 		$dados[4];
-			$imagem = 			$dados[5];
-			$estoque_minimo = 	$dados[6];
-			$estoque_maximo = 	$dados[7];
-			$quant_estoque = 	$dados[8];
-			$cod_barras = 		$dados[9];
-			$cor = 				$dados[10];
-			$tipo_chip = 		$dados[11];
-			$quant_chip = 		$dados[12];
-			$mem_interna = 		$dados[13];
-			$mem_ram = 			$dados[14];
-			$processador = 		$dados[15];
-			$display = 			$dados[16];
-			$so = 				$dados[17];
+				$idCategoria =	upload_verifica_categoria($categoria);
+				$idMarca =		upload_verifica_marca($marca);
 
-			addProduto(
-				$nome,
-				$preco,
-				$categoria,
-				$marca,
-				$descricao,
-				$imagem,
-				$estoque_minimo,
-				$estoque_maximo,
-				$quant_estoque,
-				$cod_barras,
-				$cor,
-				$tipo_chip,
-				$quant_chip,
-				$mem_interna,
-				$mem_ram,
-				$processador,
-				$display,
-				$so
-			);*/
-		//}
+				$marca = $idMarca['idMarca'];
+				$categoria = $idCategoria['idCategoria'];
+
+				addProduto(
+					$nome,
+					$preco,
+					$categoria,
+					$marca,
+					$descricao,
+					$imagem,
+					$estoque_minimo,
+					$estoque_maximo,
+					$quant_estoque
+				);
+			}
 
 		fclose($registros);
-		echo "<br>fechado";
 
-		// redirecionar("produto/");
+		redirecionar("produto/");
 	} else {
 		exibir("produtos/upload");
 	}
