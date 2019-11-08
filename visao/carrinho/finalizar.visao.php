@@ -34,4 +34,7 @@
 			<?php endforeach;?>
 		</select>
 	</div>
+	<br>
+	<!-- Arrumar o botão -->
+	<button type="submit">Pagar</button>
 </div>

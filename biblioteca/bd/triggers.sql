@@ -160,3 +160,47 @@
 			);
 		END;$$
 	DELIMITER ;
+
+-- Insert Estoque
+	DROP TRIGGER IF EXISTS tr_addEstoqueProduto;
+	DELIMITER $$
+		CREATE TRIGGER tr_addEstoqueProduto
+		AFTER INSERT ON produto
+		FOR EACH ROW
+		BEGIN
+			SET @log_data = CURDATE();
+			SET @log_hora = CURTIME();
+
+			INSERT INTO estoque 
+			VALUES (
+				NULL, 
+				NEW.idProduto, 
+				NEW.quantidade, 
+				"INSERT", 
+				@log_data, 
+				@log_hora
+			);
+		END; $$
+	DELIMITER ;
+
+-- Update Estoque
+	DROP TRIGGER IF EXISTS tr_addEstoqueCompra;
+	DELIMITER $$
+		CREATE TRIGGER tr_addEstoqueCompra
+		AFTER INSERT ON pedido_produto
+		FOR EACH ROW
+		BEGIN
+			SET @log_data = CURDATE();
+			SET @log_hora = CURTIME();
+
+			INSERT INTO estoque 
+			VALUES (
+				NULL, 
+				NEW.idProduto, 
+				NEW.quantidade, 
+				"COMPRA", 
+				@log_data, 
+				@log_hora
+			);
+		END; $$
+	DELIMITER ;

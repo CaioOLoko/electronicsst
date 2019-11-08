@@ -114,6 +114,12 @@ function finalizar()
 	$total = 0;
 
 	if(acessoUsuarioEstaLogado()){
+		$idUsuario = acessoPegarUsuarioLogado();
+		$enderecos = getEnderecoByUsuario($idUsuario);
+
+		if (count($enderecos) == 0) {
+			redirecionar("endereco/adicionar/$idUsuario");
+		}
 
 		$produtos = $_SESSION["carrinho"];
 		$quantidade = 0;
@@ -136,4 +142,11 @@ function finalizar()
 	$dados['pagamentos'] = allPagamento();
 	$dados['enderecos'] = getEnderecoByUsuario($idUsuario);
 	exibir("carrinho/finalizar", $dados);
+}
+
+function agradecimento(){
+	$dados = array();
+	$dados['subtotal'] = $subtotal;
+	$dados['quantidade'] = $quantidade;
+	exibir("carrinho/agradecimento", $dados);
 }

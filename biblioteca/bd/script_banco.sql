@@ -89,10 +89,13 @@ CREATE TABLE log_produto(
 	dadosNovos VARCHAR(2500) NOT NULL,
 	PRIMARY KEY(idLog)
 );
-CREATE TABLE estoque(
+CREATE TABLE log_estoque(
 	idEstoque BIGINT(11) NOT NULL AUTO_INCREMENT,
 	idProduto BIGINT(11) NOT NULL,
 	quantidade INT(8) NOT NULL,
+	operacao VARCHAR(10) NOT NULL,
+	log_data DATE NOT NULL,
+	log_hora TIME NOT NULL,
 	PRIMARY KEY(idEstoque),
 	FOREIGN KEY(idProduto) REFERENCES produto(idProduto) ON DELETE CASCADE ON UPDATE CASCADE
 );

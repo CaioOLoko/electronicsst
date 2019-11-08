@@ -518,7 +518,7 @@
 			CREATE PROCEDURE sp_selEstoque (v_idEstoque BIGINT(11))
 			BEGIN
 				SELECT * 
-				FROM estoque 
+				FROM log_estoque 
 				WHERE idEstoque = v_idEstoque;
 			END; $$
 		DELIMITER ;
