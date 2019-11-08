@@ -11,26 +11,26 @@
     }
 </script>
 
-<form action="" method="POST">
-    <h1>Cadastro de Endereço</h1>
-    <label for="logradouro">Logradouro:</label>
-    <input type="text" id="logradouro" name="logradouro">
+<form action="" method="POST" class="addEndereco">
+    <p class="div-p">Cadastro de Endereço</p>
+    <label class="formulario-label" for="logradouro">Logradouro:<?php if(isset($erro['logradouro'])){echo " (Logradouro inválido!)";}?></label>
+    <input class="formulario-input" type="text" id="logradouro" name="logradouro"><br>
 
-    <label for="numero">Número:</label>
-    <input type="text" id="numero" name="numero">
+    <label class="formulario-label" for="numero">Número:<?php if(isset($erro['numero'])){echo " (Número inválido!)";}?></label>
+    <input class="formulario-input" type="text" id="numero" name="numero"><br>
 
-    <label for="complemento">Complemento:</label>
-    <input type="text" id="complemento" name="complemento">
+    <label class="formulario-label" for="complemento">Complemento:</label>
+    <input class="formulario-input" type="text" id="complemento" name="complemento"><br>
 
-    <label for="bairro">Bairro:</label>
-    <input type="text" id="bairro" name="bairro">
+    <label class="formulario-label" for="bairro">Bairro:<?php if(isset($erro['bairro'])){echo " (Bairro inválido!)";}?></label>
+    <input class="formulario-input" type="text" id="bairro" name="bairro"><br>
 
-    <label for="cidade">Cidade:</label>
-    <input type="text" id="cidade" name="cidade">
+    <label class="formulario-label" for="cidade">Cidade:<?php if(isset($erro['cidade'])){echo " (Cidade inválida!)";}?></label>
+    <input class="formulario-input" type="text" id="cidade" name="cidade"><br>
 
-    <label for="cep">CEP:</label>
-    <input type="text" id="cep" name="cep" OnKeyPress="formatar('#####-###', this)">
+    <label class="formulario-label" for="cep">CEP:<?php if(isset($erro['cep'])){echo " (CEP inválido!)";}?></label>
+    <input class="formulario-input" type="text" id="cep" name="cep" OnKeyPress="formatar('#####-###', this)"><br>
 
-    <button type="submit">Enviar</button>
+    <button class="formulario-button" type="submit">Enviar</button>
 
 </form>

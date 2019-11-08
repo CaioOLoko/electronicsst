@@ -122,7 +122,7 @@ function editar($id)
 				$nascimento,
 				$sexo
 			);
-			redirecionar("usuario/");
+			redirecionar("usuario/visualizar/$id");
 		}
 	} else {
 		$dados["usuario"] = viewUsuario($id);
