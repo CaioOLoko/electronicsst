@@ -152,8 +152,31 @@ function agradecimento(){
 }
 
 
------------------
 
+
+
+
+
+
+
+-----------------
+<table class="table" border="1">
+    <thead>
+        <tr>
+            <th>Cupom</th>
+            <th>Desconto</th>
+            <th>DELETE</th>
+        </tr>
+    </thead>
+    <?php foreach ($cupons as $cupom): ?>
+        <tr>
+            <td><?= $cupom['nomecupom'] ?></td>
+            <td><?= $cupom['desconto'] ?></td>
+            <td><a href="cupom/deletarCupomComID/<?= $cupom['idcupom'] ?>">Del</a></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+<a href="cupom/adicionarNovoCupom">Adicionar novo cupom</a>
 -----------------
 function cupomPorNome ($busca)
 {
