@@ -254,3 +254,59 @@ body{
 	height: 100px;
 	width: 100px;
 }
+
+.table-dados{
+	border-radius: 5px;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(245, 245, 245);
+	margin: 20px auto;
+	padding: 5px;
+}
+
+.indice-tabela{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-radius: 3px;
+	background-color: rgb(219, 238, 255);
+}
+
+.title-table{
+	text-align: center;
+	width: 20%;
+	border-right: 1px solid #acacac;
+}
+
+.data-manipulation{
+	width: 40%;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.manipulacao{
+	width: 40%;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.data-operational-table{
+	width: 25%;
+}
+
+.data-table{
+	width: 20%;
+	padding: 5px 0px 5px 10px;
+}
+
+.registro{
+	height: 30px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 4px 0;
+}

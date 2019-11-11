@@ -1,8 +1,8 @@
 <?php
 
-function allUsuario()
+function allUsuario($tipo)
 {
-	$sql = "CALL sp_TodosUsuarios ()";
+	$sql = "CALL sp_TodosUsuarios ('$tipo')";
 	$resultado = mysqli_query(conn(), $sql);
 	$usuarios = array();
 	while ($linha = mysqli_fetch_assoc($resultado)) {
@@ -68,7 +68,8 @@ function addUsuario(
 			)";
 	$resultado = mysqli_query(conn(), $sql);
 	if(!$resultado) { die('Erro ao cadastrar usuário' . mysqli_error(conn())); }
-	return 'Usuario cadastrado com sucesso!';
+	// return mysql_insert_id(conn());
+	return true;
 }
 
 function editUsuario(

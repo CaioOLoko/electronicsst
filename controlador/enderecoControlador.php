@@ -112,6 +112,6 @@ function editar(
 	} else {
 		$dados = array();
 		$dados["endereco"] = viewEndereco($idEndereco);
-		exibir("endereco/formulario", $dados);
+		exibir("endereco/editar", $dados);
 	}
 }

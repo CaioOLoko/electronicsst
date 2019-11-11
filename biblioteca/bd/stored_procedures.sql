@@ -527,11 +527,17 @@
 	-- Usuarios
 		DROP PROCEDURE IF EXISTS sp_TodosUsuarios;
 		DELIMITER $$
-			CREATE PROCEDURE sp_TodosUsuarios ()
+			CREATE PROCEDURE sp_TodosUsuarios (v_tipo VARCHAR(10))
 			BEGIN
-				SELECT *
-				FROM usuario 
-				ORDER BY tipo, nome, sobrenome ASC;
+				IF (v_tipo = '') THEN
+					SELECT *
+					FROM usuario 
+					ORDER BY tipo, idUsuario ASC;
+				ELSE
+					SELECT *
+					FROM usuario
+					ORDER BY v_tipo;
+				END IF;
 			END; $$
 		DELIMITER ;
 
@@ -802,4 +808,5 @@
 				WHERE nome = v_nome;
 			END; $$
 		DELIMITER ;
+
 -- -- < - <      :      > - > -- --

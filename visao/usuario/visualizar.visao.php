@@ -20,6 +20,7 @@
 
 
 	<?php if ($usuario['tipo'] == 'admin'):?>
+		<a href="usuario/index/" class="">Usuários</a>
 		<a href="cupom/" class="">Cupons</a>
 		<a href="FormaPagamento/" class="">Pagamentos</a>
 		<a href="produto/" class="">Produtos</a>

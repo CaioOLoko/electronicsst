@@ -6,6 +6,8 @@
 		<base href="<?= URL_BASE ?>">
 		<link rel="shortcut icon" type="image/x-png" href="publico/img/user/user.png">
 		<link rel="stylesheet" href="publico/css/index.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="publico/js/app.js"></script>
 	</head>
 	<body class="container">
 		<?php

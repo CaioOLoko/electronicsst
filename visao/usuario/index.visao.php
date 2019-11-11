@@ -1,32 +1,40 @@
-<h2>Listar Clientes</h2><br>
+<p align="center" class="div-p">Usuários no Sistema</p>
+<div class="table-dados">
+	<div class="indice-tabela">
+		<p class="title-table"><a href="usuario/index/nome">Nome</a></p>
+		<p class="title-table"><a href="usuario/index/email">Email</a></p>
+		<p class="title-table"><a href="usuario/index/cpf">CPF</a></p>
+		<p class="data-manipulation">Manipulação<p>
+	</div>
+	
+	<?php foreach ($usuarios as $usuario):
+		// if (acessoPegarUsuarioLogado() == $usuario['idUsuario']){
+		// 	continue;
+		// }
+		?>
+		<div class="registro">
+			<p class="data-table">
+				<?php if ($usuario['tipo'] == 'admin') :?>
+				(Adm)
+				<?php endif;?>
+				<?= $usuario['nome'] ?>
+			</p>
+			<p class="data-table"><?= $usuario['email'] ?></p>
+			<p class="data-table"><?= $usuario['cpf'] ?></p>
+			<div class="manipulacao">
+				<p class="data-operational-table"><a href="usuario/visualizar/<?= $usuario['idUsuario'] ?>">Visualizar</a></p>
+				<p class="data-operational-table"><a href="usuario/editar/<?= $usuario['idUsuario'] ?>">Alterar</a></p>
+				<p class="data-operational-table"><a href="usuario/deletar/<?= $usuario['idUsuario'] ?>">Deletar</a></p>
+				<?php if ($usuario['tipo'] != 'admin') :?>
+					<p class="data-operational-table"><a href="usuario/adm/<?=$usuario['idUsuario']?>">Promover</a></p>
+				<?php endif;?>
+			</div>
+		</div>
+	<?php endforeach; ?>
+</div>
 
-<table class="table" border="1">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>CPF</th>
-            <th>Data de Nascimento</th>
-            <th>Sexo</th>
-            <th>Tipo de Usuário</th>
-            <th>Ver Detalhes</th>
-            <th>Alterar</th>
-            <th>Deletar o Usuário</th>
-        </tr>
-    </thead>
-    <?php foreach ($usuarios as $usuario): ?>
-        <tr>
-            <td><?= $usuario['nome'] ?></td>
-            <td><?= $usuario['email'] ?></td>
-            <td><?= $usuario['cpf'] ?></td>
-            <td><?= $usuario['nascimento'] ?></td>
-            <td><?= $usuario['sexo'] ?></td>
-            <td><?= $usuario['tipo'] ?></td>
-            <td><a href="usuario/visualizar/<?= $usuario['idUsuario'] ?>" style="color:black; text-decoration: underline;">Ver</a></td>
-            <td><a href="usuario/editar/<?= $usuario['idUsuario'] ?>" style="color:black; text-decoration: underline;">Alterar</a></td>
-            <td><a href="usuario/deletar/<?= $usuario['idUsuario'] ?>" style="color:black; text-decoration: underline;">Deletar</a></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+<a href="usuario/adicionar"><p align="center">Adicionar</p></a>
 
-<a href="./cliente/adicionar" class="btn btn-primary" style="color:black; text-decoration: underline;"><br><br>Novo Cliente</a>
+<br>
+
+<a href="usuario/upload"><p align="center">Adicionar Lista de Usuários</p></a>
