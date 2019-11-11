@@ -150,3 +150,39 @@ function agradecimento(){
 	$dados['quantidade'] = $quantidade;
 	exibir("carrinho/agradecimento", $dados);
 }
+
+
+-----------------
+
+-----------------
+function cupomPorNome ($busca)
+{
+	$sql = "SELECT idcupom, nomecupom, desconto
+			FROM cupom 
+			WHERE nomecupom = ('$busca')";
+	$resultado = mysqli_query(conn(), $sql);
+	$cupom = mysqli_fetch_assoc($resultado);
+	return $cupom;
+}
+-----------------
+http://localhost/webloja/carrinho/deletar/5/10
+-----------------
+require_once 'modelo/produtoModelo.php';
+
+function total()
+{
+	$produtos = selecionarTodosProdutos();
+
+	$nProdutos = 0;
+	$valorProdutos = 0;
+
+	foreach ($produtos as $produto) {
+		$nProdutos += $produto["quantidade"];
+		$valorProdutos += ($produto["preco"]*$produto["quantidade"]);
+	}
+
+	$dados = array();
+	$dados['numeroProdutosCadastrados'] = $nProdutos;
+	$dados['valorTotalProdutosCadastrados'] = $valorProdutos;
+	exibir("produtos/totalProdutos", $dados);
+}
